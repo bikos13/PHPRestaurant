@@ -5,7 +5,7 @@
 $host = "localhost";
 $username = "root";
 $password = "";
-$database = "restaurant.db";
+$database = "restaurant_db";
 
 //MySQLP Connect
 mysqli_connect($host, $username, $password, $database) or die("Failed to connect to database" . $conn->connect_error);
