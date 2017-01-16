@@ -1,0 +1,132 @@
+<?php
+
+/*
+ * arrays.php
+ * -----------------------
+ * Navigation Items Array
+ * Food Menu Items Array
+ */
+
+/*
+ * Nav Menu Items
+ * slug is used for the href linking
+ * title is used for the nav's button displayed title
+ * viewLevel is used along with database user levels (which is used
+ *      as Session Variable to indicate until which level this menu item appears
+ *      for example: Login And Register Appear only in level 0 (Guests) users
+ * needsAdmin is being used to indicate that this menu should appear on admin
+ *      user Roles Only
+ * - Constantine
+ */
+
+$navMenuItems = array(
+    array(
+        "slug" => "index.php",
+        "title" => "Home",
+        "viewLevel" => "10",
+        "needsAdmin" => "No"
+    ),
+    array(
+        "slug" => "menu.php",
+        "title" => "<strong>Menu</strong>",
+        "viewLevel" => "10",
+        "needsAdmin" => "No"
+    ),
+    array(
+        "slug" => "contact.php",
+        "title" => "Contact",
+        "viewLevel" => "10",
+        "needsAdmin" => "No"
+    ),
+    array(
+        "slug" => "login.php",
+        "title" => "Login",
+        "viewLevel" => "0",
+        "needsAdmin" => "No"
+    ),
+    array(
+        "slug" => "register.php",
+        "title" => "Register",
+        "viewLevel" => "0",
+        "needsAdmin" => "No"
+    ),
+);
+
+/*
+ * Food Menu Items Array
+ * - Constantine
+ */
+
+$foodMenuItems = array(
+    array(
+        "foodCategory" => "Meat",
+        "foodTitle" => "35 OZ. TOMAHAWK RIBEYE",
+        "foodImageSlug" => "tomahawk-ribeye-specials.jpg",
+        "foodDescription" => "This massive, tender, juicy ribeye is wood-fire grilled, cooked to absolute perfection and topped with roasted garlic butter. Served with one freshly made side.",
+        "foodPrice" => "50"
+    ),
+    array(
+        "foodCategory" => "Meat",
+        "foodTitle" => "22 OZ. BONE-IN RIBEYE",
+        "foodImageSlug" => "bone-in-ribeye-bbs-specials.jpg",
+        "foodDescription" => "This wood-fire grilled ribeye is juicy, bone-in and extra marbled for maximum tenderness. Served with a signature potato and one freshly made side.",
+        "foodPrice" => "35"
+    ),
+    array(
+        "foodCategory" => "Meat",
+        "foodTitle" => "FELIPE'S FILET MIGNON",
+        "foodImageSlug" => "victorias-filet-specials.jpg",
+        "foodDescription" => "Felipe’s Filet® Mignon cooked to perfection, topped with roasted garlic butter and served with a signature potato and one freshly made side.",
+        "foodPrice" => "60"
+    ),
+    array(
+        "foodCategory" => "Meat",
+        "foodTitle" => "CALIFORNIA BBQ CHICKEN WINGS",
+        "foodImageSlug" => "california_spicy_bbq_chicken.jpg",
+        "foodDescription" => "Ever heard of the most delicious tasty  Californian BBQ Spicy Chicken Wings. Perfection is the source of our motivation, making our chefs drolling whiel preparing this unique meal.",
+        "foodPrice" => "30"
+    ),
+    array(
+        "foodCategory" => "Meat",
+        "foodTitle" => "COWBOY BUFFALO EXTREME CHOPS",
+        "foodImageSlug" => "cowboy_buffalo_extreme_chops.jpg",
+        "foodDescription" => "Our restaurant hunters, have collected the most premium quality meat from Buffalos from Trinidad and Tobago! Chops have won the title of the best dish in world's most favourite 3 years in a row!",
+        "foodPrice" => "100"
+    ),
+    array(
+        "foodCategory" => "Meat",
+        "foodTitle" => "DON'T MAKE WAR, MAKE BURGER",
+        "foodImageSlug" => "the_burger.jpg",
+        "foodDescription" => "None knows the true taste of THE BURGER till he tried this particular one. 50 oz. burger OMFG!!! Can't wait to taste it? Then join us and you will have the chanve to taste HEAVEN OF MEATS!!!!",
+        "foodPrice" => "50"
+    ),
+    array(
+        "foodCategory" => "Salad",
+        "foodTitle" => "GREEK SALAD",
+        "foodImageSlug" => "greek-salad-whole.desktop.jpg",
+        "foodDescription" => "Romaine, vine-ripened tomatoes, feta, pickled red onions and kalamata olives with salt and pepper tossed with Greek dressing. Available in whole and half. ",
+        "foodPrice" => "15"
+    ),
+    array(
+        "foodCategory" => "Salad",
+        "foodTitle" => "MODERN GREEK SALAD",
+        "foodImageSlug" => "modern-greek-salad-with-quinoa-whole.desktop.jpg",
+        "foodDescription" => "Romaine, kale, quinoa tomato sofrito blend, diced cucumbers and kalamata olives tossed with Greek dressing and topped with feta and toasted almonds. Available in whole and half.",
+        "foodPrice" => "20"
+    ),
+    array(
+        "foodCategory" => "Salad",
+        "foodTitle" => "CHINESE CITRUS CASHEW SALAD WITH CHICKEN",
+        "foodImageSlug" => "chinese-citrus-cashew-with-chicken-salad-whole.desktop.jpg",
+        "foodDescription" => "Chicken raised without antibiotics, romaine, napa cabbage blend, diced cucumbers, fresh pineapple and cilantro tossed with soy-miso lime dressing and topped with mandarin oranges, roasted cashew pieces and hoisin sauce.",
+        "foodPrice" => "25"
+    ),
+    array(
+        "foodCategory" => "Salad",
+        "foodTitle" => "SPICY THAI SALAD WITH CHICKEN",
+        "foodImageSlug" => "thai-chicken-salad-whole.desktop.jpg",
+        "foodDescription" => "Chicken raised without antibiotics, romaine, roasted cashew pieces, fire-roasted edamame, red pepper and carrot blend, cilantro and wonton strips tossed with low-fat Thai chili vinaigrette and drizzled with peanut sauce. Available in whole and half.",
+        "foodPrice" => "25"
+    ),
+);
+?>
