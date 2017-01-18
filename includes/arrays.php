@@ -37,7 +37,7 @@ $navMenuItemsGeneral = array(
     ),
 );
 
-// Items that appear when session status is NOT logged in
+// Items that appear when session status is NOT logged in - Constantine
 $navMenuItemsLoggedOut = array(
     
     array(
@@ -50,7 +50,7 @@ $navMenuItemsLoggedOut = array(
     ),
 );
 
-// Items that appear when session status IS logged in
+// Items that appear when session status IS logged in - Constantine
 
 $navMenuItemsLoggedIn = array(
     
