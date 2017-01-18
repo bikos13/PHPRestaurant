@@ -5,6 +5,27 @@
 <!--Page Meta - Constantine -->
 <?php include('includes/header.php'); ?>
 
+<?php if(!(isset($_SESSION['loggedin']))) { /*If session variable loggedin is not set show content else redirect to profile - Constantine*/ ?>
+
+<!-- Successful registration message passed through session - Constantine -->
+<?php if (isset($_SESSION['message'])) { ?>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="alert alert-success"><?php echo $_SESSION['message']; ?></div>
+        </div>
+    </div>
+<?php session_destroy(); }  ?>
+<!-- !Successful registration message passed through session - Constantine -->
+
+<!-- Successful registration message passed through session - Constantine -->
+<?php if (isset($_SESSION['warnings'])) { ?>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="alert alert-danger"><?php echo $_SESSION['warnings']; ?></div>
+        </div>
+    </div>
+<?php session_destroy(); }  ?>
+<!-- !Successful registration message passed through session - Constantine -->
 
 <div class="row">
     <!-- Login Box - Constantine-->
@@ -19,7 +40,7 @@
                 <h2>Login</h2>
             </div>
             <!-- !Login Title - Constantine-->
-            
+
             <!-- Username Row - Constantine-->
             <div class="form group row">
 
@@ -30,7 +51,7 @@
 
             </div>
             <!-- !Username Row - Constantine-->
-            
+
             <!-- Password Row - Constantine-->
             <div class="form group row">
 
@@ -41,16 +62,16 @@
 
             </div>
             <!-- !Password Row - Constantine-->
-            
+
             <!-- Not a member Row - Constantine-->
             <div class="form group row">
 
                 <div class="col-xs-12"> Not a member ? Register <a href="register.php">here</a>!</div>
-                
+
 
             </div>
             <!-- !Not a member Row - Constantine-->
-            
+
             <!-- Login Button Row - Constantine-->
             <div class="form group col-md-12" style="padding: 2% 0 0 0;">
 
@@ -74,3 +95,8 @@
 </body>
 
 </html>
+
+<?php } else {
+    header("Location: profile.php"); //If logged in redirect to profile page - Constantine 
+}
+?>

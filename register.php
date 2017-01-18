@@ -5,6 +5,17 @@
 <!--Page Meta - Constantine -->
 <?php include('includes/header.php'); ?>
 
+<?php if(!(isset($_SESSION['loggedin']))) { /*If session variable loggedin is not set show content else redirect to profile - Constantine*/ ?>
+
+<!-- Warning message passed from SESSION variable if exists - Constantine -->
+<?php if(isset($_SESSION['warnings'])) { ?>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="alert alert-danger"><?php echo $_SESSION['warnings']; ?></div>
+        </div>
+    </div>
+<?php } session_destroy();?>
+<!-- !End of Warning message passed from SESSION variable if exists - Constantine -->
 
 <div class="row">
     <!-- Registration Box - Constantine-->
@@ -60,3 +71,8 @@
 </body>
 
 </html>
+
+<?php } else {
+    header("Location: profile.php"); //If logged in redirect to profile page - Constantine 
+}
+?>

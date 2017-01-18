@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Φιλοξενητής: 127.0.0.1
--- Χρόνος δημιουργίας: 16 Ιαν 2017 στις 21:38:09
+-- Χρόνος δημιουργίας: 18 Ιαν 2017 στις 13:21:29
 -- Έκδοση διακομιστή: 5.7.14
 -- Έκδοση PHP: 7.0.10
 
@@ -101,6 +101,14 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Άδειασμα δεδομένων του πίνακα `users`
+--
+
+INSERT INTO `users` (`USER_ID`, `FIRSTNAME`, `LASTNAME`, `USERNAME`, `USERPASS`, `EMAIL`, `CONTACT_NUMBER_1`, `CONTACT_NUMBER_2`, `UserLevels_USERLEVEL_ID`, `TIMESTAMP_REGISTERED`) VALUES
+(3, 'Constantine', 'Stathis', 'bikos13', '25d55ad283aa400af464c76d713c07ad', 'constantinos-@hotmail.com', '6948621978', '', 1, '2017-01-18 11:44:58'),
+(4, 'Aimilia', 'Fakoy', 'mama13', 'b4e22cf9b4620df31df84584b2992e61', 'emi-111@hotmail.com', '69448406977', '', 1, '2017-01-18 11:46:38');
+
+--
 -- Ευρετήρια για άχρηστους πίνακες
 --
 
@@ -138,6 +146,8 @@ ALTER TABLE `userlevels`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`USER_ID`),
   ADD UNIQUE KEY `USER_ID_UNIQUE` (`USER_ID`),
+  ADD UNIQUE KEY `USERNAME` (`USERNAME`),
+  ADD UNIQUE KEY `EMAIL` (`EMAIL`),
   ADD KEY `UserLevels_USERLEVEL_ID` (`UserLevels_USERLEVEL_ID`);
 
 --
@@ -153,7 +163,7 @@ ALTER TABLE `booking`
 -- AUTO_INCREMENT για πίνακα `users`
 --
 ALTER TABLE `users`
-  MODIFY `USER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `USER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Περιορισμοί για άχρηστους πίνακες
 --

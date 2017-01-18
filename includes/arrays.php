@@ -19,39 +19,51 @@
  * - Constantine
  */
 
-$navMenuItems = array(
+
+//General Menu items appear in every session state - Constantine
+
+$navMenuItemsGeneral = array(
     array(
         "slug" => "index.php",
-        "title" => "Home",
-        "viewLevel" => "10",
-        "needsAdmin" => "No"
+        "title" => "Home"
     ),
     array(
         "slug" => "menu.php",
-        "title" => "<strong>Menu</strong>",
-        "viewLevel" => "10",
-        "needsAdmin" => "No"
+        "title" => "<strong>Menu</strong>"
     ),
     array(
         "slug" => "contact.php",
         "title" => "Contact",
-        "viewLevel" => "10",
-        "needsAdmin" => "No"
-    ),
-    array(
-        "slug" => "login.php",
-        "title" => "Login",
-        "viewLevel" => "0",
-        "needsAdmin" => "No"
-    ),
-    array(
-        "slug" => "register.php",
-        "title" => "Register",
-        "viewLevel" => "0",
-        "needsAdmin" => "No"
     ),
 );
 
+// Items that appear when session status is NOT logged in
+$navMenuItemsLoggedOut = array(
+    
+    array(
+        "slug" => "login.php",
+        "title" => "Login"
+    ),
+    array(
+        "slug" => "register.php",
+        "title" => "Register"
+    ),
+);
+
+// Items that appear when session status IS logged in
+
+$navMenuItemsLoggedIn = array(
+    
+    array(
+        "slug" => "profile.php",
+        "title" => "PROFILE"
+    ),
+    
+    array(
+        "slug" => "logout.php",
+        "title" => "LOGOUT"
+    ),
+);
 /*
  * Food Menu Items Array
  * - Constantine

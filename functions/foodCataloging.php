@@ -32,7 +32,7 @@ function getMenuFromCategory($category,$foodMenuItems) {
             echo "</div></div>";
             echo "<div class='row'>";
             echo "<div class='col-sm-12'>";
-            echo "<h1><span class='label label-default'>". $food['foodPrice']." &euro;</span></h1>";
+            echo "<h1><span class='label label-default'>". $food['foodPrice']." &euro;</span></h1>"; //use of appropriate coin sign eg € = &euro;
             echo "</div></div></div></div>";
         }
 }
