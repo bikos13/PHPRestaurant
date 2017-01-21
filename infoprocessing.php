@@ -78,6 +78,8 @@ if (isset($_POST['registerform']) || isset($_POST['loginform'])) { //Checking if
 
         // !Database Entry Sequence, else statement if not all required fields are filled .. End - Constantine
         // Registration form sequence End and Login Form sequence start- Constantine
+        
+        
     } elseif (isset($_POST['loginform']) && $_POST['loginform']) { //If loginform has been posted do the following - Constantine
         if (isset($username) && !empty($username) && isset($password) && !empty($password)) { //If login fields are filled check the database for a match - Constantine
             //Hash password in MD5 - Constantine

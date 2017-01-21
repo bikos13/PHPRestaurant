@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Φιλοξενητής: 127.0.0.1
--- Χρόνος δημιουργίας: 18 Ιαν 2017 στις 13:21:29
+-- Χρόνος δημιουργίας: 18 Ιαν 2017 στις 21:38:40
 -- Έκδοση διακομιστή: 5.7.14
 -- Έκδοση PHP: 7.0.10
 
@@ -79,7 +79,7 @@ CREATE TABLE `userlevels` (
 INSERT INTO `userlevels` (`USERLEVEL_ID`, `LEVEL_NAME`, `LEVEL_DESC`, `IS_ADMIN`) VALUES
 (0, 'Guest', 'This is a guest user', 0),
 (1, 'Member', 'This is a member user', 0),
-(10, 'Administrator', 'This is Administrator above all user', 10);
+(10, 'Administrator', 'This is Administrator above all user', 1);
 
 -- --------------------------------------------------------
 

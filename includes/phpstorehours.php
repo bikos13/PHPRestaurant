@@ -3,10 +3,11 @@
 In addition every php expression that can be used from this plugin has been commented out
 and it can be used individually on other elements (footer.php and contact.php use the present
 PHP file as a required source) - Constantine-->
-<html lang="en" xml:lang="en"><head>
-    <meta charset="utf-8">
+<html lang="en" xml:lang="en">
+    
 
     <head>
+        <meta charset="utf-8">
         <title>PHP Store Hours</title>
 
         <style type="text/css">
@@ -33,8 +34,9 @@ PHP file as a required source) - Constantine-->
 
     // REQUIRED
     date_default_timezone_set('Europe/Athens');
+        
     // Include the store hours class
-    require 'functions/StoreHours.class.php';
+    include ($_SERVER['DOCUMENT_ROOT'] . '/functions/StoreHours.class.php');
 
     // REQUIRED
     // Define daily open hours
