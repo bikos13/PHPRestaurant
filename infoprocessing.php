@@ -27,10 +27,39 @@ if (isset($_POST['registerform']) || isset($_POST['loginform'])) { //Checking if
         //! End of Validate inputs - Constantine
         
 
-        //-------------------------------------------------
-        //Checking if username already exists - Constantine
-        //Checking if email already exists - Constantine
-        //-------------------------------------------------
+        //Checking if Userame or E-mail already exists - Constantine -------------------------------------------------
+        if ($stmt = $mysqli->prepare("SELECT USERNAME FROM users WHERE USERNAME = ?")) {
+
+                $stmt->bind_param('s', $username); // Setting Query parameters  - Constantine
+                $stmt->execute(); // Executing Query  - Constantine
+                $stmt->bind_result($username_valid_ret); //Binding the result into the username_valid_ret variable  - Constantine
+                $stmt->fetch(); //Fetcing record from DB that matches the statement query - Constantine
+                $stmt->close(); //End of statement  - Constantine
+            }
+
+            if ($username_valid_ret != null) { //If user record is not found - Constantine
+                $_SESSION['warnings'] = "Username already exists. You can try the login page. <a href='login.php'>Click here</a>"; // Pass a message into warnings SESSION Variable login form - Constantine
+                $mysqli->close(); 
+                header("Location: register.php"); //Redirect to login form (passing the message) - Constantine
+                die("Username or Email already exists"); // If redirection fails die - Constantine   
+            }
+            
+        if ($stmt = $mysqli->prepare("SELECT EMAIL FROM users WHERE EMAIL = ?")) {
+
+                $stmt->bind_param('s', $email); // Setting Query parameters  - Constantine
+                $stmt->execute(); // Executing Query  - Constantine
+                $stmt->bind_result($email_valid_ret); //Binding the result into the email_valid_ret variable  - Constantine
+                $stmt->fetch(); //Fetcing record from DB that matches the statement query - Constantine
+                $stmt->close(); //End of statement  - Constantine
+            }
+
+            if ($email_valid_ret != null) { //If user record is not found - Constantine
+                $_SESSION['warnings'] = "E-mail already exists. You can try the login page. <a href='login.php'>Click here</a>"; // Pass a message into warnings SESSION Variable login form - Constantine
+                $mysqli->close(); 
+                header("Location: register.php"); //Redirect to login form (passing the message) - Constantine
+                die("Username or Email already exists"); // If redirection fails die - Constantine  
+            }
+        //End of E-mail and Username checking ------------------------------------------------------------------------
         
 
         //Checking if password equals password repeated field - Constantine
@@ -85,23 +114,27 @@ if (isset($_POST['registerform']) || isset($_POST['loginform'])) { //Checking if
             //Hash password in MD5 - Constantine
             $password = md5($password);
 
-            if ($stmt = $mysqli->prepare("SELECT USERNAME FROM users WHERE USERNAME = ? AND USERPASS = ?")) {
+            if ($stmt = $mysqli->prepare("SELECT USER_ID, USERNAME, FIRSTNAME, LASTNAME FROM users WHERE USERNAME = ? AND USERPASS = ?")) {
 
                 $stmt->bind_param('ss', $username, $password); // Setting Query parameters  - Constantine
                 $stmt->execute(); // Executing Query  - Constantine
-                $stmt->bind_result($record_returned); //Binding the result into the record_returned variable  - Constantine
-                $stmt->fetch(); //Fetcing record from DB that matches the query  - Constantine
+                $stmt->bind_result($user_id_returned, $username_returned, $firstname_returned, $lastname_returned); //Binding the result into the record_returned variable  - Constantine
+                $stmt->fetch(); //Fetcing record from DB that matches the query in array schema  - Constantine
                 $stmt->close(); //End of statement  - Constantine
             }
             $mysqli->close(); //Closing mysqli object - Constantine
 
-            if ($record_returned == null) { //If user record is not found - Constantine
+            if ($username_returned == null) { //If user record is not found - Constantine
                 $_SESSION['warnings'] = "Wrong Username/Password Combination"; // Pass a message into warnings SESSION Variable login form - Constantine
                 header("Location: login.php"); //Redirect to login form (passing the message) - Constantine
                 die("Wrong Username/Password Combination"); // If redirection fails die - Constantine
             } else { // If everything works (Database record found) then create the session variables needed to go forth - Constantine
                 $_SESSION['loggedin'] = true;
-                $_SESSION['user'] = $record_returned;
+                $_SESSION['userdata'] = array(
+                    "userid" => $user_id_returned,
+                    "username" => $username_returned,
+                    "firstname" => $firstname_returned,
+                    "lastname" => $lastname_returned);
                 header("Location: profile.php");
             }
         } else { //If not both fields are filled redirect a message through SESSION variable to login form - Constantine
