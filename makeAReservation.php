@@ -5,71 +5,53 @@
 <?php include('includes/header.php'); ?>
 <?php if ((isset($_SESSION['loggedin'])) && ($_SESSION['loggedin'] = true)) { //Only for loggedin validation - Constantine ?>
     <div class="row">
-        
+
         <?php if (isset($_SESSION['reservationmessage'])) { // View passed success messages - Constantine ?>
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="alert alert-success"><?php echo $_SESSION['reservationmessage']; ?></div>
                 </div>
             </div>
-            <?php unset($_SESSION['reservationmessage']);
-        } ?>
-        
-        <div class="col-md-3" id='UserMenu'>
-    <?php include 'memberIncludes/ProfileMenu.php'; //Including the usermenu from membersIncludes - Constantine  ?> 
-        </div>
+            <?php
+            unset($_SESSION['reservationmessage']);
+        }
+        ?>
 
-        <div class="col-md-9"> <!-- Profile Main Area - Constantine -->
+    <?php include 'memberIncludes/ProfileMenu.php'; //Including the usermenu from membersIncludes - Constantine    ?> 
+
+        <div class="col-md-9"> <!-- Reservation Main Area - Constantine -->
             <div class="box">
-                <form role="form" method="POST" id="reservationform" name="reservationform" action="reservationhandling.php">
-                    <input type="hidden" name="userid" value="<?php echo $_SESSION['userdata']['userid']; // Passing User_ID from session variable    ?>">
+                <h3 class="hidden-sm hidden-xs">Make a reservation</h3>
 
-                    <!-- Date input field - Constantine -->
-                    <div class="form-group col-md-6">
-                        <label>Date<em style="color:red;"> *</em></label>
-                        <input type="date" id="date" min="<?php echo date("Y-m-d"); ?>" value="<?php echo date("Y-m-d"); ?>" name="bookingdate" class="form-control" required>
-                    </div>
+                <?php
+                //Show upcoming reservation if exists using SQL query, else show default Landing page - Constantine =========================
+                include 'functions/dbcon.php'; // Connecting to database - Constantine 
+                $upcomingReservationsSql = "SELECT BOOKING_ID, BOOKING_DATE, BOOKING_TIME, BOOKING_SIZE, SMOKING_BOOL FROM booking WHERE BOOKING_DATE >= CURDATE() AND USERS_USER_ID = " . $_SESSION['userdata']['userid'];
+                $result = $mysqli->query($upcomingReservationsSql);
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<blockquote aria-label='testimonial-comment'>";
+                        echo "Hello there mate! Looks like you have a reservation on <br><strong>" . date('l d-m-Y', strtotime($row['BOOKING_DATE'])) . " and at " . $row['BOOKING_TIME'] . "</strong>. To cancel a reservation please call +30 26130 55055";
+                        echo "</blockquote>";
+                        ?>
 
-                    <!-- Time input field - Constantine -->
-                    <div class="form-group col-md-6">
-                        <label>Time<em style="color:red;"> *</em></label>
-                        <input type="time" id="time" name="bookingtime" class="form-control" required>
-                    </div>
-                    <!-- Persons input field - Constantine -->
-                    <div class="form-group col-md-6">
-                        <label>How many persons?<em style="color:red;"> *</em></label>
-                        <select name="persons" class="form-control centered">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                        </select>
-                    </div>
 
-                    <!-- Smokers or non-smokers input field - Constantine -->
-                    <div class="form-group col-md-6">
-                        <div class="form-group col-md-12">
-                            <label>Where would you like your table?<em style="color:red;"> *</em></label>
+                        <div class = "col-md-6">
+                            <a href = "#" data-toggle = "tooltip" title = "To cancel a reservation please call +30 26130 55055"> <button class = "btn btn-lg disabled"><span class = "glyphicon glyphicon-glass"></span><br>Cancel reservation</button></a>
                         </div>
-                        <div class="form-group col-md-6">
-                            <input type="radio" id="smoking" name="smokingbool" value="0" checked="checked" required><strong>Non</strong> Smoking Area
-                        </div>
-                        <div class="form-group col-md-6">
-                            <input type="radio" id="smoking" name="smokingbool" value="1" required>Smoking Area
-                        </div>
-                    </div>
 
-                    <!-- Submit Button - Constantine -->
-                    <div class="form-group col-md-12">
-                        <input type="hidden" name="reservationform" value="TRUE">
-                        <label><button type="submit" id="submit-reservation" name="submit-reservation" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Submit reservation</button></label>
-                    </div>
+                        <div class = "col-md-6">
+                            <a href = "ReservationsHistory.php?page=1"><button class = "btn btn-lg profilebtn"><span class = "glyphicon glyphicon-book"></span><br>View Reservations History</button></a>
+                        </div>
+                        <?php
+                    }
+                } else {
+                    include 'memberIncludes/reservationForm.php'; //If not reservations are made bring up this screen - Constantine
+                }
+                //============================================================================================================================
+                $mysqli->close();
+                ?>
 
-                </form>
 
             </div> <!-- End of box - Constantine -->
 

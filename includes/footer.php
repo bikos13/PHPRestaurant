@@ -24,7 +24,7 @@
             <div class="col-md-4 text-center">
                 
                 <!--Including php storehours full table - Constantine -->
-                <h2 class="intro-text">Store Hours</h2>
+                <h2 class="intro-text">Open Hours</h2>
                 
                 <?php
                 //Calling phpstorehours.php a plugin developed by Cory Etzkorn (More in the Report) - Constantine

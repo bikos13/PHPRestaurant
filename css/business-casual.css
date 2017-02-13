@@ -112,6 +112,19 @@ footer p {
     padding: 50px 0;
 }
 
+/*Profile button color override*/
+.profilebtn {
+    background-color: #995e13;
+    border-color: #995e13;
+    color: #fff;
+
+}
+
+.profilebtn:hover {
+    background-color: #c97e20;
+    border-color: #c97e20;
+
+}
 
 @media screen and (min-width:768px) {
     .brand {
@@ -213,7 +226,7 @@ footer p {
     .mobileTitlebox {
         background-color: rgba(0,0,0, 0.5);
         color: white;
-        margin-bottom: 0;
+        margin-bottom: 10px;
     }
 }
 

@@ -23,8 +23,8 @@ include "./functions/validations.php";
                 $stmt->bind_param('sssss', $bdate, $btime, $bpersons, $buserid, $bsmoking);
                 $stmt->execute();
                 $stmt->close();
-                $_SESSION['reservationmessage'] = "Reservation Successful! " . $fname . " ";
-                header("Location: makeAReservation.php");
+                $_SESSION['reservationmessage'] = "Reservation Successful Mate! " . $fname . " ";
+                header("Location: profile.php");
             }
             $mysqli->close();
     }
