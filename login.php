@@ -33,7 +33,7 @@
 
 
 
-        <form id="login" name="login" method="POST" action="infoprocessing.php"><!--action="" To be filled - Constantine-->
+        <form id="login" name="login" method="POST" action="functions/infoprocessing.php"><!--action="" To be filled - Constantine-->
 
             <!-- Login Title - Constantine-->
             <div class="col-md-12">

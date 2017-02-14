@@ -1,3 +1,10 @@
+<!--
+===========================================================================
+Description - Constantine
+This panel is used when the users doesn't have any future reservations
+===========================================================================
+-->
+
 <div class="col-md-12">
    <?php
     $today = date('l');
@@ -27,8 +34,8 @@
     ?>
 </div>
 <div class="col-md-6">
-    <a href="makeAReservation.php"><button class="btn btn-lg profilebtn"><span class="glyphicon glyphicon-glass"></span><br>Make a reservation</button></a>
+    <a href="profile.php?panel=newReservation"><button class="btn btn-lg profilebtn"><span class="glyphicon glyphicon-glass"></span><br>Make a reservation</button></a>
 </div>
 <div class="col-md-6">
-    <a href="ReservationsHistory.php?page=1"><button class="btn btn-lg profilebtn"><span class="glyphicon glyphicon-book"></span><br>View Reservations History</button></a>
+    <a href="profile.php?panel=viewReservations&page=1"><button class="btn btn-lg profilebtn"><span class="glyphicon glyphicon-book"></span><br>View Reservations History</button></a>
 </div>

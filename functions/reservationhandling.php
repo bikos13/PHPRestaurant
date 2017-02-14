@@ -24,7 +24,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/functions/validations.php" ;
                 $stmt->execute();
                 $stmt->close();
                 $_SESSION['reservationmessage'] = "Reservation Successful Mate! " . $fname . " ";
-                header("Location: ../profile.php");
+                header("Location: ../profile.php?panel=home");
             }
             $mysqli->close();
     }

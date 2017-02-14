@@ -1,0 +1,16 @@
+<h3 class="hidden-sm hidden-xs">Make a reservation</h3>
+
+                <?php
+                //Show upcoming reservation if exists using SQL query, else show default Landing page - Constantine =========================
+                include 'functions/dbcon.php'; // Connecting to database - Constantine 
+                $upcomingReservationsSql = "SELECT BOOKING_ID, BOOKING_DATE, BOOKING_TIME, BOOKING_SIZE, SMOKING_BOOL FROM booking WHERE BOOKING_DATE >= CURDATE() AND USERS_USER_ID = " . $_SESSION['userdata']['userid'];
+                $result = $mysqli->query($upcomingReservationsSql);
+                if ($result->num_rows > 0) { 
+                    
+                    include 'includes/withreservation.php'; //If there is an existing future reservation - Constantine
+                } else {
+                    include 'includes/reservationForm.php'; //If not reservations are made bring up this screen - Constantine
+                }
+                //============================================================================================================================
+                $mysqli->close();
+                ?>

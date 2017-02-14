@@ -1,6 +1,5 @@
 <!--Page Meta - Constantine -->
 <!--TITLE Constant is being used for the header <title> tag and also for the 'mobileTitle'  mobile version of class which echoes TITLE - Constantine -->
-
 <?php define('TITLE', 'Register here!'); ?>
 <!--Page Meta - Constantine -->
 <?php include('includes/header.php'); ?>
@@ -22,7 +21,7 @@
     <div class="col-md-6 col-md-offset-3 box">
 
 
-        <form id="registrationForm" name="registrationForm" method="POST" action="infoprocessing.php"><!--action="" To be filled - Constantine-->
+        <form id="registrationForm" name="registrationForm" method="POST" action="functions/infoprocessing.php"><!--action="" To be filled - Constantine-->
 
             <!-- Reg Title - Constantine-->
             <div class="col-md-12">

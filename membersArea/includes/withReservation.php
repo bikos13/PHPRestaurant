@@ -1,3 +1,11 @@
+<!--
+===========================================================================
+Description - Constantine
+This panel is used when the user have already one future reservation
+profile.php utilizes this in both home and newReservation panel hooks
+===========================================================================
+-->
+
 <?php
 while ($row = $result->fetch_assoc()) {
     echo "<blockquote aria-label='testimonial-comment'>";
@@ -12,7 +20,7 @@ while ($row = $result->fetch_assoc()) {
     </div>
 
     <div class = "col-md-6">
-        <a href = "ReservationsHistory.php?page=1"><button class = "btn btn-lg profilebtn"><span class = "glyphicon glyphicon-book"></span><br>View Reservations History</button></a>
+        <a href = "profile.php?panel=viewReservations&page=1"><button class = "btn btn-lg profilebtn"><span class = "glyphicon glyphicon-book"></span><br>View Reservations History</button></a>
     </div>
 
 <!-- Tooltip script used for tooltip title -->

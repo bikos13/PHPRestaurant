@@ -55,7 +55,7 @@ $navMenuItemsLoggedOut = array(
 $navMenuItemsLoggedIn = array(
     
     array(
-        "slug" => "profile.php",
+        "slug" => "profile.php?panel=home",
         "title" => "PROFILE"
     ),
     
@@ -74,7 +74,29 @@ $navMenuItemsAdmin = array(
     )
 );
 
-//Admin Left Panel Menu
+//================================================================
+//Members Area Menu (Left Panel)
+//================================================================
+
+$membersMenuItems = array(
+    array(
+        "slug" => "profile.php?panel=home",
+        "title" => "Profile Home"
+    ),
+    array(
+        "slug" => "profile.php?panel=newReservation",
+        "title" => "Make a Reservation"
+    ),
+    array(
+        "slug" => "profile.php?panel=viewReservations&page=1",
+        "title" => "View Reservations history"
+    )
+);
+
+//================================================================
+//Admin Area Menu (Left Panel)
+//================================================================
+
 $adminMenuItems = array(
     array(
         "slug" => "adminIndex.php?panel=controlPanel",
