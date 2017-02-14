@@ -112,7 +112,7 @@ footer p {
     padding: 50px 0;
 }
 
-/*Profile button color override*/
+/*Profile button color override - Constantine*/
 .profilebtn {
     background-color: #995e13;
     border-color: #995e13;
@@ -125,6 +125,26 @@ footer p {
     border-color: #c97e20;
 
 }
+
+.profilebtn:active {
+    background-color: #c97e20;
+    border-color: #c97e20;
+    font-weight: 600;
+
+}
+.profilebtn:focus {
+    background-color: #c97e20 !important;
+    border-color: #c97e20 !important;
+    font-weight: 600;
+
+}
+.profilebtn:visited{
+    background-color: #995e13;
+    border-color: #995e13;
+    color: #fff;
+
+}
+/*End of profile button behaviour - Constantine*/
 
 @media screen and (min-width:768px) {
     .brand {

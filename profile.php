@@ -24,7 +24,7 @@
                     }
                     // End of succesful message alert =======================================================
                     ?>
-                    
+
                     <blockquote aria-label="testimonial-comment">
                         <?php
                         //Show upcoming reservation if exists using SQL query, else show default Landing page - Constantine =========================
@@ -32,9 +32,7 @@
                         $upcomingReservationsSql = "SELECT BOOKING_ID, BOOKING_DATE, BOOKING_TIME, BOOKING_SIZE, SMOKING_BOOL FROM booking WHERE BOOKING_DATE >= CURDATE() AND USERS_USER_ID = " . $_SESSION['userdata']['userid'];
                         $result = $mysqli->query($upcomingReservationsSql);
                         if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo "Hello there mate! Looks like you have a reservation on <br><strong>" . date('l d-m-Y', strtotime($row['BOOKING_DATE'])) . " and at " . $row['BOOKING_TIME'] . "</strong>. To cancel a reservation please call +30 26130 55055";
-                            }
+                            include 'memberIncludes/withreservation.php'; //If there is an existing future reservation - Constantine
                         } else {
                             include 'memberIncludes/withoutReservation.php'; //If not reservations are made bring up this screen - Constantine
                         }
@@ -43,25 +41,15 @@
                         ?>
 
                     </blockquote>
-                    
-                    <div class="col-md-6">
-                        <a href="#" data-toggle="tooltip" title="To cancel a reservation please call +30 26130 55055"> <button class="btn btn-lg disabled"><span class="glyphicon glyphicon-glass"></span><br>Cancel reservation</button></a>
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <a href="ReservationsHistory.php?page=1"><button class="btn btn-lg profilebtn"><span class="glyphicon glyphicon-book"></span><br>View Reservations History</button></a>
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
+    </div>
 
     <?php include('includes/footer.php'); ?>
-    <script>
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
+    
     </body>
 
     </html>

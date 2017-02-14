@@ -12,6 +12,6 @@
                 <li><a href="/reservationsHistory.php?page=1">View Reservations History</a></li>
             </ul>
         </div>
-        <h5><?php echo date('l,  d m Y') ?></h4><br>
+        <h4><?php echo date('l,  d m Y') ?></h4><br>
     </div>
 </div>

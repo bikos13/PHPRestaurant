@@ -3,10 +3,10 @@
 // Starting Session - Constantine
 session_start();
 //Including Database Connection function - Constantine
-include "./functions/dbcon.php";
+include $_SERVER['DOCUMENT_ROOT'] . "./functions/dbcon.php";
 
 //Including validation.php functions - Constantine
-include "./functions/validations.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/functions/validations.php" ;
     
     if (isset($_POST['reservationform']) && $_POST['reservationform']) {
         //Validating inputs - Constantine
@@ -24,7 +24,7 @@ include "./functions/validations.php";
                 $stmt->execute();
                 $stmt->close();
                 $_SESSION['reservationmessage'] = "Reservation Successful Mate! " . $fname . " ";
-                header("Location: profile.php");
+                header("Location: ../profile.php");
             }
             $mysqli->close();
     }

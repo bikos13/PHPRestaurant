@@ -114,11 +114,11 @@ if (isset($_POST['registerform']) || isset($_POST['loginform'])) { //Checking if
             //Hash password in MD5 - Constantine
             $password = md5($password);
 
-            if ($stmt = $mysqli->prepare("SELECT USER_ID, USERNAME, FIRSTNAME, LASTNAME, UserLevels_USERLEVEL_ID FROM users WHERE USERNAME = ? AND USERPASS = ?")) {
+            if ($stmt = $mysqli->prepare("SELECT USER_ID, USERNAME, FIRSTNAME, LASTNAME, IS_ADMIN FROM users, userlevels WHERE USERNAME = ? AND USERPASS = ? AND users.UserLevels_USERLEVEL_ID = userlevels.USERLEVEL_ID")) {
 
                 $stmt->bind_param('ss', $username, $password); // Setting Query parameters  - Constantine
                 $stmt->execute(); // Executing Query  - Constantine
-                $stmt->bind_result($user_id_returned, $username_returned, $firstname_returned, $lastname_returned, $ulevel_returned); //Binding the result into the record_returned variable  - Constantine
+                $stmt->bind_result($user_id_returned, $username_returned, $firstname_returned, $lastname_returned, $isadmin); //Binding the result into the record_returned variable  - Constantine
                 $stmt->fetch(); //Fetcing record from DB that matches the query in array schema  - Constantine
                 $stmt->close(); //End of statement  - Constantine
             }
@@ -135,7 +135,7 @@ if (isset($_POST['registerform']) || isset($_POST['loginform'])) { //Checking if
                     "username" => $username_returned,
                     "firstname" => $firstname_returned,
                     "lastname" => $lastname_returned,
-                    "userlevel" => $ulevel_returned);
+                    "isadmin" => $isadmin);
                 header("Location: profile.php");
             }
         } else { //If not both fields are filled redirect a message through SESSION variable to login form - Constantine

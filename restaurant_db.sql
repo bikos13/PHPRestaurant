@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Φιλοξενητής: 127.0.0.1
--- Χρόνος δημιουργίας: 13 Φεβ 2017 στις 15:47:28
+-- Χρόνος δημιουργίας: 14 Φεβ 2017 στις 16:34:59
 -- Έκδοση διακομιστή: 5.7.14
 -- Έκδοση PHP: 7.0.10
 
@@ -46,7 +46,6 @@ INSERT INTO `booking` (`BOOKING_ID`, `BOOKING_DATE`, `BOOKING_TIME`, `BOOKING_TI
 (2, '2017-02-10', '00:07:00', '2017-02-10 17:52:33', 4, 3, 0, 'Pending'),
 (3, '2017-02-10', '02:05:00', '2017-02-10 17:53:17', 1, 3, 1, 'Pending'),
 (4, '2017-02-10', '15:24:00', '2017-02-10 17:54:19', 4, 3, 0, 'Pending'),
-(5, '2017-02-14', '19:00:00', '2017-02-13 11:26:31', 3, 3, 1, 'Pending'),
 (6, '2017-02-10', '12:07:00', '2017-02-10 17:47:09', 4, 3, 0, 'Pending'),
 (7, '2017-02-09', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 'Pending'),
 (8, '2017-02-08', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 'Pending'),
@@ -124,7 +123,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`USER_ID`, `FIRSTNAME`, `LASTNAME`, `USERNAME`, `USERPASS`, `EMAIL`, `CONTACT_NUMBER_1`, `CONTACT_NUMBER_2`, `UserLevels_USERLEVEL_ID`, `TIMESTAMP_REGISTERED`) VALUES
-(3, 'Constantine', 'Stathis', 'bikos13', '25d55ad283aa400af464c76d713c07ad', 'constantinos-@hotmail.com', '6948621978', '', 1, '2017-01-18 11:44:58'),
+(3, 'Constantine', 'Stathis', 'bikos13', '25d55ad283aa400af464c76d713c07ad', 'constantinos-@hotmail.com', '6948621978', '', 10, '2017-01-18 11:44:58'),
 (4, 'Aimilia', 'Fakoy', 'mama13', 'b4e22cf9b4620df31df84584b2992e61', 'emi-111@hotmail.com', '69448406977', '', 1, '2017-01-18 11:46:38');
 
 --
@@ -177,7 +176,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT για πίνακα `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `BOOKING_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `BOOKING_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT για πίνακα `users`
 --

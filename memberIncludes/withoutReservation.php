@@ -1,4 +1,5 @@
-    <?php
+<div class="col-md-12">
+   <?php
     $today = date('l');
     switch ($today):
         case "Monday":
@@ -24,6 +25,7 @@
             break;
     endswitch;
     ?>
+</div>
 <div class="col-md-6">
     <a href="makeAReservation.php"><button class="btn btn-lg profilebtn"><span class="glyphicon glyphicon-glass"></span><br>Make a reservation</button></a>
 </div>

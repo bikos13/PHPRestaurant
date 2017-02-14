@@ -64,6 +64,45 @@ $navMenuItemsLoggedIn = array(
         "title" => "LOGOUT"
     ),
 );
+
+//Admin Menu items appear in is_admin session state - Constantine
+$navMenuItemsAdmin = array(
+    
+    array(
+        "slug" => "adminIndex.php?panel=controlPanel",
+        "title" => "Admin Panel"
+    )
+);
+
+//Admin Left Panel Menu
+$adminMenuItems = array(
+    array(
+        "slug" => "adminIndex.php?panel=controlPanel",
+        "title" => "Admin Panel"
+    ),
+    array(
+        "slug" => "adminIndex.php?panel=newUser",
+        "title" => "New User"
+    ),
+    array(
+        "slug" => "adminIndex.php?panel=newReservation",
+        "title" => "New Reservation"
+    ),
+    array(
+        "slug" => "adminIndex.php?panel=viewReservations",
+        "title" => "View Reservations"
+    ),
+    array(
+        "slug" => "adminIndex.php?panel=storeHours",
+        "title" => "Store Hours"
+    ),
+    array(
+        "slug" => "adminIndex.php?panel=manageTables",
+        "title" => "Manage Tables"
+    )
+);
+
+
 /*
  * Food Menu Items Array
  * - Constantine

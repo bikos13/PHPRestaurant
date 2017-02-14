@@ -1,4 +1,4 @@
-<form role="form" method="POST" id="reservationform" name="reservationform" action="reservationhandling.php">
+<form role="form" method="POST" id="reservationform" name="reservationform" action="functions/reservationhandling.php">
                     <input type="hidden" name="userid" value="<?php echo $_SESSION['userdata']['userid']; // Passing User_ID from session variable    ?>">
 
                     <!-- Date input field - Constantine -->
