@@ -117,12 +117,14 @@ footer p {
     background-color: #995e13;
     border-color: #995e13;
     color: #fff;
+    margin: 10px 0;
 
 }
 
 .profilebtn:hover {
     background-color: #c97e20;
     border-color: #c97e20;
+    color: #fff;
 
 }
 

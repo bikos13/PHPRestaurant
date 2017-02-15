@@ -8,15 +8,27 @@
     <div class="row">
 
         <?php
-        if (isset($_SESSION['reservationmessage'])) { // View passed success messages - Constantine ?>
+        if (isset($_SESSION['successmessage'])) { // View passed success messages - Constantine ?>
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <div class="alert alert-success"><?php echo $_SESSION['reservationmessage']; ?></div>
+                    <div class="alert alert-success"><?php echo $_SESSION['successmessage']; ?></div>
                 </div>
             </div>
             <?php
-            unset($_SESSION['reservationmessage']);
+            unset($_SESSION['successmessage']);
         }
+        
+
+        if (isset($_SESSION['warnings'])) { // View passed Warning messages - Constantine ?>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="alert alert-danger"><?php echo $_SESSION['warnings']; ?></div>
+                </div>
+            </div>
+            <?php
+            unset($_SESSION['warnings']);
+        }
+
         
         include 'membersArea/includes/ProfileMenu.php'; //Including the usermenu from membersIncludes - Constantine
         include 'functions/validations.php'; //including validation functions - Constantine
@@ -27,6 +39,10 @@
         <div class="col-md-9"> <!-- Profile Main Area - Constantine -->
             <div class="box">
                 <?php
+                
+                $panelChoice = filter_input(INPUT_GET, 'panel'); // Filtering GET - Constantine
+                        
+                if (isset($panelChoice)) { // If GET panel is iset - Constantine
                 switch (test_input($_GET['panel'])):
                     case "home":
                         include 'membersArea/membersHome.php';
@@ -38,6 +54,10 @@
                         include 'membersArea/reservationsHistory.php';
                         break;
                 endswitch;
+                }
+                else { //in case of invalid GET panel variable - Constantine
+                    include 'membersArea/membersHome.php';
+                }
                 ?>
             </div>
         </div>
@@ -45,7 +65,6 @@
     </div>
 
     <?php include('includes/footer.php'); ?>
-
     </body>
 
     </html>

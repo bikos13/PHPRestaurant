@@ -4,7 +4,7 @@
         <h4>Hello, <?php echo $_SESSION['userdata']['firstname']; ?></h4><br>
         <div class="dropdown">
 
-            <button class="btn btn-primary dropdown-toggle profilebtn" type="button" data-toggle="dropdown"> Administrator Menu <span class="caret"></span></button>
+            <button class="btn btn-primary dropdown-toggle profilebtn" type="button" data-toggle="dropdown"> <?php echo $_SESSION['userdata']['firstname']; ?>'s Menu <span class="caret"></span></button>
             <ul class="dropdown-menu">
                 
                 <?php // Calling the admin $navMenuItems from the arrays.php which is included in headerAdmin.php - Constantine
