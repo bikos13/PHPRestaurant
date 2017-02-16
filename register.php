@@ -13,7 +13,7 @@
             <div class="alert alert-danger"><?php echo $_SESSION['warnings']; ?></div>
         </div>
     </div>
-<?php } session_destroy();?>
+<?php session_destroy(); } ?>
 <!-- !End of Warning message passed from SESSION variable if exists - Constantine -->
 
 <div class="row">
@@ -21,7 +21,7 @@
     <div class="col-md-6 col-md-offset-3 box">
 
 
-        <form id="registrationForm" name="registrationForm" method="POST" action="functions/infoprocessing.php"><!--action="" To be filled - Constantine-->
+        <form id="registrationForm" name="registrationForm" method="POST" action="functions/infoprocessing.php">
 
             <!-- Reg Title - Constantine-->
             <div class="col-md-12">
@@ -48,7 +48,7 @@
             <!-- !Name-Surname - Constantine-->
 
 
-            <!-- Login Button Row - Constantine-->
+            <!-- Register Button Row - Constantine-->
             <div class="form group col-md-12" style="padding: 2% 0 0 0;">
 
                 <div class="row">
@@ -56,7 +56,7 @@
                     <button type="submit" class="btn btn-default" id="registrationButton" name="Register" class="btn-lg btn-default" required> Register </button>
                 </div>
             </div>
-            <!-- !Login Button Row - Constantine-->
+            <!-- !Register Button Row - Constantine-->
 
         </form>
 

@@ -7,6 +7,8 @@
 
 <?php if(!(isset($_SESSION['loggedin']))) { /*If session variable loggedin is not set show content else redirect to profile - Constantine*/ ?>
 
+
+
 <!-- Successful registration message passed through session - Constantine -->
 <?php if (isset($_SESSION['message'])) { ?>
     <div class="row">
@@ -17,6 +19,8 @@
 <?php session_destroy(); }  ?>
 <!-- !Successful registration message passed through session - Constantine -->
 
+
+
 <!-- Successful registration message passed through session - Constantine -->
 <?php if (isset($_SESSION['warnings'])) { ?>
     <div class="row">
@@ -26,6 +30,8 @@
     </div>
 <?php session_destroy(); }  ?>
 <!-- !Successful registration message passed through session - Constantine -->
+
+
 
 <div class="row">
     <!-- Login Box - Constantine-->

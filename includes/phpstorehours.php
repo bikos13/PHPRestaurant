@@ -42,16 +42,58 @@ PHP file as a required source) - Constantine-->
     // Define daily open hours
     // Must be in 24-hour format, separated by dash
     // If open multiple times in one day, enter time ranges separated by a comma
-    $hours = array(
-        'mon' => array('14:00-22:00'),
-        'tue' => array('16:00-00:00'),
-        'wed' => array('14:00-22:00'),
-        'thu' => array('16:00-00:00'),
-        'fri' => array('16:00-00:00'),
-        'sat' => array('14:00-00:00'),
-        'sun' => array('16:00-00:00')
-    );
 
+    
+    
+    
+// DEPRECIATED OLD WAY - ONLY FOR DatabaseLess Use ========================
+// 
+// Hours example array for php store usage
+// Commented out and instead of a premade array, SQL query fetch_assoc
+// is being used from the database - Constantine
+// 
+// ========================================================================
+//    $hours = array(
+//        'mon' => array('14:00-22:00'),
+//        'tue' => array('16:00-00:00'),
+//        'wed' => array('14:00-22:00'),
+//        'thu' => array('16:00-00:00'),
+//        'fri' => array('16:00-00:00'),
+//        'sat' => array('14:00-00:00'),
+//        'sun' => array('16:00-00:00')
+//    );    
+//=========================================================================    
+ 
+    
+    
+    
+//==========================================================================
+// NEW WAY - Quering store hours from database and updating values - Constantine 
+// =========================================================================
+    include "./functions/dbcon.php";
+    $sql = "SELECT DAY_NAME, OPENING_HOUR, CLOSING_HOUR FROM storehours";
+    $result = $mysqli->query($sql);
+
+
+
+    if ($result->num_rows > 0) {
+        $i = 1;
+
+    while ($row = $result->fetch_assoc())  {
+            
+            $openhour = $row['OPENING_HOUR'];
+            $closinghour = $row['CLOSING_HOUR'];
+            $hoursConcat = array($openhour."-".$closinghour);
+            $hours[$row['DAY_NAME']] = $hoursConcat;
+            
+            $i++;
+        }
+    }
+
+    $mysqli->close();
+// End of Quering store hours from database and updating values ============
+// =========================================================================
+        
     // OPTIONAL
     // Add exceptions (great for holidays etc.)
     // MUST be in a format month/day[/year] or [year-]month-day

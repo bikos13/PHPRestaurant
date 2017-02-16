@@ -79,7 +79,6 @@
     <!-- ! Subfooter End - Constantine -->
     
 </footer>
-
 <!-- ! End of Footer section - Constantine -->
 
 <!-- jQuery for menu use -->

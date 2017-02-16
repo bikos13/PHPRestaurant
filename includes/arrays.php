@@ -103,19 +103,19 @@ $adminMenuItems = array(
         "title" => "Admin Panel"
     ),
     array(
-        "slug" => "adminIndex.php?panel=newUser",
-        "title" => "New User"
+        "slug" => "adminIndex.php?panel=members&page=1",
+        "title" => "New Reservation"
     ),
     array(
-        "slug" => "adminIndex.php?panel=newReservation",
-        "title" => "New Reservation"
+        "slug" => "adminIndex.php?panel=newCustomer",
+        "title" => "New Customer"
     ),
     array(
         "slug" => "adminIndex.php?panel=viewReservations",
         "title" => "View Reservations"
     ),
     array(
-        "slug" => "adminIndex.php?panel=storeHours",
+        "slug" => "adminIndex.php?panel=setStoreHours",
         "title" => "Store Hours"
     ),
     array(

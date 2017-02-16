@@ -24,6 +24,7 @@
                             <option value="6">6</option>
                             <option value="7">7</option>
                             <option value="8">8</option>
+                            <option disabled>Για παραπάνω από 8 άτομα καλέστε μας στο 26130 55055</option>
                         </select>
                     </div>
 

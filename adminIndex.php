@@ -37,15 +37,19 @@ if (isset($_SESSION['successmessage'])) { // View passed success messages - Cons
             <?php
             
             $panelOption = filter_input(INPUT_GET, 'panel'); //filter get option and act based on switch - Constantine
-            
-            if (isset($panelOption)) {
-                
+                            
             switch ($panelOption):
                 case "controlPanel":
                     include 'admin/adminControlPanel.php';
                     break;
-                case "controlPanel":
-                    include 'admin/adminControlPanel.php';
+                case "members":
+                    include 'admin/membersCatalogue.php';
+                    break;
+                case (preg_match('/newReservation.*/', $panelOption) ? true : false): // Validates input along with get parameters
+                    include 'admin/createReservation.php';
+                    break;
+                case "newCustomer":
+                    include 'admin/newCustomer.php';
                     break;
                 case "controlPanel":
                     include 'admin/adminControlPanel.php';
@@ -53,20 +57,15 @@ if (isset($_SESSION['successmessage'])) { // View passed success messages - Cons
                 case "controlPanel":
                     include 'admin/adminControlPanel.php';
                     break;
-                case "controlPanel":
-                    include 'admin/adminControlPanel.php';
+                case "setStoreHours":
+                    include 'admin/setStoreHours.php';
                     break;
-                case "controlPanel":
-                    include 'admin/adminControlPanel.php';
-                    break;
-                case "controlPanel":
-                    include 'admin/adminControlPanel.php';
+                default :
+                    include 'admin/adminControlPanel.php'; //If GET variable is not set include the default tile
                     break;
             endswitch;
-            }
-            else {
-                    include 'admin/adminControlPanel.php'; //If GET variable is not set include the default tile
-            }
+            
+
             ?>
         </div>
     </div>
