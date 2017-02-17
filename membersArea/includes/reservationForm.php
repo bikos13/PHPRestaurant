@@ -10,7 +10,7 @@
                     <!-- Time input field - Constantine -->
                     <div class="form-group col-md-6">
                         <label>Time<em style="color:red;"> *</em></label>
-                        <input type="time" id="time" name="bookingtime" class="form-control" required>
+                        <input type="time" id="time" name="bookingtime" step="1800" class="form-control" required>
                     </div>
                     <!-- Persons input field - Constantine -->
                     <div class="form-group col-md-6">

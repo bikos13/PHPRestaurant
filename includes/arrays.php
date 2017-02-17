@@ -111,15 +111,15 @@ $adminMenuItems = array(
         "title" => "New Customer"
     ),
     array(
-        "slug" => "adminIndex.php?panel=viewReservations",
+        "slug" => "adminIndex.php?panel=viewReservations&page=1",
         "title" => "View Reservations"
     ),
     array(
         "slug" => "adminIndex.php?panel=setStoreHours",
-        "title" => "Store Hours"
+        "title" => "Manage Hours"
     ),
     array(
-        "slug" => "adminIndex.php?panel=manageTables",
+        "slug" => "adminIndex.php?panel=manageTables&page=1",
         "title" => "Manage Tables"
     )
 );

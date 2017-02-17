@@ -51,11 +51,11 @@ if (isset($_SESSION['successmessage'])) { // View passed success messages - Cons
                 case "newCustomer":
                     include 'admin/newCustomer.php';
                     break;
-                case "controlPanel":
-                    include 'admin/adminControlPanel.php';
+                case (preg_match('/viewReservations.*/', $panelOption) ? true : false):
+                    include 'admin/viewReservations.php';
                     break;
-                case "controlPanel":
-                    include 'admin/adminControlPanel.php';
+                case (preg_match('/manageTables.*/', $panelOption)  ? true : false):
+                    include 'admin/manageTables.php';
                     break;
                 case "setStoreHours":
                     include 'admin/setStoreHours.php';

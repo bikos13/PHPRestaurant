@@ -1,5 +1,5 @@
-<h4>New Reservation</a></h4>
-<h4><small>Pick a customer for Reservation or <a href="adminIndex.php?panel=newCustomer">Create a new customer</a></small></h4>
+<h4>View Reservations</a></h4>
+
 <?php
 include "./functions/dbcon.php";
 
@@ -24,7 +24,7 @@ $prv_page = $pageCleanInput - 1; //Previous page Button Variable
 //============================================================================================================
 
 function pagBut($page_number, $buttontext) {
-    echo "<a class='btn btn-default' style='margin:5px; !important' href='adminIndex.php?panel=members&page=" . $page_number . "'> " . $buttontext . " </a>";
+    echo "<a class='btn btn-default' style='margin:5px; !important' href='adminIndex.php?panel=viewReservations&page=" . $page_number . "'> " . $buttontext . " </a>";
 }
 
 // End of Pagination Button Function =========================================================================
@@ -33,39 +33,33 @@ function pagBut($page_number, $buttontext) {
 
 
 //============================================================================================================
-//Function to create a reservation button that passes GET variables to reservation form - Constantine ========
+//Main query to get reservations - Constantine ===============================================================
 //============================================================================================================
 
-function reservationbutton($inputID, $inputEmail, $inputFname, $inputLname){
-    return "<a href='adminIndex.php?panel=newReservation&userid=$inputID&email=$inputEmail&fname=$inputFname&lname=$inputLname' class='btn btn-info btn-xs' role='button'><strong>Reservation</strong></a>";
-}
-
-//Function to create a reservation button that passes GET variables to reservation form ======================
-//============================================================================================================
-
-
-
-//============================================================================================================
-//Main query to get users - Constantine ======================================================================
-//============================================================================================================
-
-$sql = "SELECT USER_ID, FIRSTNAME, LASTNAME, USERNAME, EMAIL, CONTACT_NUMBER_1, CONTACT_NUMBER_2 FROM users ORDER BY FIRSTNAME ASC LIMIT " . $pr . "," . $rowsperpage;
+$sql = "SELECT 
+BOOKING_ID, users.FIRSTNAME, users.LASTNAME, BOOKING_DATE, BOOKING_TIME, SMOKING_BOOL, BOOKING_SIZE, booking_status.B_STATUS_NAME FROM booking, users, booking_status 
+WHERE users.USER_ID = booking.USERS_USER_ID AND
+booking.booking_status_B_STATUS_ID = booking_status.B_STATUS_ID
+ORDER BY
+BOOKING_DATE DESC, BOOKING_TIME DESC LIMIT " . $pr . "," . $rowsperpage;
 $result = $mysqli->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<table class='table table-bordered' style='margin:0 !important;'><tr><thead><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th><th>E-mail</th><th>1st Contact No</th><th>2nd Contact No</th><th>Reservation</th></thead></tr>";
+    echo "<table class='table table-bordered' style='margin:0 !important;'><tr><thead><th>ID</th><th>First Name</th><th>Last Name</th><th>Date</th><th>Time</th><th>Smoking?</th><th>Persons</th><th>Status</th><th>Tables</th><th>Action</th></thead></tr>";
     // output data of each row
     while ($row = $result->fetch_assoc()) {
         $smokers = "no";
-        
-        echo "<tr><td>" . $row['USER_ID'] . "</td><td>" . $row['FIRSTNAME'] . "</td><td>" . $row['LASTNAME'] . "</td><td>" . $row['USERNAME'] . "</td><td>" . $row['EMAIL'] . "</td><td>" . $row['CONTACT_NUMBER_1'] . "</td><td>" . $row['CONTACT_NUMBER_2'] . "</td><td> " . reservationbutton($row['USER_ID'], $row['EMAIL'], $row['FIRSTNAME'], $row['LASTNAME']) . " </td></tr>";
+        if ($row['SMOKING_BOOL'] === 1) {
+            $smokers = "yes";
+        }
+        echo "<tr><td>" . $row['BOOKING_ID'] . "</td><td>" . $row['FIRSTNAME'] . "</td><td>" . $row['LASTNAME'] . "</td><td>" . $row['BOOKING_DATE'] . "</td><td>" . $row['BOOKING_TIME'] . "</td><td>" . $smokers . "</td><td>" . $row['BOOKING_SIZE'] . "</td><td> " .  $row['B_STATUS_NAME'] . " </td><td></td><td></td></tr>";
     }
     echo "</table>";
 } else {
     echo "0 results";
 }
 
-//End of Main query to get users =============================================================================
+//End of Main query to get Reservations ======================================================================
 //============================================================================================================
 
 
@@ -73,7 +67,12 @@ if ($result->num_rows > 0) {
 //Quering result pages number to utilize pagination button (when to show or hide) - Constantine ==============
 //============================================================================================================
 
-$sql_pagin = "SELECT USER_ID, FIRSTNAME, LASTNAME, USERNAME, EMAIL, CONTACT_NUMBER_1, CONTACT_NUMBER_2 FROM users ORDER BY FIRSTNAME ASC"; //query to return pagination size
+$sql_pagin = "SELECT 
+BOOKING_ID, users.FIRSTNAME, users.LASTNAME, BOOKING_DATE, BOOKING_TIME, SMOKING_BOOL, BOOKING_SIZE, booking_status.B_STATUS_NAME FROM booking, users, booking_status 
+WHERE users.USER_ID = booking.USERS_USER_ID AND
+booking.booking_status_B_STATUS_ID = booking_status.B_STATUS_ID
+ORDER BY
+BOOKING_DATE DESC, BOOKING_TIME DESC"; //query to return pagination size
 $result1 = $mysqli->query($sql_pagin);
 $count_results = mysqli_num_rows($result1);
 $check_pages_size = $pr + $rowsperpage;
@@ -89,12 +88,12 @@ $pagelimit = ceil($count_results / $rowsperpage); // Indicates the number of pag
 //============================================================================================================
 
 if ($pageCleanInput > 1) {
-    pagBut("1", "First Page");
+    pagBut("1", "Most Recent Reservations");
     pagBut($prv_page, "Previous Page");
 }
 if ($count_results > $check_pages_size) {
     pagBut($next_page, "Next Page");
-    pagBut($pagelimit, "Last Page");
+    pagBut($pagelimit, "Oldest Reservations");
 }
 
 $mysqli->close(); //Closing Database connection

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Φιλοξενητής: 127.0.0.1
--- Χρόνος δημιουργίας: 14 Φεβ 2017 στις 16:34:59
+-- Χρόνος δημιουργίας: 17 Φεβ 2017 στις 16:07:40
 -- Έκδοση διακομιστή: 5.7.14
 -- Έκδοση PHP: 7.0.10
 
@@ -34,25 +34,76 @@ CREATE TABLE `booking` (
   `BOOKING_SIZE` int(11) DEFAULT NULL,
   `USERS_USER_ID` int(11) NOT NULL,
   `SMOKING_BOOL` tinyint(1) NOT NULL DEFAULT '0',
-  `BOOKING_STATUS` varchar(30) NOT NULL DEFAULT 'Pending'
+  `booking_status_B_STATUS_ID` int(2) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Άδειασμα δεδομένων του πίνακα `booking`
 --
 
-INSERT INTO `booking` (`BOOKING_ID`, `BOOKING_DATE`, `BOOKING_TIME`, `BOOKING_TIMESTAMP`, `BOOKING_SIZE`, `USERS_USER_ID`, `SMOKING_BOOL`, `BOOKING_STATUS`) VALUES
-(1, '2017-02-10', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 'Pending'),
-(2, '2017-02-10', '00:07:00', '2017-02-10 17:52:33', 4, 3, 0, 'Pending'),
-(3, '2017-02-10', '02:05:00', '2017-02-10 17:53:17', 1, 3, 1, 'Pending'),
-(4, '2017-02-10', '15:24:00', '2017-02-10 17:54:19', 4, 3, 0, 'Pending'),
-(6, '2017-02-10', '12:07:00', '2017-02-10 17:47:09', 4, 3, 0, 'Pending'),
-(7, '2017-02-09', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 'Pending'),
-(8, '2017-02-08', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 'Pending'),
-(9, '2017-02-07', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 'Pending'),
-(10, '2017-02-06', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 'Pending'),
-(11, '2017-02-05', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 'Pending'),
-(12, '2017-02-04', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 'Pending');
+INSERT INTO `booking` (`BOOKING_ID`, `BOOKING_DATE`, `BOOKING_TIME`, `BOOKING_TIMESTAMP`, `BOOKING_SIZE`, `USERS_USER_ID`, `SMOKING_BOOL`, `booking_status_B_STATUS_ID`) VALUES
+(1, '2017-02-10', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 1),
+(2, '2017-02-10', '00:07:00', '2017-02-10 17:52:33', 4, 3, 0, 1),
+(3, '2017-02-10', '02:05:00', '2017-02-10 17:53:17', 1, 3, 1, 1),
+(4, '2017-02-10', '15:24:00', '2017-02-10 17:54:19', 4, 3, 0, 1),
+(6, '2017-02-10', '12:07:00', '2017-02-10 17:47:09', 4, 3, 0, 1),
+(7, '2017-02-09', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 1),
+(8, '2017-02-08', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 1),
+(9, '2017-02-07', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 1),
+(10, '2017-02-06', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 1),
+(11, '2017-02-05', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 1),
+(12, '2017-02-04', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 1),
+(17, '2017-02-10', '11:02:00', '2017-02-10 17:47:09', 4, 3, 0, 1),
+(18, '2017-01-10', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 1),
+(20, '2017-02-15', '17:00:00', '2017-02-14 21:25:34', 5, 5, 1, 1),
+(21, '2017-02-16', '21:00:00', '2017-02-15 17:32:32', 1, 6, 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Δομή πίνακα για τον πίνακα `booking_status`
+--
+
+CREATE TABLE `booking_status` (
+  `B_STATUS_ID` int(2) NOT NULL,
+  `B_STATUS_NAME` varchar(45) NOT NULL,
+  `B_STATUS_DESC` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Άδειασμα δεδομένων του πίνακα `booking_status`
+--
+
+INSERT INTO `booking_status` (`B_STATUS_ID`, `B_STATUS_NAME`, `B_STATUS_DESC`) VALUES
+(1, 'Pending', 'This reservations has not been approved yet'),
+(2, 'Approved', 'This reservation has been approved'),
+(3, 'Cancelled', 'This reservation has been cancelled');
+
+-- --------------------------------------------------------
+
+--
+-- Δομή πίνακα για τον πίνακα `storehours`
+--
+
+CREATE TABLE `storehours` (
+  `DAY_ID` tinyint(1) NOT NULL,
+  `DAY_NAME` text NOT NULL,
+  `OPENING_HOUR` text NOT NULL,
+  `CLOSING_HOUR` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Άδειασμα δεδομένων του πίνακα `storehours`
+--
+
+INSERT INTO `storehours` (`DAY_ID`, `DAY_NAME`, `OPENING_HOUR`, `CLOSING_HOUR`) VALUES
+(1, 'mon', '14:00', '22:00'),
+(2, 'tue', '16:00', '00:00'),
+(3, 'wed', '14:00', '22:00'),
+(4, 'thu', '16:00', '00:00'),
+(5, 'fri', '16:00', '00:00'),
+(6, 'sat', '14:00', '00:00'),
+(7, 'sun', '16:00', '00:00');
 
 -- --------------------------------------------------------
 
@@ -65,6 +116,40 @@ CREATE TABLE `tables` (
   `TABLE_SIZE` int(11) NOT NULL DEFAULT '4',
   `SMOKING` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Άδειασμα δεδομένων του πίνακα `tables`
+--
+
+INSERT INTO `tables` (`TABLE_CODE`, `TABLE_SIZE`, `SMOKING`) VALUES
+('A1', 4, 0),
+('A2', 4, 0),
+('A3', 4, 0),
+('A4', 4, 0),
+('A5', 4, 0),
+('A6', 4, 0),
+('A7', 4, 0),
+('A8', 4, 0),
+('B1', 4, 1),
+('B2', 4, 1),
+('B3', 4, 1),
+('B4', 4, 1),
+('B5', 4, 1),
+('B6', 4, 1),
+('B7', 4, 1),
+('B8', 4, 1),
+('C1', 6, 0),
+('C2', 6, 0),
+('C3', 6, 0),
+('C4', 6, 0),
+('C5', 2, 0),
+('C6', 2, 0),
+('C7', 2, 0),
+('C8', 2, 0),
+('D1', 2, 1),
+('D2', 2, 1),
+('D3', 2, 1),
+('D4', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -124,7 +209,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`USER_ID`, `FIRSTNAME`, `LASTNAME`, `USERNAME`, `USERPASS`, `EMAIL`, `CONTACT_NUMBER_1`, `CONTACT_NUMBER_2`, `UserLevels_USERLEVEL_ID`, `TIMESTAMP_REGISTERED`) VALUES
 (3, 'Constantine', 'Stathis', 'bikos13', '25d55ad283aa400af464c76d713c07ad', 'constantinos-@hotmail.com', '6948621978', '', 10, '2017-01-18 11:44:58'),
-(4, 'Aimilia', 'Fakoy', 'mama13', 'b4e22cf9b4620df31df84584b2992e61', 'emi-111@hotmail.com', '69448406977', '', 1, '2017-01-18 11:46:38');
+(5, 'Markos', 'Polos', 'marco25', '25d55ad283aa400af464c76d713c07ad', 'markopolo@mark.gr', '210', '6948511221', 1, '2017-02-14 21:07:58'),
+(6, 'emily', 'fakou', 'emily', '6fb42da0e32e07b61c9f0251fe627a9c', 'emi-111@hotmail.com', '6972421217', 'prits!', 1, '2017-02-15 17:30:26');
 
 --
 -- Ευρετήρια για άχρηστους πίνακες
@@ -135,7 +221,22 @@ INSERT INTO `users` (`USER_ID`, `FIRSTNAME`, `LASTNAME`, `USERNAME`, `USERPASS`,
 --
 ALTER TABLE `booking`
   ADD PRIMARY KEY (`BOOKING_ID`,`USERS_USER_ID`),
-  ADD KEY `fk_Booking_Users1_idx` (`USERS_USER_ID`);
+  ADD KEY `fk_Booking_Users1_idx` (`USERS_USER_ID`),
+  ADD KEY `booking_status.B_STATUS_ID` (`booking_status_B_STATUS_ID`);
+
+--
+-- Ευρετήρια για πίνακα `booking_status`
+--
+ALTER TABLE `booking_status`
+  ADD PRIMARY KEY (`B_STATUS_ID`),
+  ADD UNIQUE KEY `idBOOKING_STATUS_ID_UNIQUE` (`B_STATUS_ID`);
+
+--
+-- Ευρετήρια για πίνακα `storehours`
+--
+ALTER TABLE `storehours`
+  ADD PRIMARY KEY (`DAY_ID`),
+  ADD UNIQUE KEY `DAY_ID` (`DAY_ID`);
 
 --
 -- Ευρετήρια για πίνακα `tables`
@@ -176,12 +277,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT για πίνακα `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `BOOKING_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `BOOKING_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+--
+-- AUTO_INCREMENT για πίνακα `booking_status`
+--
+ALTER TABLE `booking_status`
+  MODIFY `B_STATUS_ID` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT για πίνακα `users`
 --
 ALTER TABLE `users`
-  MODIFY `USER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `USER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Περιορισμοί για άχρηστους πίνακες
 --
@@ -190,6 +296,7 @@ ALTER TABLE `users`
 -- Περιορισμοί για πίνακα `booking`
 --
 ALTER TABLE `booking`
+  ADD CONSTRAINT `fk_Booking_Status1` FOREIGN KEY (`booking_status_B_STATUS_ID`) REFERENCES `booking_status` (`B_STATUS_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Booking_Users1` FOREIGN KEY (`USERS_USER_ID`) REFERENCES `users` (`USER_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
