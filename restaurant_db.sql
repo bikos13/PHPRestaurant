@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Φιλοξενητής: 127.0.0.1
--- Χρόνος δημιουργίας: 17 Φεβ 2017 στις 16:07:40
+-- Χρόνος δημιουργίας: 20 Φεβ 2017 στις 15:37:23
 -- Έκδοση διακομιστή: 5.7.14
 -- Έκδοση PHP: 7.0.10
 
@@ -56,7 +56,9 @@ INSERT INTO `booking` (`BOOKING_ID`, `BOOKING_DATE`, `BOOKING_TIME`, `BOOKING_TI
 (17, '2017-02-10', '11:02:00', '2017-02-10 17:47:09', 4, 3, 0, 1),
 (18, '2017-01-10', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 1),
 (20, '2017-02-15', '17:00:00', '2017-02-14 21:25:34', 5, 5, 1, 1),
-(21, '2017-02-16', '21:00:00', '2017-02-15 17:32:32', 1, 6, 0, 1);
+(21, '2017-02-16', '21:00:00', '2017-02-15 17:32:32', 1, 6, 0, 1),
+(22, '2017-02-17', '20:00:00', '2017-02-17 17:32:13', 4, 7, 0, 1),
+(23, '2017-02-17', '22:30:00', '2017-02-17 17:37:42', 8, 8, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -130,6 +132,7 @@ INSERT INTO `tables` (`TABLE_CODE`, `TABLE_SIZE`, `SMOKING`) VALUES
 ('A6', 4, 0),
 ('A7', 4, 0),
 ('A8', 4, 0),
+('A9', 4, 0),
 ('B1', 4, 1),
 ('B2', 4, 1),
 ('B3', 4, 1),
@@ -210,7 +213,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`USER_ID`, `FIRSTNAME`, `LASTNAME`, `USERNAME`, `USERPASS`, `EMAIL`, `CONTACT_NUMBER_1`, `CONTACT_NUMBER_2`, `UserLevels_USERLEVEL_ID`, `TIMESTAMP_REGISTERED`) VALUES
 (3, 'Constantine', 'Stathis', 'bikos13', '25d55ad283aa400af464c76d713c07ad', 'constantinos-@hotmail.com', '6948621978', '', 10, '2017-01-18 11:44:58'),
 (5, 'Markos', 'Polos', 'marco25', '25d55ad283aa400af464c76d713c07ad', 'markopolo@mark.gr', '210', '6948511221', 1, '2017-02-14 21:07:58'),
-(6, 'emily', 'fakou', 'emily', '6fb42da0e32e07b61c9f0251fe627a9c', 'emi-111@hotmail.com', '6972421217', 'prits!', 1, '2017-02-15 17:30:26');
+(6, 'emily', 'fakou', 'emily', '6fb42da0e32e07b61c9f0251fe627a9c', 'emi-111@hotmail.com', '6972421217', 'prits!', 1, '2017-02-15 17:30:26'),
+(7, 'Stratos', 'Tsakmaz', 'Stratos', 'baf84ec366b50ec64d5624fc9a6f7df6', 'tsakmazstratos@gmail.com', '6985034960', '', 1, '2017-02-17 17:30:27'),
+(8, 'Pavlos', 'Kolovos', 'Pavlos', '7732257fd91a643262f795bc38bfc9b0', 'pavlos@hotmail.com', '2930293889', '', 1, '2017-02-17 17:36:48');
 
 --
 -- Ευρετήρια για άχρηστους πίνακες
@@ -277,7 +282,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT για πίνακα `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `BOOKING_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `BOOKING_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT για πίνακα `booking_status`
 --
@@ -287,7 +292,7 @@ ALTER TABLE `booking_status`
 -- AUTO_INCREMENT για πίνακα `users`
 --
 ALTER TABLE `users`
-  MODIFY `USER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `USER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- Περιορισμοί για άχρηστους πίνακες
 --

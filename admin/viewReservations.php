@@ -98,6 +98,8 @@ if ($count_results > $check_pages_size) {
 
 $mysqli->close(); //Closing Database connection
 
+echo "<br>Page $pageCleanInput from  $pagelimit<br>";
+
 //End of Paginations buttons creations through function and query  - Constantine =============================
 //============================================================================================================
 ?>

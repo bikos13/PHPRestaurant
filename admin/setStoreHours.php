@@ -3,8 +3,9 @@
 //==============================================================
 // Providing options for hour select every half an hour ========
 //==============================================================
+$hoursArray = array();
 
-function provideHourOptionsEveryHalf() {
+function provideHourOptionsEveryHalf($hArray) {
     $start = "00:00";
     $end = "24:00";
 
@@ -12,14 +13,30 @@ function provideHourOptionsEveryHalf() {
     $tEnd = strtotime($end);
     $tNow = $tStart;
 
+    
     while ($tNow <= $tEnd) {
         $option = date("H:i", $tNow) . "\n";
-        echo "<option value = '$option'>$option</option>";
+        $hArray['value'] = "<option value = '$option'>$option</option>";
         $tNow = strtotime('+30 minutes', $tNow);
     }
+    return $hArray;
 }
 
-// Providing options for hour select every half an hour ========<option value = "1">1</option>
+$days = array(
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday'
+);
+
+provideHourOptionsEveryHalf($hoursArray);
+
+echo var_dump($hoursArray);
+
+// Providing options for hour select every half an hour ========
 //==============================================================
 ?>
 <form action="functions/adminActionsProccessing.php" method="POST" name="storeHours">
@@ -27,17 +44,16 @@ function provideHourOptionsEveryHalf() {
     <div class = "form-group col-md-">
         <table class="table table-striped">
             <thead><th>Day</th><th>Opening Hour</th><th>Closing Hour</th><th>Closed</th></thead>
-        <tbody>
-        
-        </tbody>
+            <tbody>
+                <?php
+                foreach ($days as $day) {
+                    foreach ($hoursArray as $timeSet) {
+                        echo " ";
+                    }
+                }
+                ?>
+            </tbody>
         </table>
-        <label>Monday<br>Start time: <select name = "MonOp" class = "form-control">
-                <?php provideHourOptionsEveryHalf() ?>
-            </select>Closing Time
-            <select name = "MonCl" class = "form-control">
-                <?php provideHourOptionsEveryHalf() ?>
 
-            </select>
-        </label>
     </div>
 </form>

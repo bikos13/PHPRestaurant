@@ -97,6 +97,8 @@ if ($count_results > $check_pages_size) {
     pagBut($pagelimit, "Last Page");
 }
 
+echo "<br>Page $pageCleanInput from  $pagelimit<br>";
+
 $mysqli->close(); //Closing Database connection
 
 //End of Paginations buttons creations through function and query  - Constantine =============================
