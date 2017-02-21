@@ -127,12 +127,14 @@ If ($source != null) { // Checking if the source is valid
                     $sqlcltrigger = "UPDATE `storehours` SET `IS_CLOSED`='1' WHERE DAY_NAME = '$day'";
                     $mysqli->query($sqlcltrigger);
                     if ($mysqli->connect_errno) {
+                        $mysqli->close();
                         die("Hours update failed: %s\n" . $mysqli->connect_error);
                     }
                 } else {
                     $sqlcltrigger = "UPDATE `storehours` SET `IS_CLOSED`='0' WHERE DAY_NAME = '$day'";
                     $mysqli->query($sqlcltrigger);
                     if ($mysqli->connect_errno) {
+                        $mysqli->close();
                         die("Hours update failed: %s\n" . $mysqli->connect_error);
                     }
                 }
@@ -143,6 +145,7 @@ If ($source != null) { // Checking if the source is valid
                 $sqlcltrigger = "UPDATE `storehours` SET `OPENING_HOUR`='$value' WHERE DAY_NAME = '$day'";
                 $mysqli->query($sqlcltrigger);
                 if ($mysqli->connect_errno) {
+                    $mysqli->close();
                     die("Hours update failed: %s\n" . $mysqli->connect_error);
                 }
             }
@@ -151,10 +154,12 @@ If ($source != null) { // Checking if the source is valid
                 $sqlcltrigger = "UPDATE `storehours` SET `CLOSING_HOUR`='$value' WHERE DAY_NAME = '$day'";
                 $mysqli->query($sqlcltrigger);
                 if ($mysqli->connect_errno) {
+                    $mysqli->close();
                     die("Hours update failed: %s\n" . $mysqli->connect_error);
                 }
             }
-            
+    
+            $mysqli->close();
             $_SESSION['successmessage'] = "Hours updated Successfully";
             
             header('Location: ../adminIndex.php?panel=setStoreHours');
