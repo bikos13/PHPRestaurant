@@ -8,6 +8,10 @@ include "dbcon.php";
 //Including validation.php functions - Constantine
 include "validations.php";
 
+echo "<pre>";
+echo var_dump($_GET);
+echo "</pre>";
+
 $source = filter_input(INPUT_GET, 'source'); // This variable holds the source page that wants to use the action proccessing page - Constantine
 $action = filter_input(INPUT_GET, 'action'); // This variable holds the main action to be used - Constantine
 $id = filter_input(INPUT_GET, 'id'); // This variable holds the id will be used for manipulation - Constantine
@@ -78,11 +82,87 @@ If ($source != null) { // Checking if the source is valid
                     break;
             endswitch;
 
-// End of Tables Case and actions ======================================================
-//======================================================================================
-
             break;
 
+// End of Tables Case and actions ======================================================
+//======================================================================================
+//======================================================================================
+// Setting hours function - Constantine ================================================
+//======================================================================================
+
+        case('setHours'):
+
+            $ClosedTrigger = array(//This array hold the value of the checkbox Closed - Constantine
+                'Mon' => filter_input(INPUT_GET, 'MondayClosed'),
+                'Tue' => filter_input(INPUT_GET, 'TuesdayClosed'),
+                'Wed' => filter_input(INPUT_GET, 'WednesdayClosed'),
+                'Thu' => filter_input(INPUT_GET, 'ThursdayClosed'),
+                'Fri' => filter_input(INPUT_GET, 'FridayClosed'),
+                'Sat' => filter_input(INPUT_GET, 'SaturdayClosed'),
+                'Sun' => filter_input(INPUT_GET, 'SundayClosed')
+            );
+
+            $Openinghours = array(//This array hold the value of the opening hours - Constantine
+                'Mon' => filter_input(INPUT_GET, 'MondayOpen'),
+                'Tue' => filter_input(INPUT_GET, 'TuesdayOpen'),
+                'Wed' => filter_input(INPUT_GET, 'WednesdayOpen'),
+                'Thu' => filter_input(INPUT_GET, 'ThursdayOpen'),
+                'Fri' => filter_input(INPUT_GET, 'FridayOpen'),
+                'Sat' => filter_input(INPUT_GET, 'SaturdayOpen'),
+                'Sun' => filter_input(INPUT_GET, 'SundayOpen')
+            );
+
+            $Closinghours = array(//This array hold the value of the closing hours - Constantine
+                'Mon' => filter_input(INPUT_GET, 'MondayClose'),
+                'Tue' => filter_input(INPUT_GET, 'TuesdayClose'),
+                'Wed' => filter_input(INPUT_GET, 'WednesdayClose'),
+                'Thu' => filter_input(INPUT_GET, 'ThursdayClose'),
+                'Fri' => filter_input(INPUT_GET, 'FridayClose'),
+                'Sat' => filter_input(INPUT_GET, 'SaturdayClose'),
+                'Sun' => filter_input(INPUT_GET, 'SundayClose')
+            );
+
+            foreach ($ClosedTrigger as $day => $value) {
+                If (($value != null) && ($value === 'on')) {
+                    $sqlcltrigger = "UPDATE `storehours` SET `IS_CLOSED`='1' WHERE DAY_NAME = '$day'";
+                    $mysqli->query($sqlcltrigger);
+                    if ($mysqli->connect_errno) {
+                        die("Hours update failed: %s\n" . $mysqli->connect_error);
+                    }
+                } else {
+                    $sqlcltrigger = "UPDATE `storehours` SET `IS_CLOSED`='0' WHERE DAY_NAME = '$day'";
+                    $mysqli->query($sqlcltrigger);
+                    if ($mysqli->connect_errno) {
+                        die("Hours update failed: %s\n" . $mysqli->connect_error);
+                    }
+                }
+            }
+
+            foreach ($Openinghours as $day => $value) {
+
+                $sqlcltrigger = "UPDATE `storehours` SET `OPENING_HOUR`='$value' WHERE DAY_NAME = '$day'";
+                $mysqli->query($sqlcltrigger);
+                if ($mysqli->connect_errno) {
+                    die("Hours update failed: %s\n" . $mysqli->connect_error);
+                }
+            }
+
+            foreach ($Closinghours as $day => $value) {
+                $sqlcltrigger = "UPDATE `storehours` SET `CLOSING_HOUR`='$value' WHERE DAY_NAME = '$day'";
+                $mysqli->query($sqlcltrigger);
+                if ($mysqli->connect_errno) {
+                    die("Hours update failed: %s\n" . $mysqli->connect_error);
+                }
+            }
+            
+            $_SESSION['successmessage'] = "Hours updated Successfully";
+            
+            header('Location: ../adminIndex.php?panel=setStoreHours');
+            break;
+
+
+// End of Setting hours function - Constantine =========================================
+//======================================================================================
     endswitch; // End of $source switch
 } else {
     die('No source has been detected!');

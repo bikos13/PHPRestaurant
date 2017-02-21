@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Φιλοξενητής: 127.0.0.1
--- Χρόνος δημιουργίας: 20 Φεβ 2017 στις 15:37:23
+-- Χρόνος δημιουργίας: 21 Φεβ 2017 στις 13:12:03
 -- Έκδοση διακομιστή: 5.7.14
 -- Έκδοση PHP: 7.0.10
 
@@ -91,21 +91,22 @@ CREATE TABLE `storehours` (
   `DAY_ID` tinyint(1) NOT NULL,
   `DAY_NAME` text NOT NULL,
   `OPENING_HOUR` text NOT NULL,
-  `CLOSING_HOUR` text NOT NULL
+  `CLOSING_HOUR` text NOT NULL,
+  `IS_CLOSED` tinyint(2) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Άδειασμα δεδομένων του πίνακα `storehours`
 --
 
-INSERT INTO `storehours` (`DAY_ID`, `DAY_NAME`, `OPENING_HOUR`, `CLOSING_HOUR`) VALUES
-(1, 'mon', '14:00', '22:00'),
-(2, 'tue', '16:00', '00:00'),
-(3, 'wed', '14:00', '22:00'),
-(4, 'thu', '16:00', '00:00'),
-(5, 'fri', '16:00', '00:00'),
-(6, 'sat', '14:00', '00:00'),
-(7, 'sun', '16:00', '00:00');
+INSERT INTO `storehours` (`DAY_ID`, `DAY_NAME`, `OPENING_HOUR`, `CLOSING_HOUR`, `IS_CLOSED`) VALUES
+(1, 'mon', '16:00', '00:00', 1),
+(2, 'tue', '16:00', '00:00', 0),
+(3, 'wed', '14:30', '22:00', 0),
+(4, 'thu', '16:00', '00:00', 0),
+(5, 'fri', '16:00', '00:00', 0),
+(6, 'sat', '12:30', '00:00', 0),
+(7, 'sun', '12:30', '00:00', 0);
 
 -- --------------------------------------------------------
 
