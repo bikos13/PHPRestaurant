@@ -29,7 +29,11 @@ $navMenuItemsGeneral = array(
     ),
     array(
         "slug" => "menu.php",
-        "title" => "<strong>Menu</strong>"
+        "title" => "Menu"
+    ),
+    array(
+        "slug" => "MakeAReservation.php",
+        "title" => "<strong>Reservation</strong>"
     ),
     array(
         "slug" => "contact.php",
@@ -70,7 +74,7 @@ $navMenuItemsAdmin = array(
     
     array(
         "slug" => "adminIndex.php?panel=controlPanel",
-        "title" => "Admin Panel"
+        "title" => "Admin"
     )
 );
 

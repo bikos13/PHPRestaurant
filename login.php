@@ -19,9 +19,17 @@
 <?php session_destroy(); }  ?>
 <!-- !Successful registration message passed through session - Constantine -->
 
+<!-- Alert message passed through session - Constantine -->
+<?php if (isset($_SESSION['alerts'])) { ?>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="alert alert-info"><?php echo $_SESSION['alerts']; ?></div>
+        </div>
+    </div>
+<?php session_destroy(); }  ?>
+<!-- !Alert registration message passed through session - Constantine -->
 
-
-<!-- Successful registration message passed through session - Constantine -->
+<!-- UNSuccessful registration message passed through session - Constantine -->
 <?php if (isset($_SESSION['warnings'])) { ?>
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
@@ -29,7 +37,7 @@
         </div>
     </div>
 <?php session_destroy(); }  ?>
-<!-- !Successful registration message passed through session - Constantine -->
+<!-- !UNSuccessful registration message passed through session - Constantine -->
 
 
 

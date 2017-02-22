@@ -16,27 +16,31 @@ if ((filter_input(INPUT_GET, 'userid') == null) || ((filter_input(INPUT_GET, 'em
             $lname = filter_input(INPUT_GET, 'lname');
 ?>
 
-<form role="form" method="POST" id="adminreservationform" name="adminreservationform" action="functions/reservationhandling.php">
+<form role="form" method="POST" id="adminreservationform" name="adminreservationform" action="adminIndex.php?panel=setReservationTables">
 
     <!-- Date input field - Constantine -->
     <div class="form-group col-md-6">
         <label>ID</label>
-        <input type="number" id="userid" value="<?php echo $userid; ?>" name="userid" class="form-control" required disabled="">
+        <input type="hidden" id="userid" value="<?php echo $userid; ?>" name="userid" class="form-control" required>
+        <input type="number" id="userid" value="<?php echo $userid; ?>" name="userid" class="form-control" required disabled>
     </div>
 
     <div class="form-group col-md-6">
         <label>E-mail</label>
-        <input type="email" id="email" value="<?php echo $email; ?>" name="email" class="form-control" required disabled="">
+        <input type="hidden" id="email" value="<?php echo $email; ?>" name="email" class="form-control" required >
+        <input type="email" id="email" value="<?php echo $email; ?>" name="email" class="form-control" required disabled>
     </div>
 
     <div class="form-group col-md-6">
         <label>Last Name</label>
-        <input type="text" id="lname" value="<?php echo $lname; ?>" name="lname" class="form-control" required disabled="">
+        <input type="hidden" id="lname" value="<?php echo $lname; ?>" name="lname" class="form-control" required >
+        <input type="text" id="lname" value="<?php echo $lname; ?>" name="lname" class="form-control" required disabled>
     </div>
     
     <div class="form-group col-md-6">
         <label>First name</label>
-        <input type="text" id="fname" value="<?php echo $fname; ?>" name="fname" class="form-control" required disabled="">
+        <input type="hidden" id="fname" value="<?php echo $fname; ?>" name="fname" class="form-control" required >
+        <input type="text" id="fname" value="<?php echo $fname; ?>" name="fname" class="form-control" required disabled>
     </div>
 
     <div class="form-group col-md-6">
@@ -81,7 +85,7 @@ if ((filter_input(INPUT_GET, 'userid') == null) || ((filter_input(INPUT_GET, 'em
     <!-- Submit Button - Constantine -->
     <div class="form-group col-md-12">
         <input type="hidden" name="adminreservationform" value="TRUE">
-        <label><button type="submit" id="submit-reservation" name="submit-reservation" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Submit reservation</button></label>
+        <label><button type="submit" id="submit-reservation" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span>Pick a Table</button></label>
     </div>
 
 </form>
