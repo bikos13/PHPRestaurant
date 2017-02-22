@@ -32,12 +32,28 @@ function pagBut($page_number, $buttontext) {
 
 
 
+
+//============================================================================================================
+//Function to cancel a reservation - Constantine =============================================================
+//============================================================================================================
+
+function cancBut($idinput) {
+    return "<a href='../functions/adminActionsProccessing.php?source=reservations&action=cancelReservation&id=$idinput' class='btn btn-danger btn-xs' role='button'><strong>Cancel</strong></a>";
+}
+
+// End of Function to cancel a reservation ===================================================================
+//============================================================================================================
+
+
+
+
 //============================================================================================================
 //Main query to get reservations - Constantine ===============================================================
 //============================================================================================================
 
 $sql = "SELECT 
-BOOKING_ID, users.FIRSTNAME, users.LASTNAME, BOOKING_DATE, BOOKING_TIME, SMOKING_BOOL, BOOKING_SIZE, booking_status.B_STATUS_NAME FROM booking, users, booking_status 
+BOOKING_ID, users.FIRSTNAME, users.LASTNAME, BOOKING_DATE, BOOKING_TIME, SMOKING_BOOL, BOOKING_SIZE, booking_status.B_STATUS_NAME, booking_status_B_STATUS_ID
+FROM booking, users, booking_status 
 WHERE users.USER_ID = booking.USERS_USER_ID AND
 booking.booking_status_B_STATUS_ID = booking_status.B_STATUS_ID
 ORDER BY
@@ -52,7 +68,7 @@ if ($result->num_rows > 0) {
         if ($row['SMOKING_BOOL'] === 1) {
             $smokers = "yes";
         }
-        echo "<tr><td>" . $row['BOOKING_ID'] . "</td><td>" . $row['FIRSTNAME'] . "</td><td>" . $row['LASTNAME'] . "</td><td>" . $row['BOOKING_DATE'] . "</td><td>" . $row['BOOKING_TIME'] . "</td><td>" . $smokers . "</td><td>" . $row['BOOKING_SIZE'] . "</td><td> " .  $row['B_STATUS_NAME'] . " </td><td></td><td></td></tr>";
+        echo "<tr><td>" . $row['BOOKING_ID'] . "</td><td>" . $row['FIRSTNAME'] . "</td><td>" . $row['LASTNAME'] . "</td><td>" . $row['BOOKING_DATE'] . "</td><td>" . $row['BOOKING_TIME'] . "</td><td>" . $smokers . "</td><td>" . $row['BOOKING_SIZE'] . "</td><td> " .  $row['B_STATUS_NAME'] . " </td><td></td><td>" . (($row['booking_status_B_STATUS_ID']!='3') ?  cancBut($row['BOOKING_ID']) : '-') . "</td></tr>";
     }
     echo "</table>";
 } else {

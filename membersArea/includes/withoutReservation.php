@@ -32,7 +32,7 @@ This panel is used when the users doesn't have any future reservations
             break;
     endswitch;
     ?>
-</div>
+</div><br><br><br><br>
 <div class="col-md-6">
     <a href="profile.php?panel=newReservation"><button class="btn btn-lg profilebtn"><span class="glyphicon glyphicon-glass"></span><br>Make a reservation</button></a>
 </div>

@@ -8,9 +8,6 @@ include "dbcon.php";
 //Including validation.php functions - Constantine
 include "validations.php";
 
-echo "<pre>";
-echo var_dump($_GET);
-echo "</pre>";
 
 $source = filter_input(INPUT_GET, 'source'); // This variable holds the source page that wants to use the action proccessing page - Constantine
 $action = filter_input(INPUT_GET, 'action'); // This variable holds the main action to be used - Constantine
@@ -158,16 +155,49 @@ If ($source != null) { // Checking if the source is valid
                     die("Hours update failed: %s\n" . $mysqli->connect_error);
                 }
             }
-    
+
             $mysqli->close();
             $_SESSION['successmessage'] = "Hours updated Successfully";
-            
+
             header('Location: ../adminIndex.php?panel=setStoreHours');
             break;
 
-
 // End of Setting hours function - Constantine =========================================
 //======================================================================================
+//
+//
+//
+//======================================================================================
+// Cancel Reservation - Constantine ====================================================
+//======================================================================================          
+        case('reservations'):
+            switch ($action):
+                case('cancelReservation'):
+                    $sql = "UPDATE `booking` SET `booking_status_B_STATUS_ID`='3' WHERE BOOKING_ID = '$id'";
+                    $mysqli->query($sql);
+                    if ($mysqli->connect_errno) {
+                        $mysqli->close();
+                        die("Could not find this reservation ID to cancel it. : %s\n" . $mysqli->connect_error);
+                    } else {
+                        $mysqli->close();
+                        $_SESSION['successmessage'] = "The reservations with <strong>ID: $id has been succesfully cancelled</strong>";
+                        echo "<pre>";                        
+                        echo var_dump($_GET);
+                        echo "</pre>";
+                        header('Location: ../adminIndex.php?panel=viewReservations&page=1');
+                    }
+                    $mysqli->close();
+                    break;
+            endswitch;
+            break;
+
+// Cancel Reservation ==================================================================
+//======================================================================================           
+
+
+
+
+
     endswitch; // End of $source switch
 } else {
     die('No source has been detected!');
@@ -175,5 +205,8 @@ If ($source != null) { // Checking if the source is valid
 
 
 // End of Filtering the source to use the appropriate functions - Constantine ==========
+//======================================================================================
+//======================================================================================
+// Cancel Reservation - Constantine ====================================================
 //======================================================================================
 ?>
