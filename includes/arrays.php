@@ -174,7 +174,7 @@ $foodMenuItems = array(
         "foodCategory" => "Meat",
         "foodTitle" => "DON'T MAKE WAR, MAKE BURGER",
         "foodImageSlug" => "the_burger.jpg",
-        "foodDescription" => "None knows the true taste of THE BURGER till he tried this particular one. 50 oz. burger OMFG!!! Can't wait to taste it? Then join us and you will have the chanve to taste HEAVEN OF MEATS!!!!",
+        "foodDescription" => "None knows the true taste of THE BURGER till he tried this particular one. 50 oz. burger OMFG!!! Can't wait to taste it? Then join us and you will have the chance to taste HEAVEN OF MEATS!!!!",
         "foodPrice" => "50"
     ),
     array(

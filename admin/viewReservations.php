@@ -45,8 +45,6 @@ function cancBut($idinput) {
 //============================================================================================================
 
 
-
-
 //============================================================================================================
 //Main query to get reservations - Constantine ===============================================================
 //============================================================================================================
@@ -68,7 +66,7 @@ if ($result->num_rows > 0) {
         if ($row['SMOKING_BOOL'] === 1) {
             $smokers = "yes";
         }
-        echo "<tr><td>" . $row['BOOKING_ID'] . "</td><td>" . $row['FIRSTNAME'] . "</td><td>" . $row['LASTNAME'] . "</td><td>" . $row['BOOKING_DATE'] . "</td><td>" . $row['BOOKING_TIME'] . "</td><td>" . $smokers . "</td><td>" . $row['BOOKING_SIZE'] . "</td><td> " .  $row['B_STATUS_NAME'] . " </td><td></td><td>" . (($row['booking_status_B_STATUS_ID']!='3') ?  cancBut($row['BOOKING_ID']) : '-') . "</td></tr>";
+        echo "<tr><td>" . $row['BOOKING_ID'] . "</td><td>" . $row['FIRSTNAME'] . "</td><td>" . $row['LASTNAME'] . "</td><td>" . $row['BOOKING_DATE'] . "</td><td>" . $row['BOOKING_TIME'] . "</td><td>" . $smokers . "</td><td>" . $row['BOOKING_SIZE'] . "</td><td> " .  $row['B_STATUS_NAME'] . " </td><td></td><td>" . (($row['booking_status_B_STATUS_ID']=='1') || ($row['booking_status_B_STATUS_ID']=='2') ?  cancBut($row['BOOKING_ID']) : '-') . "</td></tr>";
     }
     echo "</table>";
 } else {
@@ -97,8 +95,17 @@ $pagelimit = ceil($count_results / $rowsperpage); // Indicates the number of pag
 //End of Quering result pages number to utilize pagination button (when to show or hide) - Constantine =======
 //============================================================================================================
 
+?>
+<!------------------------------------------------------------------------------------------------------------
+// Button to cancel old pending reservations - Constantine ---------------------------------------------------
+-------------------------------------------------------------------------------------------------------------->
 
+<br><a class='btn btn-warning' style='margin:5px;' href='../functions/adminActionsProccessing.php?source=reservations&action=cancelOldPendingReservations'>Cancel Old Pending Reservations</a><br>
 
+<!--Button to cancel old pending reservations - Constantine ---------------------------------------------------
+-------------------------------------------------------------------------------------------------------------->
+
+<?php
 //============================================================================================================
 //Paginations buttons creations through function and query  - Constantine ====================================
 //============================================================================================================
@@ -112,10 +119,12 @@ if ($count_results > $check_pages_size) {
     pagBut($pagelimit, "Oldest Reservations");
 }
 
-$mysqli->close(); //Closing Database connection
 
 echo "<br>Page $pageCleanInput from  $pagelimit<br>";
 
 //End of Paginations buttons creations through function and query  - Constantine =============================
 //============================================================================================================
+
+
+$mysqli->close(); //Closing Database connection
 ?>

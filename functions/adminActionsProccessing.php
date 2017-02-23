@@ -181,18 +181,40 @@ If ($source != null) { // Checking if the source is valid
                     } else {
                         $mysqli->close();
                         $_SESSION['successmessage'] = "The reservations with <strong>ID: $id has been succesfully cancelled</strong>";
-                        echo "<pre>";                        
-                        echo var_dump($_GET);
-                        echo "</pre>";
+                        $mysqli->close();
                         header('Location: ../adminIndex.php?panel=viewReservations&page=1');
                     }
+                    
+                    break;
+// End of Function to cancel a reservation ===================================================================
+//============================================================================================================
+
+                    
+//============================================================================================================
+// Cancel old pending reservations - Constantine =============================================================
+//============================================================================================================                    
+                case('cancelOldPendingReservations'):
+                    $sqlclearOld = "UPDATE `booking` SET `booking_status_B_STATUS_ID`='4' WHERE `booking_status_B_STATUS_ID`='1' AND BOOKING_DATE < CURDATE()";
+                    $result2 = $mysqli->query($sqlclearOld);
+                    $affectedRecords = $mysqli->affected_rows;
+                    if ($affectedRecords > 0) {
+                        $_SESSION['successmessage'] = "You have succesfully changed the status of <strong>$affectedRecords pending</strong> reservations to <strong>Unattended</strong>";
+                    }
+                    else{
+                        $_SESSION['successmessage'] = "There weren't any unattended reservations to proccess!";
+                    }
                     $mysqli->close();
+                    header('Location: ../adminIndex.php?panel=viewReservations&page=1');
                     break;
             endswitch;
             break;
 
-// Cancel Reservation ==================================================================
-//======================================================================================           
+
+
+        case('viewReservations'):
+//============================================================================================================
+// End of Cancel old pending reservations  ===================================================================
+//============================================================================================================
 
 
 

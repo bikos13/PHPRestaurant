@@ -34,6 +34,7 @@
     <style>
         body {
     background: url('../img/bg-admin.jpg') no-repeat center center fixed;
+        }
     </style>
     <!-- End of CSS Admin Overwrite style ------------------------------------------->
     
