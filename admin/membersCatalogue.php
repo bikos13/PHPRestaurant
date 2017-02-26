@@ -1,5 +1,5 @@
 <h4>New Reservation</a></h4>
-<h4><small>Pick a customer for Reservation or <a href="adminIndex.php?panel=newCustomer">Create a new customer</a></small></h4>
+<h4><small>Pick a customer for Reservation or <a href="adminIndex.php?panel=newUser">Create a new customer</a></small></h4>
 <?php
 include "./functions/dbcon.php";
 

@@ -20,6 +20,7 @@ if (isset($_POST['registerform']) || isset($_POST['loginform'])) { //Checking if
     $password = test_input($_POST['password']);
     
     
+    
     // End of cleaning username and password by using the appropriate function before using them in either forms
     //=============================================================================================
 

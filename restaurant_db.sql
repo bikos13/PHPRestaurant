@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Φιλοξενητής: 127.0.0.1
--- Χρόνος δημιουργίας: 23 Φεβ 2017 στις 13:37:25
+-- Χρόνος δημιουργίας: 26 Φεβ 2017 στις 16:45:16
 -- Έκδοση διακομιστή: 5.7.14
 -- Έκδοση PHP: 7.0.10
 
@@ -186,8 +186,7 @@ CREATE TABLE `userlevels` (
 --
 
 INSERT INTO `userlevels` (`USERLEVEL_ID`, `LEVEL_NAME`, `LEVEL_DESC`, `IS_ADMIN`) VALUES
-(0, 'Guest', 'This is a guest user', 0),
-(1, 'Member', 'This is a member user', 0),
+(1, 'Customer', 'This is a member user', 0),
 (10, 'Administrator', 'This is Administrator above all user', 1);
 
 -- --------------------------------------------------------
@@ -218,7 +217,9 @@ INSERT INTO `users` (`USER_ID`, `FIRSTNAME`, `LASTNAME`, `USERNAME`, `USERPASS`,
 (5, 'Markos', 'Polos', 'marco25', '25d55ad283aa400af464c76d713c07ad', 'markopolo@mark.gr', '210', '6948511221', 1, '2017-02-14 21:07:58'),
 (6, 'emily', 'fakou', 'emily', '6fb42da0e32e07b61c9f0251fe627a9c', 'emi-111@hotmail.com', '6972421217', 'prits!', 1, '2017-02-15 17:30:26'),
 (7, 'Stratos', 'Tsakmaz', 'Stratos', 'baf84ec366b50ec64d5624fc9a6f7df6', 'tsakmazstratos@gmail.com', '6985034960', '', 1, '2017-02-17 17:30:27'),
-(8, 'Pavlos', 'Kolovos', 'Pavlos', '7732257fd91a643262f795bc38bfc9b0', 'pavlos@hotmail.com', '2930293889', '', 1, '2017-02-17 17:36:48');
+(8, 'Pavlos', 'Kolovos', 'Pavlos', '7732257fd91a643262f795bc38bfc9b0', 'pavlos@hotmail.com', '2930293889', '', 1, '2017-02-17 17:36:48'),
+(9, 'Kiriaki', 'Trianta', 'kiriakir', '25d55ad283aa400af464c76d713c07ad', 'kiriaki@gmail.com', '6948884456', '', 1, '2017-02-26 16:41:41'),
+(10, 'Elias', 'Mparmpagiannis', 'Elias14', '25d55ad283aa400af464c76d713c07ad', 'elias@gmail.com', '6948884475', '', 1, '2017-02-26 16:44:26');
 
 --
 -- Ευρετήρια για άχρηστους πίνακες
@@ -295,7 +296,7 @@ ALTER TABLE `booking_status`
 -- AUTO_INCREMENT για πίνακα `users`
 --
 ALTER TABLE `users`
-  MODIFY `USER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `USER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- Περιορισμοί για άχρηστους πίνακες
 --

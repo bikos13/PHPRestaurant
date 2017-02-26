@@ -48,8 +48,8 @@ if (isset($_SESSION['successmessage'])) { // View passed success messages - Cons
                 case (preg_match('/newReservation.*/', $panelOption) ? true : false): // Validates input along with get parameters
                     include 'admin/createReservation.php';
                     break;
-                case "newCustomer":
-                    include 'admin/newCustomer.php';
+                case "newUser":
+                    include 'admin/newUser.php';
                     break;
                 case (preg_match('/viewReservations.*/', $panelOption) ? true : false):
                     include 'admin/viewReservations.php';

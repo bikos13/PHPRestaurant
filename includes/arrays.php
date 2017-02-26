@@ -111,8 +111,8 @@ $adminMenuItems = array(
         "title" => "New Reservation"
     ),
     array(
-        "slug" => "adminIndex.php?panel=newCustomer",
-        "title" => "New Customer"
+        "slug" => "adminIndex.php?panel=newUser",
+        "title" => "New User"
     ),
     array(
         "slug" => "adminIndex.php?panel=viewReservations&page=1",
