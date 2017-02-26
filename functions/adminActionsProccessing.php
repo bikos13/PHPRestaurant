@@ -399,7 +399,7 @@ If ($source != null) { // Checking if the source is valid (Source checks from wh
 
                             while ($row = $resultCheck->fetch_assoc()) {
                                 $mysqli->close();
-                                $_SESSION['successmessage'] = "<strong>" . $row['USERNAME'] . "</strong> has been added to the Database with the corresponding ID <strong>#" . $row['USER_ID'] . "</strong>. If you want to make a reservation for this user <a href='/adminIndex.php?panel=newReservation&userid=" . $row['USER_ID'] . "&email=" . $row['EMAIL'] ."&fname=" . $row['FIRSTNAME'] . "&lname=" . $row['LASTNAME'] ."'>click here</a>";
+                                $_SESSION['successmessage'] = "<strong>" . $row['USERNAME'] . "</strong> has been added to the Database with the corresponding ID <strong>#" . $row['USER_ID'] . "</strong>. If you want to make a reservation for this user <a href='/adminIndex.php?panel=newReservation&userid=" . $row['USER_ID'] . "&email=" . $row['EMAIL'] ."&fname=" . $row['FIRSTNAME'] . "&lname=" . $row['LASTNAME'] ."&reservationType=new'>click here</a>";
                                 header("Location: ../adminIndex.php?panel=newUser");
                             }
                         } else {

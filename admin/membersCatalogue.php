@@ -37,7 +37,7 @@ function pagBut($page_number, $buttontext) {
 //============================================================================================================
 
 function reservationbutton($inputID, $inputEmail, $inputFname, $inputLname){
-    return "<a href='adminIndex.php?panel=newReservation&userid=$inputID&email=$inputEmail&fname=$inputFname&lname=$inputLname' class='btn btn-info btn-xs' role='button'><strong>Reservation</strong></a>";
+    return "<a href='adminIndex.php?panel=newReservation&userid=$inputID&email=$inputEmail&fname=$inputFname&lname=$inputLname&reservationType=new' class='btn btn-info btn-xs' role='button'><strong>Reservation</strong></a>";
 }
 
 //Function to create a reservation button that passes GET variables to reservation form ======================

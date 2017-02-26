@@ -30,7 +30,16 @@ function pagBut($page_number, $buttontext) {
 // End of Pagination Button Function =========================================================================
 //============================================================================================================
 
+//============================================================================================================
+//Function to assign tables to an existing reservation button that passes GET variables to reservation form - Constantine 
+//============================================================================================================
 
+function reservationbutton($reservationID){
+    return "<a href='adminIndex.php?panel=setReservationTables&reservationType=existing&reservationid=$reservationID' class='btn btn-info btn-xs' role='button'><strong>Assign Tables</strong></a>";
+}
+
+//End of Function to assign tables to an existing reservation button that passes GET variables to reservation form
+//============================================================================================================
 
 
 //============================================================================================================
@@ -66,7 +75,7 @@ if ($result->num_rows > 0) {
         if ($row['SMOKING_BOOL'] === 1) {
             $smokers = "yes";
         }
-        echo "<tr><td>" . $row['BOOKING_ID'] . "</td><td>" . $row['FIRSTNAME'] . "</td><td>" . $row['LASTNAME'] . "</td><td>" . $row['BOOKING_DATE'] . "</td><td>" . $row['BOOKING_TIME'] . "</td><td>" . $smokers . "</td><td>" . $row['BOOKING_SIZE'] . "</td><td> " .  $row['B_STATUS_NAME'] . " </td><td></td><td>" . (($row['booking_status_B_STATUS_ID']=='1') || ($row['booking_status_B_STATUS_ID']=='2') ?  cancBut($row['BOOKING_ID']) : '-') . "</td></tr>";
+        echo "<tr><td>" . $row['BOOKING_ID'] . "</td><td>" . $row['FIRSTNAME'] . "</td><td>" . $row['LASTNAME'] . "</td><td>" . $row['BOOKING_DATE'] . "</td><td>" . $row['BOOKING_TIME'] . "</td><td>" . $smokers . "</td><td>" . $row['BOOKING_SIZE'] . "</td><td> " .  $row['B_STATUS_NAME'] . " </td><td>" . (($row['booking_status_B_STATUS_ID']=='1') ? reservationbutton($row['BOOKING_ID']) : '-') . "</td><td>" . (($row['booking_status_B_STATUS_ID']=='1') || ($row['booking_status_B_STATUS_ID']=='2') ?  cancBut($row['BOOKING_ID']) : '-') . "</td></tr>";
     }
     echo "</table>";
 } else {

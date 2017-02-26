@@ -5,7 +5,7 @@
 // Initializing GET variables if exist - Constantine =====================
 //========================================================================
    
-if ((filter_input(INPUT_GET, 'userid') == null) || ((filter_input(INPUT_GET, 'email')) == null) || ((filter_input(INPUT_GET, 'fname')) == null) || (filter_input(INPUT_GET, 'lname')) == null)
+if ((filter_input(INPUT_GET, 'userid') == null) || ((filter_input(INPUT_GET, 'email')) == null) || ((filter_input(INPUT_GET, 'fname')) == null) || ((filter_input(INPUT_GET, 'lname')) == null))
 {
         echo "Insufficient parameters for reservation";
         }
@@ -13,7 +13,8 @@ if ((filter_input(INPUT_GET, 'userid') == null) || ((filter_input(INPUT_GET, 'em
             $userid = filter_input(INPUT_GET, 'userid');
             $email = filter_input(INPUT_GET, 'email');
             $fname = filter_input(INPUT_GET, 'fname');
-            $lname = filter_input(INPUT_GET, 'lname');
+            $lname = filter_input(INPUT_GET, 'lname');       
+               
 ?>
 
 <form role="form" method="POST" id="adminreservationform" name="adminreservationform" action="adminIndex.php?panel=setReservationTables">
@@ -81,10 +82,9 @@ if ((filter_input(INPUT_GET, 'userid') == null) || ((filter_input(INPUT_GET, 'em
             <input type="radio" id="smoking" name="smokingbool" value="1" required>Smoking Area
         </div>
     </div>
-
     <!-- Submit Button - Constantine -->
     <div class="form-group col-md-12">
-        <input type="hidden" name="adminreservationform" value="TRUE">
+        <input type="hidden" name="type" value="new">
         <label><button type="submit" id="submit-reservation" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span>Pick a Table</button></label>
     </div>
 
