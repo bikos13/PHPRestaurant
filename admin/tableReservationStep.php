@@ -86,6 +86,9 @@ If ($threeHoursBefore > $threeHoursLater) { //If I have handled the date and tim
 $hoursrangeQueryScript = "BOOKING_TIME BETWEEN " . $threeHoursBefore . " AND " . $threeHoursLater . " "; //script that defines hour range for the query
 // End of Part of the final Query that finds bookings between 3 hours ahead or before  ==========
 //========================================================================
+
+
+
 //=================================================================================
 // Query Script based on smoking pref and table availability - Constantine ========
 //=================================================================================
@@ -148,6 +151,10 @@ if ($eliminatedTables->num_rows > 0) {
 // End of Filtering tables based on smoking preferation ========================
 //============================================================================== 
 
+//============================================================================== 
+// Filling form data from input method - Constantine =========================== 
+//============================================================================== 
+        
         If (filter_input(INPUT_SERVER, 'REQUEST_METHOD') == "POST") {
             foreach ($userdata as $key => $value) {
                 echo "<input type='hidden' name='$key' value='$value'>";
@@ -160,8 +167,14 @@ if ($eliminatedTables->num_rows > 0) {
             echo "<input type='hidden' name='reservationID' value='$reservationID'>";
         }
         $mysqli->close();
+        
+// End of Filling form data from input method ================================== 
+//============================================================================== 
+        
         ?>
 
+        
+        
         <div class="col-md-12">
             <button class="btn btn-default" type="submit">Review Reservation</button>
         </div>
