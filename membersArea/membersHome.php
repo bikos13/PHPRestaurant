@@ -1,5 +1,5 @@
 <div class="col-md-3">
-    <img class="hidden-sm" src="img/felipe.png" alt="Felipe" style="width:100%;">
+    <img class="hidden-sm hidden-xs" src="img/felipe.png" alt="Felipe" style="width:100%;">
                 </div>
                 <div class="col-md-9">
                     <h3>Felipe says:</h3>

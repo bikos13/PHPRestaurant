@@ -1,8 +1,3 @@
-<?php
-echo "<pre>";
-echo var_dump($_POST);
-echo "</pre>";
-?>
 <h3>REVIEWING RESERVATION INFO</h3>
 
 <?php

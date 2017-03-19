@@ -4,6 +4,29 @@
 include "./functions/dbcon.php";
 
 //============================================================================================================
+// Fetch Assigned Tables from each Approved booking query  - Constantine =====================================
+//============================================================================================================
+
+function fetchAssignedTables($apprReservationID) {
+    include "./functions/dbcon.php";
+    $tablesfetched = " "; // String that will get concatenated values of tables - Constantine
+    $sqlFetchAssigned = "SELECT * FROM `tables_booked` WHERE `Booking_BOOKING_ID` = '$apprReservationID'";
+    $resultTablesAssigned = $mysqli->query($sqlFetchAssigned);
+    if ($resultTablesAssigned->num_rows > 0) {
+        while ($row = $resultTablesAssigned->fetch_assoc()) {
+            $tablesfetched .= $row['TABLES_TABLE_CODE']. " ";
+        }
+    }
+    else {
+        $tablesfetched = "Error";
+    }
+    return $tablesfetched;
+}
+
+// End of Fetch Assigned Tables from each Approved booking query  - Constantine ==============================
+//============================================================================================================
+
+//============================================================================================================
 //Creating Pagination Variables - Constantine ================================================================
 //============================================================================================================
 
@@ -34,7 +57,7 @@ function pagBut($page_number, $buttontext) {
 //Function to assign tables to an existing reservation button that passes GET variables to reservation form - Constantine 
 //============================================================================================================
 
-function reservationbutton($reservationID){
+function assignTables($reservationID){
     return "<a href='adminIndex.php?panel=setReservationTables&reservationType=existing&reservationid=$reservationID' class='btn btn-info btn-xs' role='button'><strong>Assign Tables</strong></a>";
 }
 
@@ -68,6 +91,7 @@ BOOKING_DATE DESC, BOOKING_TIME DESC LIMIT " . $pr . "," . $rowsperpage;
 $result = $mysqli->query($sql);
 
 if ($result->num_rows > 0) {
+    echo "<div class ='table-responsive'>";
     echo "<table class='table table-bordered' style='margin:0 !important;'><tr><thead><th>ID</th><th>First Name</th><th>Last Name</th><th>Date</th><th>Time</th><th>Smoking?</th><th>Persons</th><th>Status</th><th>Tables</th><th>Action</th></thead></tr>";
     // output data of each row
     while ($row = $result->fetch_assoc()) {
@@ -78,10 +102,21 @@ if ($result->num_rows > 0) {
         
             $smokers = "<strong>yes</strong>";
         }
-        echo "<tr><td>" . $row['BOOKING_ID'] . "</td><td>" . $row['FIRSTNAME'] . "</td><td>" . $row['LASTNAME'] . "</td><td>" . $row['BOOKING_DATE'] . "</td><td>" . $row['BOOKING_TIME'] . "</td><td>" . $smokers . "</td><td>" . $row['BOOKING_SIZE'] . "</td><td> " .  $row['B_STATUS_NAME'] . " </td><td>" . (($row['booking_status_B_STATUS_ID']=='1') ? reservationbutton($row['BOOKING_ID']) : '-') . "</td><td>" . (($row['booking_status_B_STATUS_ID']=='1') || ($row['booking_status_B_STATUS_ID']=='2') ?  cancBut($row['BOOKING_ID']) : '-') . "</td></tr>";
+        echo 
+        "<tr><td>"
+        . $row['BOOKING_ID'] . "</td><td>"
+        . $row['FIRSTNAME'] . "</td><td>" 
+        . $row['LASTNAME'] . "</td><td>" 
+        . $row['BOOKING_DATE'] . "</td><td>" 
+        . $row['BOOKING_TIME'] . "</td><td>" 
+        . $smokers . "</td><td>" 
+        . $row['BOOKING_SIZE'] . "</td><td> " 
+        . $row['B_STATUS_NAME'] . " </td><td>" 
+        . (($row['booking_status_B_STATUS_ID'] !=='3') ? (($row['booking_status_B_STATUS_ID']=='1') ? assignTables($row['BOOKING_ID']) : fetchAssignedTables($row['BOOKING_ID'])) : '-' ) . "</td><td>" 
+        . (($row['booking_status_B_STATUS_ID']=='1') || ($row['booking_status_B_STATUS_ID']=='2') ?  cancBut($row['BOOKING_ID']) : '-') . "</td></tr>";
     }
     }
-    echo "</table>";
+    echo "</table></div>";
 
 } else {
     echo "0 results";

@@ -1,12 +1,14 @@
 <?php define('TITLE', 'Admin Panel'); ?>
 <!-- Page Meta - Constantine -->
+
+<?php include('./functions/validations.php'); // including validations.php file ?>
 <?php include('admin/includes/headerAdmin.php'); ?>
 <?php 
 if ((isset($_SESSION['loggedin'])) && ($_SESSION['loggedin'] == true)) { // Check if the user is logged in
     if ($_SESSION['userdata']['isadmin'] == 1) { //Only for admin validation - Constantine ?>
 
-<?php include('./functions/validations.php'); // including validations.php file ?>
 
+<div class="row">
 <?php
 if (isset($_SESSION['successmessage'])) { // View passed success messages - Constantine ?>
             <div class="row">
@@ -75,7 +77,7 @@ if (isset($_SESSION['successmessage'])) { // View passed success messages - Cons
             ?>
         </div>
     </div>
-
+</div>
     <?php include('admin/includes/footerAdmin.php'); ?>
     </body>
 

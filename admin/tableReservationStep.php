@@ -37,7 +37,6 @@ If (filter_input(INPUT_SERVER, 'REQUEST_METHOD') == "GET") {
                 'smokingBoolean' => $row['SMOKING_BOOL'],
                 'reservationSize' => $row['BOOKING_SIZE'],
                 'email' => $row['EMAIL']
-                    
             );
         }
     } else {
@@ -45,11 +44,6 @@ If (filter_input(INPUT_SERVER, 'REQUEST_METHOD') == "GET") {
         die("No reservation ID Detected");
     }
 }
-echo "<pre>";
-echo var_dump($userdata);
-echo "</pre>";
-
-
 ?>
 
 <h3> Assign a table(s)</h3>
@@ -69,6 +63,57 @@ function tableCheckbox($tableCode, $tableSize) {
 
 // End of Function that generates checkbox tables ========================
 //========================================================================
+//========================================================================
+// Function that generates checkbox tables THAT ARE RESERVED - Constantine =
+//========================================================================
+
+function tableCheckboxReserved($tableCode, $tableSize) {
+    $button = "<div class='col-md-1'><table class='table table-bordered' style='margin-top:5px; text-align: center; color:red;'><theadd><th>" . $tableCode . "</th></thead><tbody><tr><td><input type='checkbox' title='This table is reserved!' name='tableSelected$tableCode' value='$tableCode' disabled></td></tr><tr><td>" . $tableSize . "</td></tr></tbody></table></div>";
+    return $button;
+}
+
+// End of Function that generates checkbox tables THAT ARE RESERVED 
+//========================================================================
+//========================================================================
+// Part of the final Query that finds bookings between 3 hours ahead or before (to be used in eliminating booked tables) - Constantinoe 
+//========================================================================
+$threeHoursBefore = date('h:i:s A', strtotime($userdata['bookingtime']) - 10800); //preparing hour range for the query  minus 3 hours
+$threeHoursLater = date('h:i:s A', strtotime($userdata['bookingtime']) + 10800); //preparing hour range for the query  plus 3 hours
+
+If ($threeHoursBefore > $threeHoursLater) { //If I have handled the date and time values as one, I wouldn't need this kind of fix :( (Now I know) - Constantine
+    $threeHoursLater = "23:59:59";
+}
+$hoursrangeQueryScript = "BOOKING_TIME BETWEEN " . $threeHoursBefore . " AND " . $threeHoursLater . " "; //script that defines hour range for the query
+// End of Part of the final Query that finds bookings between 3 hours ahead or before  ==========
+//========================================================================
+//=================================================================================
+// Query Script based on smoking pref and table availability - Constantine ========
+//=================================================================================
+
+
+$sqlGeneratedScript = "SELECT * FROM tables, booking, tables_booked
+WHERE booking.BOOKING_ID = tables_booked.Booking_BOOKING_ID AND
+tables.TABLE_CODE = tables_booked.TABLES_TABLE_CODE AND
+SMOKING = '" . $userdata['smokingBoolean'] . "' AND
+BOOKING_DATE = '" . $userdata['bookingdate'] . "' AND 
+BOOKING_TIME BETWEEN '" . $threeHoursBefore . "' AND '" . $threeHoursLater . "'
+ORDER BY BOOKING_ID";
+$eliminatedTables = $mysqli->query($sqlGeneratedScript);
+
+$eliminatedTablesArray = array(); // array that will collect eliminated tables from Query - Constantine
+
+if ($eliminatedTables->num_rows > 0) {
+    $i = 1;
+    while ($row = $eliminatedTables->fetch_assoc()) {
+        $eliminatedTablesArray[$i] = $row['TABLE_CODE'];
+        $i++;
+    }
+}
+
+
+
+// End of Query Script based on smoking pref and table availability ===============
+//=================================================================================
 ?>
 <div class="col-md-12">
     <form method="POST" action="adminIndex.php?panel=reservationConfirmation">
@@ -81,17 +126,25 @@ function tableCheckbox($tableCode, $tableSize) {
             $sql = "SELECT TABLE_CODE, TABLE_SIZE FROM `tables` WHERE SMOKING = '1'";
             $result = $mysqli->query($sql);
             while ($row = $result->fetch_assoc()) {
-                echo tableCheckbox($row['TABLE_CODE'], $row['TABLE_SIZE']);
+                if (!(in_array($row['TABLE_CODE'], $eliminatedTablesArray))) { //Eliminating reserved tables - Constantine
+                    echo tableCheckbox($row['TABLE_CODE'], $row['TABLE_SIZE']);
+                } else {
+                    echo tableCheckboxReserved($row['TABLE_CODE'], $row['TABLE_SIZE']);
+                }
             }
         } else {
             echo "<h4><small>Assign tables from <strong style='color:red;'>NON-Smoking</strong> Area</small></h4>";
             $sql = "SELECT TABLE_CODE, TABLE_SIZE FROM `tables` WHERE SMOKING = '0'";
             $result = $mysqli->query($sql);
             while ($row = $result->fetch_assoc()) {
-                echo tableCheckbox($row['TABLE_CODE'], $row['TABLE_SIZE']);
+                if (!(in_array($row['TABLE_CODE'], $eliminatedTablesArray))) { //Eliminating reserved tables - Constantine
+                    echo tableCheckbox($row['TABLE_CODE'], $row['TABLE_SIZE']);
+                } else {
+                    echo tableCheckboxReserved($row['TABLE_CODE'], $row['TABLE_SIZE']);
+                }
             }
         }
-        
+
 // End of Filtering tables based on smoking preferation ========================
 //============================================================================== 
 
@@ -108,9 +161,9 @@ function tableCheckbox($tableCode, $tableSize) {
         }
         $mysqli->close();
         ?>
-</div>
-<div class="col-md-12">
-    <button class="btn btn-default" type="submit">Review Reservation</button>
-</div>
-</form>
 
+        <div class="col-md-12">
+            <button class="btn btn-default" type="submit">Review Reservation</button>
+        </div>
+    </form>
+</div>
