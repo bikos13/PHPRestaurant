@@ -38,7 +38,8 @@ If (filter_input(INPUT_SERVER, 'REQUEST_METHOD') == "GET") { //FILTERING INCOMIN
  * 
  *      3a. Cancel Reservation
  *      3b. Cancel old pending reservations
- *      3c. Unknown action error
+ *      3c. Insert reservation
+ *      3d. Unknown action error
  * 
  * 4. Users handling
  *      4a. Add new users 
@@ -268,14 +269,122 @@ If ($source != null) { // Checking if the source is valid (Source checks from wh
 //
 //
 //
+//
+//
 //======================================================================================
-// 3c. Unknown action error - Constantine ==============================================
+// 3c. Insert reservation - Constantine ================================================
+//======================================================================================                  
+                case('insertReservation'):
+
+
+                    $reservationdata = filter_input_array(INPUT_POST);
+                    echo "<pre>";
+                    echo var_dump($reservationdata);
+                    echo "</pre>";
+
+                    echo $reservationdata['reservationType'];
+
+                    //======================================================================================  
+                    // Step 1: Approve (Update) or insert Reservations - Constantine =======================
+                    //======================================================================================  
+
+                    if ($reservationdata['reservationType'] === 'new') {
+
+                        $sqlInsertReservation = "INSERT INTO `booking`(`BOOKING_DATE`, `BOOKING_TIME`, `BOOKING_SIZE`, `USERS_USER_ID`, `SMOKING_BOOL`, `booking_status_B_STATUS_ID`) VALUES ('" . $reservationdata['bookingdate'] . "','" . $reservationdata['bookingtime'] . "','" . $reservationdata['reservationSize'] . "','" . $reservationdata['userid'] . "','" . $reservationdata['smokingBoolean'] . "','2')";
+                        $resultFromInserted = $mysqli->query($sqlInsertReservation);
+
+                        if ($mysqli->connect_errno) {
+                            die("Database Connection failed: %s\n" . $mysqli->connect_error);
+                            exit();
+                        } else {
+                           $newReservationIDInserted = $mysqli->insert_id; // Gets the inserted reservations ID (from the query) - Constantine
+                        echo "New Reservation ID is: $newReservationIDInserted <br>"; // testing usage of the line above
+                        $_SESSION['successmessage'] = "Reservation successful and <strong>Approved</strong><br>Tables Assigned: ";
+                        }
+                        
+                    } elseif ($reservationdata['reservationType'] === 'existing') {
+
+                        $sqlUpdateStatus = "UPDATE `booking` SET booking_status_B_STATUS_ID='2' WHERE `BOOKING_ID` = '" . $reservationdata['reservationID']."' "; // UPDATE RESERVATION STATUS - Constantine
+                        $mysqli->query($sqlUpdateStatus);
+                        $affectedRecords = $mysqli->affected_rows;
+                        if ($affectedRecords > 0) {
+                            $_SESSION['successmessage'] = "Reservation status: <strong>Approved</strong><br>Tables Assigned: ";
+                        } else {
+                            $_SESSION['warnings'] = "Reservation Insert Error";
+                            $mysqli->close();
+                            header('Location: ../adminIndex.php?panel=viewReservations&page=1');
+                        } // End of UPDATE RESERVATION STATUS
+                    } else {
+                        die('ViolationDetected');
+                    }
+
+
+                    // End of Step 1: Approve (Update) or insert Reservations -  ===========================
+                    //======================================================================================
+                    //
+                    //
+                    //
+                    //======================================================================================  
+                    // Step 2: Bind Tables into reservations - Constantine =================================
+                    //======================================================================================  
+
+
+                    if ($reservationdata['reservationType'] === 'new') {
+
+                        foreach ($reservationdata as $key => $value) {
+                            if (preg_match('/^tableSelected[A-Z][0-9]$/', $key)) {
+                                $sqlInsertTable = "INSERT INTO `tables_booked`(`Booking_BOOKING_ID`, `TABLES_TABLE_CODE`) VALUES ('" . $newReservationIDInserted . "', '" . $value . "')";
+                                $mysqli->query($sqlInsertTable);
+
+                                if ($mysqli->connect_errno) {
+                                    die("Database Connection failed: %s\n" . $mysqli->connect_error);
+                                    exit();
+                                }
+                                $_SESSION['successmessage'] .= " <strong>$value</strong>";
+                            }
+                        }
+                    } elseif ($reservationdata['reservationType'] === 'existing') {
+                        foreach ($reservationdata as $key => $value) {
+                            if (preg_match('/^tableSelected[A-Z][0-9]$/', $key)) {
+                                $sqlInsertTable = "INSERT INTO `tables_booked`(`Booking_BOOKING_ID`, `TABLES_TABLE_CODE`) VALUES ('" . $reservationdata['reservationID'] . "', '" . $value . "')";
+                                $mysqli->query($sqlInsertTable);
+
+                                if ($mysqli->connect_errno) {
+                                    die("Database Connection failed: %s\n" . $mysqli->connect_error);
+                                    exit();
+                                }
+                                $_SESSION['successmessage'] .= " <strong>$value</strong>";
+                            }
+                        }
+                    }
+                    
+                    
+                    // End of Step 2: Bind Tables into reservations - ======================================
+                    //====================================================================================== 
+                    
+                    $mysqli->close(); // After Successfull procedure
+                    header('Location: ../adminIndex.php?panel=viewReservations&page=1');
+
+
+
+                    break;
+
+
+// End of 3c. Insert reservation  ======================================================
+//======================================================================================
+//
+//
+//
+//
+//
+//======================================================================================
+// 3d. Unknown action error - Constantine ==============================================
 //======================================================================================
                 default:
                     $_SESSION['warnings'] = "Uknown action error";
                     header('Location: ../adminIndex.php?panel=viewReservations&page=1');
                     break;
-// End of 3c. Unknown action error =====================================================
+// End of 3d. Unknown action error =====================================================
 //======================================================================================                   
 
             endswitch;
@@ -300,7 +409,6 @@ If ($source != null) { // Checking if the source is valid (Source checks from wh
                     $errorString = ""; //Initialize error message
                     $errorCounter = 0; //Error Counter
 
-                    echo var_dump($_POST); //testing inputs
                     $username = test_input($_POST['username']);
                     $password = test_input($_POST['password']);
                     $fname = test_input($_POST['fname']);
@@ -373,7 +481,7 @@ If ($source != null) { // Checking if the source is valid (Source checks from wh
                         $errorCounter++;
                         $errorString .= "$errorCounter. <strong>Make sure that password is at least 8 characters long!</strong><br><br>";
                     }
-                    if (!preg_match("/^[0-9]$/", $userLevel)) {
+                    if (!preg_match("/^[0-9]+/", $userLevel)) {
                         die('Violation Detected');
                     }
                     // End of inputs testing
@@ -399,7 +507,7 @@ If ($source != null) { // Checking if the source is valid (Source checks from wh
 
                             while ($row = $resultCheck->fetch_assoc()) {
                                 $mysqli->close();
-                                $_SESSION['successmessage'] = "<strong>" . $row['USERNAME'] . "</strong> has been added to the Database with the corresponding ID <strong>#" . $row['USER_ID'] . "</strong>. If you want to make a reservation for this user <a href='/adminIndex.php?panel=newReservation&userid=" . $row['USER_ID'] . "&email=" . $row['EMAIL'] ."&fname=" . $row['FIRSTNAME'] . "&lname=" . $row['LASTNAME'] ."&reservationType=new'>click here</a>";
+                                $_SESSION['successmessage'] = "<strong>" . $row['USERNAME'] . "</strong> has been added to the Database with the corresponding ID <strong>#" . $row['USER_ID'] . "</strong>. If you want to make a reservation for this user <a href='/adminIndex.php?panel=newReservation&userid=" . $row['USER_ID'] . "&email=" . $row['EMAIL'] . "&fname=" . $row['FIRSTNAME'] . "&lname=" . $row['LASTNAME'] . "&reservationType=new'>click here</a>";
                                 header("Location: ../adminIndex.php?panel=newUser");
                             }
                         } else {

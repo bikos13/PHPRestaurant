@@ -1,4 +1,8 @@
-<?php ?>
+<?php
+echo "<pre>";
+echo var_dump($_POST);
+echo "</pre>";
+?>
 <h3>REVIEWING RESERVATION INFO</h3>
 
 <?php
@@ -20,8 +24,19 @@ $tablesReserved = collectAssignedTables($userdata); // Filling the tablesReserve
         <div class="col-md-12">Reserved Tables: <?php foreach ($tablesReserved as $key => $value) {
     echo " <strong> " . $value . " </strong>";
 } ?></div>
+        <form method="POST" action="../functions/adminActionsProccessing.php">
+            <?php
+            If (filter_input(INPUT_SERVER, 'REQUEST_METHOD') == "POST") {
+            foreach ($userdata as $key => $value) {
+                echo "<input type='hidden' name='$key' value='$value'>";
+            }
+            echo "<input type='hidden' name='source' value='reservations'>";
+            echo "<input type='hidden' name='action' value='insertReservation'>";
+        }
+            ?>
         <div class="col-md-12">&nbsp;</div>
-        <div class="col-md-6"><button class="btn btn-success" type="submit" name="reservationSubmission"> Confirm Reservation </button></div>
+        <div class="col-md-6"><button class="btn btn-success" type="submit"> Confirm Reservation </button></div>
         <div class="col-md-6"><button class="btn btn-danger" type="submit" name="reservationReset"> Restart Reservation </button></div>
+        </form>
     </div>
 </div>

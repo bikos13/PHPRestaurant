@@ -72,12 +72,17 @@ if ($result->num_rows > 0) {
     // output data of each row
     while ($row = $result->fetch_assoc()) {
         $smokers = "no";
-        if ($row['SMOKING_BOOL'] === 1) {
-            $smokers = "yes";
+        if ($row['booking_status_B_STATUS_ID'] !=='6') {
+            
+        if ($row['SMOKING_BOOL'] === '1') {
+        
+            $smokers = "<strong>yes</strong>";
         }
         echo "<tr><td>" . $row['BOOKING_ID'] . "</td><td>" . $row['FIRSTNAME'] . "</td><td>" . $row['LASTNAME'] . "</td><td>" . $row['BOOKING_DATE'] . "</td><td>" . $row['BOOKING_TIME'] . "</td><td>" . $smokers . "</td><td>" . $row['BOOKING_SIZE'] . "</td><td> " .  $row['B_STATUS_NAME'] . " </td><td>" . (($row['booking_status_B_STATUS_ID']=='1') ? reservationbutton($row['BOOKING_ID']) : '-') . "</td><td>" . (($row['booking_status_B_STATUS_ID']=='1') || ($row['booking_status_B_STATUS_ID']=='2') ?  cancBut($row['BOOKING_ID']) : '-') . "</td></tr>";
     }
+    }
     echo "</table>";
+
 } else {
     echo "0 results";
 }
@@ -109,7 +114,7 @@ $pagelimit = ceil($count_results / $rowsperpage); // Indicates the number of pag
 // Button to cancel old pending reservations - Constantine ---------------------------------------------------
 -------------------------------------------------------------------------------------------------------------->
 
-<br><a class='btn btn-warning' style='margin:5px;' href='../functions/adminActionsProccessing.php?source=reservations&action=cancelOldPendingReservations'>Cancel Old Pending Reservations</a><br>
+<br><a class='btn btn-danger' style='margin:5px;' href='../functions/adminActionsProccessing.php?source=reservations&action=cancelOldPendingReservations'>Delete Old Pending Reservations</a><br>
 
 <!--Button to cancel old pending reservations - Constantine ---------------------------------------------------
 -------------------------------------------------------------------------------------------------------------->

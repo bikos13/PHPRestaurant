@@ -28,7 +28,7 @@ This panel is used when the users doesn't have any future reservations
             echo "<strong>Saturdays</strong> are Precious for couples! <br><br> Bring your dove and offer her a Fillet Minion and leave the rest to us!";
             break;
         case "Sunday":
-            echo "Oh No! It's <strong>Sunday</strong>. Another week is coming tomorow! Buckle up <br><br> and serve yourself a great meal before!";
+            echo "Oh No! It's <strong>Sunday</strong>. Another week is coming tomorrow! Buckle up <br><br> and serve yourself a great meal in advance!";
             break;
     endswitch;
     ?>

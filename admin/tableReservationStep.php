@@ -37,6 +37,7 @@ If (filter_input(INPUT_SERVER, 'REQUEST_METHOD') == "GET") {
                 'smokingBoolean' => $row['SMOKING_BOOL'],
                 'reservationSize' => $row['BOOKING_SIZE'],
                 'email' => $row['EMAIL']
+                    
             );
         }
     } else {
@@ -72,7 +73,9 @@ function tableCheckbox($tableCode, $tableSize) {
 <div class="col-md-12">
     <form method="POST" action="adminIndex.php?panel=reservationConfirmation">
         <?php
-// Smokers and non smokers tables will appear based on $smoking boolean
+//==============================================================================       
+// Filtering tables based on smoking preferation ===============================
+//============================================================================== 
         if ($userdata['smokingBoolean'] === '1') {
             echo "<h4><small>Assign tables from <strong style='color:blue;'>Smoking</strong> Area!</small><h4>";
             $sql = "SELECT TABLE_CODE, TABLE_SIZE FROM `tables` WHERE SMOKING = '1'";
@@ -88,6 +91,9 @@ function tableCheckbox($tableCode, $tableSize) {
                 echo tableCheckbox($row['TABLE_CODE'], $row['TABLE_SIZE']);
             }
         }
+        
+// End of Filtering tables based on smoking preferation ========================
+//============================================================================== 
 
         If (filter_input(INPUT_SERVER, 'REQUEST_METHOD') == "POST") {
             foreach ($userdata as $key => $value) {
@@ -95,7 +101,9 @@ function tableCheckbox($tableCode, $tableSize) {
             }
         }
         If (filter_input(INPUT_SERVER, 'REQUEST_METHOD') == "GET") {
-            echo "<input type='hidden' name='reservationType' value='existing'>";
+            foreach ($userdata as $key => $value) {
+                echo "<input type='hidden' name='$key' value='$value'>";
+            }
             echo "<input type='hidden' name='reservationID' value='$reservationID'>";
         }
         $mysqli->close();

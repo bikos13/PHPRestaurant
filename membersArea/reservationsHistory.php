@@ -36,11 +36,11 @@ function pagBut($page_number, $buttontext) {
 //Main query to get users reservation history - Constantine ==================================================
 //============================================================================================================
 
-$sql = "SELECT BOOKING_ID, BOOKING_DATE, BOOKING_TIME, BOOKING_SIZE, SMOKING_BOOL FROM booking WHERE BOOKING_DATE < CURDATE() AND USERS_USER_ID = " . $_SESSION['userdata']['userid'] . " ORDER BY BOOKING_ID DESC LIMIT " . $pr . "," . $rowsperpage;
+$sql = "SELECT * FROM booking, booking_status WHERE ((BOOKING_DATE < CURDATE() AND USERS_USER_ID = " . $_SESSION['userdata']['userid'] . ") OR booking_status_B_STATUS_ID = '3') AND booking.booking_status_B_STATUS_ID = booking_status.B_STATUS_ID ORDER BY BOOKING_ID DESC LIMIT " . $pr . "," . $rowsperpage;
 $result = $mysqli->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<table class='table table-bordered' style='margin:0 !important;'><tr><thead><th>ID</th><th>Date</th><th>Time</th><th>Table Size</th><th>Smoking area</th></thead></tr>";
+    echo "<table class='table table-bordered' style='margin:0 !important;'><tr><thead><th>ID</th><th>Date</th><th>Time</th><th>Table Size</th><th>Smoking area</th><th>Status</th></thead></tr>";
     // output data of each row
     while ($row = $result->fetch_assoc()) {
         $smokers = "no";
@@ -48,7 +48,7 @@ if ($result->num_rows > 0) {
             $smokers = "yes";
         }
 
-        echo "<tr><td>" . $row["BOOKING_ID"] . "</td><td>" . $row["BOOKING_DATE"] . "</td><td>" . $row["BOOKING_TIME"] . "</td><td>" . $row["BOOKING_SIZE"] . "</td><td>" . $smokers . "</td></tr>";
+        echo "<tr><td>" . $row["BOOKING_ID"] . "</td><td>" . $row["BOOKING_DATE"] . "</td><td>" . $row["BOOKING_TIME"] . "</td><td>" . $row["BOOKING_SIZE"] . "</td><td>" . $smokers . "</td><td>" . $row["B_STATUS_NAME"] . "</td></tr>";
     }
     echo "</table>";
 } else {
