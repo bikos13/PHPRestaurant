@@ -20,7 +20,7 @@ include "./functions/dbcon.php";
 //Creating Pagination Variables - Constantine ================================================================
 //============================================================================================================
 
-$rowsperpage = 10; //Pagination Results per page that i want to view
+$rowsperpage = 9; //Pagination Results per page that i want to view
 $pageCleanInput = test_GET_page($_GET['page']); //Collecting page number from get and validating input
 $pageMinusOne = $pageCleanInput - 1; // Subtracting 1 so when page is 1 the reult will define as index 0 using the pr variable
 $pr = $pageMinusOne * $rowsperpage; // Indicating SQL query index in LIMIT
@@ -37,7 +37,7 @@ $prv_page = $pageCleanInput - 1; //Previous page Button Variable
 //============================================================================================================
 
 function pagBut($page_number, $buttontext) {
-    echo "<a class='btn btn-default' style='margin:5px; !important' href='adminIndex.php?panel=members&page=" . $page_number . "'> " . $buttontext . " </a>";
+    echo "<a class='btn btn-default reservation-button' style='margin:5px; !important' href='adminIndex.php?panel=members&page=" . $page_number . "'> " . $buttontext . " </a>";
 }
 
 // End of Pagination Button Function =========================================================================
@@ -66,17 +66,49 @@ $sql = "SELECT * FROM users" . (($gotSearch == '1') ?  $sqlSupplementScript : " 
 $result = $mysqli->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<table class='table table-bordered' style='margin:0 !important;'><tr><thead><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th><th>E-mail</th><th>1st Contact No</th><th>2nd Contact No</th><th>Reservation</th></thead></tr>";
-    // output data of each row
-    while ($row = $result->fetch_assoc()) {
-        $smokers = "no";
-        
-        echo "<tr><td>" . $row['USER_ID'] . "</td><td>" . $row['FIRSTNAME'] . "</td><td>" . $row['LASTNAME'] . "</td><td>" . $row['USERNAME'] . "</td><td>" . $row['EMAIL'] . "</td><td>" . $row['CONTACT_NUMBER_1'] . "</td><td>" . $row['CONTACT_NUMBER_2'] . "</td><td> " . reservationbutton($row['USER_ID'], $row['EMAIL'], $row['FIRSTNAME'], $row['LASTNAME']) . " </td></tr>";
-    }
-    echo "</table>";
-} else {
-    echo "0 results";
-}
+
+            $counteri = 1; //Counter for collapsible records
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+
+                $isItRow = ($counteri % 3); // Dynamically create rows based on isItRow
+                if ($isItRow === 1) {
+                    echo "<div class='row'>"; // Create a row div if it's the first record
+                }
+                echo "<div id='panel#$counteri' class='col-md-4 order-panel'>";
+                echo "<div class='panel-group' style='border: solid 1px grey; border-radius: 5px;'>";
+                echo "<div class='panel panel-default'>";
+                echo "<h4 class='panel-title'><small>#" . $row['USER_ID'] . " " . $row['FIRSTNAME'] . " " . $row['LASTNAME'] . "</small></h4>";
+                echo "</div>"; //End of panel title - Constantine
+                echo "<div class='panel-body'>";
+                echo "<div class='col-md-12'>" . $row['USERNAME'] . "</div>";
+                echo "<div class='col-md-12'>" . $row['CONTACT_NUMBER_1'] . " " . $row['CONTACT_NUMBER_2'] . "</div>";
+                echo "<div class='col-md-12'>" . $row['EMAIL'] . "</div>";
+                echo "</div>"; // End of panel body - Constantine
+                echo "<div class='panel-footer'>";
+                echo "<div class='row'>";
+                echo "<div class='col-md-12'>" . reservationbutton($row['USER_ID'], $row['EMAIL'], $row['FIRSTNAME'], $row['LASTNAME']) . "</div>";
+                echo "</div><div class='row'>";
+                echo "</div></div></div></div>";
+                if ($isItRow === 0) {
+                    echo "</div>"; // // End a row div if it's the forth record
+                }
+                $counteri++;
+            }
+        } else {
+            echo "0 results";
+        }
+//if ($result->num_rows > 0) {
+
+//    while ($row = $result->fetch_assoc()) {
+//        $smokers = "no";
+//        
+//        $row['EMAIL'] . " . "</td><td> " . reservationbutton($row['USER_ID'], $row['EMAIL'], $row['FIRSTNAME'], $row['LASTNAME']) . " </td></tr>";
+//    }
+//    echo "</table>";
+//} else {
+//    echo "0 results";
+//}
 
 //End of Main query to get users =============================================================================
 //============================================================================================================
@@ -123,3 +155,18 @@ $mysqli->close(); //Closing Database connection
 //End of Paginations buttons creations through function and query  - Constantine =============================
 //============================================================================================================
 ?>
+
+<script>
+    $(function () {
+
+        $(".panel-group").mouseenter(function () {
+            $(this).css("border", "3px solid grey");
+        });
+
+        $(".panel-group").mouseleave(function () {
+            $(this).css("border", "1px solid grey");
+        });
+
+    });
+
+</script>

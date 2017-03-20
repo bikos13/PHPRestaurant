@@ -216,7 +216,7 @@ footer p {
         float: none;
         margin: 0 auto;
         table-layout: fixed;
-        font-size: 1.25em;
+        font-size: 1.00em; /* Changed value to 1.00em from 1.25em - Constantine */
     }
     
 
