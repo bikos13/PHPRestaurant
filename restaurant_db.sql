@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Φιλοξενητής: 127.0.0.1
--- Χρόνος δημιουργίας: 26 Φεβ 2017 στις 16:45:16
+-- Χρόνος δημιουργίας: 20 Μαρ 2017 στις 13:52:34
 -- Έκδοση διακομιστή: 5.7.14
 -- Έκδοση PHP: 7.0.10
 
@@ -42,24 +42,22 @@ CREATE TABLE `booking` (
 --
 
 INSERT INTO `booking` (`BOOKING_ID`, `BOOKING_DATE`, `BOOKING_TIME`, `BOOKING_TIMESTAMP`, `BOOKING_SIZE`, `USERS_USER_ID`, `SMOKING_BOOL`, `booking_status_B_STATUS_ID`) VALUES
-(1, '2017-02-10', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 4),
-(2, '2017-02-10', '00:07:00', '2017-02-10 17:52:33', 4, 3, 0, 3),
-(3, '2017-02-10', '02:05:00', '2017-02-10 17:53:17', 1, 3, 1, 3),
-(4, '2017-02-10', '15:24:00', '2017-02-10 17:54:19', 4, 3, 0, 4),
-(6, '2017-02-10', '12:07:00', '2017-02-10 17:47:09', 4, 3, 0, 4),
-(7, '2017-02-09', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 4),
-(8, '2017-02-08', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 4),
-(9, '2017-02-07', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 4),
-(10, '2017-02-06', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 4),
-(11, '2017-02-05', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 4),
-(12, '2017-02-04', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 4),
-(17, '2017-02-10', '11:02:00', '2017-02-10 17:47:09', 4, 3, 0, 4),
-(18, '2017-01-10', '11:07:00', '2017-02-10 17:47:09', 4, 3, 0, 3),
-(20, '2017-02-15', '17:00:00', '2017-02-14 21:25:34', 5, 5, 1, 4),
-(21, '2017-02-16', '21:00:00', '2017-02-15 17:32:32', 1, 6, 0, 4),
-(22, '2017-02-17', '20:00:00', '2017-02-17 17:32:13', 4, 7, 0, 4),
-(23, '2017-02-17', '22:30:00', '2017-02-17 17:37:42', 8, 8, 1, 4),
-(24, '2017-02-22', '20:30:00', '2017-02-22 19:56:58', 4, 3, 1, 3);
+(26, '2017-03-20', '17:30:00', '2017-03-19 10:55:48', 3, 12, 0, 3),
+(27, '2017-03-19', '21:00:00', '2017-03-19 10:56:47', 1, 11, 1, 5),
+(28, '2017-03-21', '21:00:00', '2017-03-19 10:56:56', 2, 32, 0, 1),
+(29, '2017-03-19', '18:00:00', '2017-03-19 10:57:33', 4, 23, 0, 4),
+(30, '2017-03-20', '22:30:00', '2017-03-19 10:58:48', 7, 31, 1, 2),
+(31, '2017-03-21', '21:30:00', '2017-03-19 10:59:09', 5, 20, 1, 3),
+(32, '2017-03-22', '20:00:00', '2017-03-19 10:59:46', 4, 24, 0, 1),
+(33, '2017-03-24', '21:30:00', '2017-03-19 11:01:05', 8, 29, 1, 2),
+(34, '2017-03-23', '11:00:00', '2017-03-19 11:03:56', 5, 22, 0, 1),
+(35, '2017-03-24', '22:00:00', '2017-03-19 11:05:31', 1, 16, 0, 3),
+(36, '2017-03-24', '22:00:00', '2017-03-19 11:44:15', 5, 16, 0, 2),
+(37, '2017-03-25', '15:30:00', '2017-03-19 13:49:54', 3, 30, 0, 2),
+(38, '2017-03-22', '17:30:00', '2017-03-19 13:55:16', 7, 26, 1, 6),
+(39, '2017-03-30', '23:00:00', '2017-03-19 13:57:49', 4, 23, 1, 2),
+(40, '2017-03-20', '17:00:00', '2017-03-19 14:08:05', 5, 21, 0, 2),
+(41, '2017-03-22', '21:00:00', '2017-03-19 16:23:12', 5, 3, 0, 2);
 
 -- --------------------------------------------------------
 
@@ -81,7 +79,9 @@ INSERT INTO `booking_status` (`B_STATUS_ID`, `B_STATUS_NAME`, `B_STATUS_DESC`) V
 (1, 'Pending', 'This reservations has not been approved yet'),
 (2, 'Approved', 'This reservation has been approved'),
 (3, 'Cancelled', 'This reservation has been cancelled'),
-(4, 'Unattended', 'The customers didn\'t attend on their reservation');
+(4, 'Unattended', 'The customers didn\'t attend on their reservation'),
+(5, 'Attended', 'Client\'s Attended'),
+(6, 'Deleted', 'Virtually Deleted Reservations');
 
 -- --------------------------------------------------------
 
@@ -168,6 +168,22 @@ CREATE TABLE `tables_booked` (
   `TABLES_TABLE_CODE` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Άδειασμα δεδομένων του πίνακα `tables_booked`
+--
+
+INSERT INTO `tables_booked` (`Booking_BOOKING_ID`, `TABLES_TABLE_CODE`) VALUES
+(30, 'B1'),
+(30, 'B2'),
+(33, 'B7'),
+(33, 'B8'),
+(36, 'A4'),
+(37, 'A3'),
+(39, 'B2'),
+(39, 'B3'),
+(40, 'C1'),
+(41, 'C1');
+
 -- --------------------------------------------------------
 
 --
@@ -214,12 +230,29 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`USER_ID`, `FIRSTNAME`, `LASTNAME`, `USERNAME`, `USERPASS`, `EMAIL`, `CONTACT_NUMBER_1`, `CONTACT_NUMBER_2`, `UserLevels_USERLEVEL_ID`, `TIMESTAMP_REGISTERED`) VALUES
 (3, 'Constantine', 'Stathis', 'bikos13', '25d55ad283aa400af464c76d713c07ad', 'constantinos-@hotmail.com', '6948621978', '', 10, '2017-01-18 11:44:58'),
-(5, 'Markos', 'Polos', 'marco25', '25d55ad283aa400af464c76d713c07ad', 'markopolo@mark.gr', '210', '6948511221', 1, '2017-02-14 21:07:58'),
-(6, 'emily', 'fakou', 'emily', '6fb42da0e32e07b61c9f0251fe627a9c', 'emi-111@hotmail.com', '6972421217', 'prits!', 1, '2017-02-15 17:30:26'),
-(7, 'Stratos', 'Tsakmaz', 'Stratos', 'baf84ec366b50ec64d5624fc9a6f7df6', 'tsakmazstratos@gmail.com', '6985034960', '', 1, '2017-02-17 17:30:27'),
-(8, 'Pavlos', 'Kolovos', 'Pavlos', '7732257fd91a643262f795bc38bfc9b0', 'pavlos@hotmail.com', '2930293889', '', 1, '2017-02-17 17:36:48'),
-(9, 'Kiriaki', 'Trianta', 'kiriakir', '25d55ad283aa400af464c76d713c07ad', 'kiriaki@gmail.com', '6948884456', '', 1, '2017-02-26 16:41:41'),
-(10, 'Elias', 'Mparmpagiannis', 'Elias14', '25d55ad283aa400af464c76d713c07ad', 'elias@gmail.com', '6948884475', '', 1, '2017-02-26 16:44:26');
+(11, 'Pavlos', 'Kolovos', 'pkolovos', '25d55ad283aa400af464c76d713c07ad', 'pkolovos@gmail.com', '2109200001', '', 1, '2017-03-19 10:34:49'),
+(12, 'Stratos', 'Tsakmaz', 'stsakmaz', '25d55ad283aa400af464c76d713c07ad', 'stsakmaz@gmail.com', '2109200002', '', 1, '2017-03-19 10:35:54'),
+(13, 'Stavros', 'Dimitriadis', 'sdimitriadis', '25d55ad283aa400af464c76d713c07ad', 'sdimitriadis@gmail.com', '2109200003', '', 1, '2017-03-19 10:36:33'),
+(14, 'mitsos', 'koulitos', 'mitsokoulitos', '25d55ad283aa400af464c76d713c07ad', 'mitsokoulitos@hotmail.com', '2110456789', '6987654321', 1, '2017-03-19 10:38:07'),
+(15, 'Kiriaki', 'Tetradi', 'ktetradi', '25d55ad283aa400af464c76d713c07ad', 'ktetradi@gmail.com', '2109200004', '', 1, '2017-03-19 10:38:58'),
+(16, 'Nikos', 'Psalidas', 'npsalidas', '25d55ad283aa400af464c76d713c07ad', 'npsalidas@gmail.com', '2109200005', '', 1, '2017-03-19 10:39:23'),
+(17, 'George', 'Stathis', 'gstathis', '25d55ad283aa400af464c76d713c07ad', 'gstathis@hotmail.com', '2109200006', '', 1, '2017-03-19 10:40:11'),
+(18, 'George', 'Palaios', 'gpalaios', '25d55ad283aa400af464c76d713c07ad', 'gpalaios@yahoo.gr', '2109200007', '', 1, '2017-03-19 10:40:44'),
+(19, 'George', 'Christoulakis', 'gchristoulakis', '25d55ad283aa400af464c76d713c07ad', 'gchristoulakis@gmail.com', '2109200007', '', 1, '2017-03-19 10:41:31'),
+(20, 'Anastasios', 'Eleftheriadis', 'aeleftheriadis', '25d55ad283aa400af464c76d713c07ad', 'aeleftheriadis@yahoo.gr', '2109200008', '', 1, '2017-03-19 10:42:30'),
+(21, 'Andrea', 'Struzas', 'astruzas', '25d55ad283aa400af464c76d713c07ad', 'astruzas@outlook.com', '2109200009', '', 1, '2017-03-19 10:43:51'),
+(22, 'giannis', 'fwtiadis', 'gfwtiadis', '25d55ad283aa400af464c76d713c07ad', 'gfwtiadis@hotmail.com', '2109000000', '', 1, '2017-03-19 10:43:55'),
+(23, 'Dimitris', 'Fotiadis', 'dfotiadis', '25d55ad283aa400af464c76d713c07ad', 'dfotiadis@gmail.com', '2109200009', '', 1, '2017-03-19 10:44:20'),
+(24, 'nefeli', 'demetzi', 'ndemertzi', '25d55ad283aa400af464c76d713c07ad', 'ndemertzi@hotmail.com', '2109000001', '', 1, '2017-03-19 10:45:21'),
+(25, 'Filippos', 'Georgiou', 'fgeorgiou', '25d55ad283aa400af464c76d713c07ad', 'fgeorgiou@yahoo.com', '2109200010', '', 1, '2017-03-19 10:45:24'),
+(26, 'Amaryllis', 'Nydrioti', 'anydrioti', '25d55ad283aa400af464c76d713c07ad', 'anydrioti@steam.com', '2109200011', '', 1, '2017-03-19 10:45:58'),
+(27, 'maria', 'milw', 'mmilw', '25d55ad283aa400af464c76d713c07ad', 'mmilw@hotmail.com', '12345678', '', 1, '2017-03-19 10:46:09'),
+(28, 'Dimitris', 'Evangelinos', 'devangelinos', '25d55ad283aa400af464c76d713c07ad', 'devangelinos@yahoo.com', '2109200012', '', 1, '2017-03-19 10:46:42'),
+(29, 'nagia', 'dernika', 'ndernika', '25d55ad283aa400af464c76d713c07ad', 'ndernika@hotmail.com', '2109000002', '', 1, '2017-03-19 10:47:22'),
+(30, 'Alexandros', 'Kales', 'akales', '25d55ad283aa400af464c76d713c07ad', 'leskal@gmail.com', '2109200013', '', 1, '2017-03-19 10:47:54'),
+(31, 'sofia', 'tsirwna', 'stsirwna', '25d55ad283aa400af464c76d713c07ad', 'stsirwna@hotmail.com', '2109000003', '', 1, '2017-03-19 10:48:29'),
+(32, 'Emily', 'Fakou', 'emily', '25d55ad283aa400af464c76d713c07ad', 'efakou@outlook.com', '2109200014', '', 10, '2017-03-19 10:51:57'),
+(33, 'Petros', 'Lalos', 'plalos', '25d55ad283aa400af464c76d713c07ad', 'plalos@amc.edu.gr', '2109200015', '', 10, '2017-03-20 11:13:51');
 
 --
 -- Ευρετήρια για άχρηστους πίνακες
@@ -286,17 +319,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT για πίνακα `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `BOOKING_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `BOOKING_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT για πίνακα `booking_status`
 --
 ALTER TABLE `booking_status`
-  MODIFY `B_STATUS_ID` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `B_STATUS_ID` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT για πίνακα `users`
 --
 ALTER TABLE `users`
-  MODIFY `USER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `USER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- Περιορισμοί για άχρηστους πίνακες
 --
@@ -312,8 +345,8 @@ ALTER TABLE `booking`
 -- Περιορισμοί για πίνακα `tables_booked`
 --
 ALTER TABLE `tables_booked`
-  ADD CONSTRAINT `fk_TABLES_BOOKED_TABLES1` FOREIGN KEY (`TABLES_TABLE_CODE`) REFERENCES `tables` (`TABLE_CODE`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_TABLES_has_Booking_Booking1` FOREIGN KEY (`Booking_BOOKING_ID`) REFERENCES `booking` (`BOOKING_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_TABLES_BOOKED_TABLES1` FOREIGN KEY (`TABLES_TABLE_CODE`) REFERENCES `tables` (`TABLE_CODE`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_TABLES_has_Booking_Booking1` FOREIGN KEY (`Booking_BOOKING_ID`) REFERENCES `booking` (`BOOKING_ID`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Περιορισμοί για πίνακα `users`
