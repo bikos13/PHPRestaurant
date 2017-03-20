@@ -37,7 +37,7 @@ If (filter_input(INPUT_SERVER, 'REQUEST_METHOD') == "GET") { //FILTERING INCOMIN
  * 3. Reservations handling
  * 
  *      3a. Cancel Reservation
- *      3b. Cancel old pending reservations
+ *      3b. Delete old pending reservations
  *      3c. Insert reservation
  *      3d. Unknown action error
  * 
@@ -226,17 +226,19 @@ If ($source != null) { // Checking if the source is valid (Source checks from wh
             switch ($action):
 
 //======================================================================================
-// 3a. Cancel Reservation - Constantine ================================================
+// 3a. Change Reservation Status - Constantine =========================================
 //======================================================================================     
-                case('cancelReservation'):
-                    $sql = "UPDATE `booking` SET `booking_status_B_STATUS_ID`='3' WHERE BOOKING_ID = '$id'";
+                case('changeStatus'):
+                    $newStatus = filter_input(INPUT_GET, 'newStatus');
+                    $messageStatus = filter_input(INPUT_GET, 'messageStatus');
+                    $sql = "UPDATE `booking` SET `booking_status_B_STATUS_ID`='$newStatus' WHERE BOOKING_ID = '$id'";
                     $mysqli->query($sql);
                     if ($mysqli->connect_errno) {
                         $mysqli->close();
-                        die("Could not find this reservation ID to cancel it. : %s\n" . $mysqli->connect_error);
+                        die("Could not find this reservation ID to change its status. : %s\n" . $mysqli->connect_error);
                     } else {
                         $mysqli->close();
-                        $_SESSION['successmessage'] = "The reservations with <strong>ID: $id has been succesfully cancelled</strong>";
+                        $_SESSION['successmessage'] = "The reservation with <strong>ID: $id has been succesfully change status to $messageStatus</strong>";
                         $mysqli->close();
                         header('Location: ../adminIndex.php?panel=viewReservations&page=1');
                     }
@@ -248,7 +250,7 @@ If ($source != null) { // Checking if the source is valid (Source checks from wh
 //
 //
 //======================================================================================
-// 3b. Cancel old pending reservations - Constantine ===================================
+// 3b. Delete old pending reservations - Constantine ===================================
 //======================================================================================                  
                 case('cancelOldPendingReservations'):
                     $sqlclearOld = "UPDATE `booking` SET `booking_status_B_STATUS_ID`='4' WHERE `booking_status_B_STATUS_ID`='1' AND BOOKING_DATE < CURDATE()";
@@ -257,14 +259,14 @@ If ($source != null) { // Checking if the source is valid (Source checks from wh
                     if ($affectedRecords > 0) {
                         $_SESSION['successmessage'] = "You have succesfully changed the status of <strong>$affectedRecords pending</strong> reservations to <strong>Unattended</strong>";
                     } else {
-                        $_SESSION['successmessage'] = "There weren't any unattended reservations to proccess!";
+                        $_SESSION['successmessage'] = "There weren't any pending reservations to proccess!";
                     }
                     $mysqli->close();
                     header('Location: ../adminIndex.php?panel=viewReservations&page=1');
                     break;
 
 
-// End of 3b. Cancel old pending reservations  =========================================
+// End of 3b. Delete old pending reservations  =========================================
 //======================================================================================
 //
 //

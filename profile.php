@@ -37,7 +37,10 @@
         
 
         <div class="col-md-9"> <!-- Profile Main Area - Constantine -->
+        
+            
             <div class="box">
+                <div class="row">
                 <?php
                 
                 $panelChoice = filter_input(INPUT_GET, 'panel'); // Filtering GET - Constantine
@@ -59,10 +62,11 @@
                     include 'membersArea/membersHome.php';
                 }
                 ?>
-            </div>
+            </div> <!-- End of row -->
+            </div> <!-- End of box -->
         </div>
     </div>
-    </div>
+
 
     <?php include('includes/footer.php'); ?>
     </body>

@@ -25,6 +25,8 @@
 
     <!-- Custom CSS -->
     <link href="../css/business-casual.css" rel="stylesheet">
+    <!-- JQuery -->
+    <script src="../js/jquery.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
