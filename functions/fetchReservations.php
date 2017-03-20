@@ -13,7 +13,7 @@ $result = $mysqli->query($sql);
         $pendingReservations =  $row['0'];
     }
     
-$sql1 = "SELECT COUNT(`BOOKING_ID`) FROM `booking` WHERE `BOOKING_DATE` = '". $today ."' ";
+$sql1 = "SELECT COUNT(`BOOKING_ID`) FROM `booking` WHERE `BOOKING_DATE` = '". $today ."' AND `booking_status_B_STATUS_ID` = '2'";
 
 $result1 = $mysqli->query($sql1);
 

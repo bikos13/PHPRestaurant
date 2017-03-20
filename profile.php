@@ -39,8 +39,8 @@
         <div class="col-md-9"> <!-- Profile Main Area - Constantine -->
         
             
-            <div class="box">
-                <div class="row">
+            <div class="row">
+                <div class="box">
                 <?php
                 
                 $panelChoice = filter_input(INPUT_GET, 'panel'); // Filtering GET - Constantine

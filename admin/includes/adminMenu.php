@@ -3,7 +3,8 @@
 <div class="col-md-3" id='UserMenu'>
 
     <div class="box">
-
+        <div class="row">
+        <div class="col-md-12">
         <h4>Hello, <?php echo $_SESSION['userdata']['firstname']; ?></h4><br>
 
         <div class="dropdown">
@@ -23,6 +24,13 @@
         </div>
 
         <h4><?php echo date('l,  d m Y') ?></h4><br>
+        </div>
+        <div class="col-md-12">
+            <?php include 'functions/fetchReservations.php'; ?>
+            <div class="col-sm-12"><a href="/adminIndex.php?panel=viewReservations&page=1&firstNameOrLastNameSearched=&dateSearched=&statusSearched=1&bookingSearched=1" class="text-warning">You have <?php echo $pendingReservations ?> Pending Reservations </a></div><br><br><br>
+            <div class="col-sm-12"><a href="/adminIndex.php?panel=viewReservations&page=1&firstNameOrLastNameSearched=&dateSearched=<?php echo $today ?>&statusSearched=2&bookingSearched=1" class="text-info"> View Today's <?php echo $todaysReservations ?> Reservations </a></div>
+        </div>
+    </div>
     </div>
 
 

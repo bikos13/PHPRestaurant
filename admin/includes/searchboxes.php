@@ -1,5 +1,6 @@
  <!-- Reservations Search box - Constantine -->
-    <h4>Search</h4>    
+ <hr>
+ <h4>Search</h4>  <hr>   
     <div class="col-md-6">
             <h5>Search Reservations</h5>
             <form class="form-group" method="GET">
@@ -29,7 +30,6 @@
 
             </form>
             </div> <!-- End of Reservations column -->
-
     
     
     

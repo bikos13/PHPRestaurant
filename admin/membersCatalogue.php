@@ -12,7 +12,7 @@ if (INPUT_GET) { //collects query from Admin Panel - Constantine
 ?>
 
 <h4>New Reservation</a></h4>
-<h4><small>Pick a customer for Reservation or <a href="adminIndex.php?panel=newUser">Create a new customer</a></small></h4>
+<h4><small>Pick a customer for Reservation or <a href="adminIndex.php?panel=newUser">Create a new customer</a><br>Alternatively use the <a href="/adminIndex.php?panel=controlPanel">search box from Admin Panel</a> to find a specific customer</small></h4>
 <?php
 include "./functions/dbcon.php";
 

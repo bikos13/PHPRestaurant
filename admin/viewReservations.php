@@ -23,6 +23,7 @@ if (INPUT_GET) { //collects query from Admin Panel - Constantine
 ?>
 
 <h4>View Reservations</h4>
+<h4><small>You can <a href="/adminIndex.php?panel=controlPanel">search for a specific reservation here</a></small></h4>
 <div class="row">
     <div class="box">
         <div class="col-md-12"><h4><small>Buttons Usage</small></h4></div>
@@ -189,7 +190,7 @@ BOOKING_DATE DESC, BOOKING_TIME DESC LIMIT " . $pr . "," . $rowsperpage;
                 echo "<div class='col-md-12'>" . $row['BOOKING_DATE'] . "</div>";
                 echo "<div class='col-md-12'>" . $row['BOOKING_TIME'] . "</div>";
                 echo "<div class='col-md-12'>" . (($row['SMOKING_BOOL'] === '1') ? "Smoking" : "<strong>Non</strong>-Smoking") . "</div>";
-                echo "<div class='col-md-12'>Persons: " . $row['BOOKING_SIZE'] . "</div>";
+                echo "<div class='col-md-12'>Person(s): " . $row['BOOKING_SIZE'] . "</div>";
                 echo "<div class='col-md-12'>" . $row['B_STATUS_NAME'] . "</div>";
                 echo "</div>"; // End of panel body - Constantine
                 echo "<div class='panel-footer'>";

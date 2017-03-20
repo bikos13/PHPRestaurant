@@ -40,50 +40,20 @@ $sql = "SELECT * FROM booking, booking_status WHERE ((BOOKING_DATE < CURDATE() A
 $result = $mysqli->query($sql);
 
 if ($result->num_rows > 0) {
-
-            $counteri = 1; //Counter for collapsible records
-            // output data of each row
-            while ($row = $result->fetch_assoc()) {
-
-                $isItRow = ($counteri % 3); // Dynamically create rows based on isItRow
-                if ($isItRow === 1) {
-                    echo "<div class='row'>"; // Create a row div if it's the first record
-                }
-                echo "<div id='panel#$counteri' class='col-md-4 order-panel'>";
-                echo "<div class='panel-group' style='border: solid 1px grey; border-radius: 5px;'>";
-                echo "<div class='panel panel-default'>";
-                echo "<h4 class='panel-title'>#" . $row["BOOKING_ID"] . " " . $row["BOOKING_DATE"] . "</h4>";
-                echo "</div>"; //End of panel title - Constantine
-                echo "<div class='panel-body'>";
-                echo "<div class='col-md-12'>" . $row["BOOKING_TIME"] . "</div>";
-                echo "<div class='col-md-12'> Person(s): " . $row["BOOKING_SIZE"] . "</div>";
-                echo "<div class='col-md-12'>" . (($row['SMOKING_BOOL'] === '1') ? "Smoking" : "<strong>Non</strong>-Smoking") . "</div>";
-                echo "</div>"; // End of panel body - Constantine
-                echo "<div class='panel-footer'>";
-                echo "<div class='row'>";
-                echo "<div class='col-md-12'>" . $row["B_STATUS_NAME"] . "</div>";
-                echo "</div><div class='row'>";
-                echo "</div></div></div></div>";
-                if ($isItRow === 0) {
-                    echo "</div>"; // // End a row div if it's the forth record
-                }
-                $counteri++;
-            }
-        } else {
-            echo "0 results";
+    echo "<table class='table table-bordered' style='margin:0 !important;'><tr><thead><th>ID</th><th>Date</th><th>Time</th><th>Table Size</th><th>Smoking area</th><th>Status</th></thead></tr>";
+    // output data of each row
+    while ($row = $result->fetch_assoc()) {
+        $smokers = "no";
+        if ($row["SMOKING_BOOL"] == "1") {
+            $smokers = "yes";
         }
-//if ($result->num_rows > 0) {
-//    echo "<table class='table table-bordered' style='margin:0 !important;'><tr><thead><th>ID</th><th>Date</th><th>Time</th><th>Table Size</th><th>Smoking area</th><th>Status</th></thead></tr>";
-//    // output data of each row
-//    while ($row = $result->fetch_assoc()) {
-//        (($row['SMOKING_BOOL'] === '1') ? "Smoking" : "<strong>Non</strong>-Smoking")
-//
-//          . $smokers . "</td><td>" . $row["B_STATUS_NAME"] . "</td></tr>";
-//    }
-//    echo "</table>";
-//} else {
-//    echo "0 results";
-//}
+
+        echo "<tr><td>" . $row["BOOKING_ID"] . "</td><td>" . $row["BOOKING_DATE"] . "</td><td>" . $row["BOOKING_TIME"] . "</td><td>" . $row["BOOKING_SIZE"] . "</td><td>" . $smokers . "</td><td>" . $row["B_STATUS_NAME"] . "</td></tr>";
+    }
+    echo "</table>";
+} else {
+    echo "0 results";
+}
 
 //End of Main query to get users reservation history =========================================================
 //============================================================================================================
@@ -125,17 +95,3 @@ $mysqli->close(); //Closing Database connection
 //============================================================================================================
 ?>
 
-<script>
-    $(function () {
-
-        $(".panel-group").mouseenter(function () {
-            $(this).css("border", "3px solid grey");
-        });
-
-        $(".panel-group").mouseleave(function () {
-            $(this).css("border", "1px solid grey");
-        });
-
-    });
-
-</script>
