@@ -87,10 +87,12 @@ $pagelimit = ceil($count_results / $rowsperpage); // Indicates the number of pag
 //============================================================================================================
 
 if ($pageCleanInput > 1) {
+    pagBut("1", "First Page");
     pagBut($prv_page, "Previous Page");
 }
 if ($count_results > $check_pages_size) {
     pagBut($next_page, "Next Page");
+    pagBut($pagelimit, "Last Page");
 }
 echo "<br>Page $pageCleanInput from  $pagelimit<br>";
 $mysqli->close(); //Closing Database connection
