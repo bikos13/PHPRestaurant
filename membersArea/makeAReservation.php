@@ -2,7 +2,7 @@
 
                 <?php
                 //Show upcoming reservation if exists using SQL query, else show default Landing page - Constantine =========================
-                include 'functions/dbcon.php';
+                include './functions/dbcon.php';
                 $upcomingReservationsSql = "SELECT * FROM booking WHERE ((BOOKING_DATE >= CURDATE() AND `booking_status_B_STATUS_ID` = '1') OR (BOOKING_DATE >= CURDATE() AND `booking_status_B_STATUS_ID` = '2')) AND USERS_USER_ID = " . $_SESSION['userdata']['userid']. " ";
                 $result = $mysqli->query($upcomingReservationsSql);
                 if ($result->num_rows > 0) { 
