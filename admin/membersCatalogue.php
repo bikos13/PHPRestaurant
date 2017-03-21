@@ -13,7 +13,8 @@ if (INPUT_GET) { //collects query from Admin Panel - Constantine
 
 <h4>New Reservation</a></h4>
 <h4><small>Pick a customer for Reservation or <a href="adminIndex.php?panel=newUser">Create a new customer</a><br>Alternatively use the <a href="/adminIndex.php?panel=controlPanel">search box from Admin Panel</a> to find a specific customer</small></h4>
-<?php
+<div class="col-md-12">
+    <?php
 include "./functions/dbcon.php";
 
 //============================================================================================================
@@ -126,7 +127,7 @@ $pagelimit = ceil($count_results / $rowsperpage); // Indicates the number of pag
 
 //End of Quering result pages number to utilize pagination button (when to show or hide) - Constantine =======
 //============================================================================================================
-
+?></div><?php
 
 if ($gotSearch == '1') { //Go back to search index page button if a query was requested
     echo "<div class='row'>";
