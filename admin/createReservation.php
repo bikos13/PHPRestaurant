@@ -15,6 +15,30 @@ if ((filter_input(INPUT_GET, 'userid') == null) || ((filter_input(INPUT_GET, 'em
             $fname = filter_input(INPUT_GET, 'fname');
             $lname = filter_input(INPUT_GET, 'lname');       
                
+//==============================================================
+// Providing options for hour select every half an hour ========
+//==============================================================
+    function provideHourOptionsEveryHalf() {
+        $start = "14:00";
+        $end = "23:00";
+        $array = array();
+        $tStart = strtotime($start);
+        $tEnd = strtotime($end);
+        $tNow = $tStart;
+
+        $i = 1;
+        while ($tNow <= $tEnd) {
+            $option = date("H:i", $tNow);
+            $array[$i] = $option;
+            $tNow = strtotime('+60 minutes', $tNow);
+            $i++;
+        }
+        return $array;
+    }
+
+    $hoursArray = provideHourOptionsEveryHalf();
+// Providing options for hour select every half an hour ========
+//==============================================================
 ?>
 
 <form role="form" method="POST" id="adminreservationform" name="adminreservationform" action="adminIndex.php?panel=setReservationTables">
@@ -52,7 +76,13 @@ if ((filter_input(INPUT_GET, 'userid') == null) || ((filter_input(INPUT_GET, 'em
     <!-- Time input field - Constantine -->
     <div class="form-group col-md-6">
         <label>Time<em style="color:red;"> *</em></label>
-        <input type="time" id="time" name="bookingtime" class="form-control" required>
+        <select id="time" name="bookingtime" class="form-control" required>
+            <?php
+            foreach ($hoursArray as $hour) {
+                                    echo "<option value='$hour:00'>" . $hour . "</option>";
+                                }
+            ?>
+        </select>
     </div>
     <!-- Persons input field - Constantine -->
     <div class="form-group col-md-6">
@@ -90,3 +120,4 @@ if ((filter_input(INPUT_GET, 'userid') == null) || ((filter_input(INPUT_GET, 'em
 
 </form>
         <?php } ?>
+

@@ -90,6 +90,9 @@ If ($source != null) { // Checking if the source is valid (Source checks from wh
 
 // End of 1a. Add Table - Constantine ===================================================
 //======================================================================================= 
+//
+//
+//
 //=======================================================================================
 // 1b. Delete Table - Constantine =======================================================
 //=======================================================================================     
@@ -115,6 +118,9 @@ If ($source != null) { // Checking if the source is valid (Source checks from wh
 
 // End of 1b. Delete Table ==============================================================
 //=======================================================================================  
+//
+//
+//
 //=======================================================================================
 // 1c. Unknown action error - Constantine ===============================================
 //=======================================================================================
@@ -240,7 +246,7 @@ If ($source != null) { // Checking if the source is valid (Source checks from wh
                         $mysqli->close();
                         $_SESSION['successmessage'] = "The reservation with <strong>ID: $id has been succesfully change status to $messageStatus</strong>";
                         $mysqli->close();
-                        header('Location: ../adminIndex.php?panel=viewReservations&page=1');
+                        header('Location: ../adminIndex.php?panel=controlPanel');
                     }
 
                     break;
@@ -262,7 +268,7 @@ If ($source != null) { // Checking if the source is valid (Source checks from wh
                         $_SESSION['successmessage'] = "There weren't any pending reservations to proccess!";
                     }
                     $mysqli->close();
-                    header('Location: ../adminIndex.php?panel=viewReservations&page=1');
+                    header('Location: ../adminIndex.php?panel=controlPanel');
                     break;
 
 
@@ -280,9 +286,6 @@ If ($source != null) { // Checking if the source is valid (Source checks from wh
 
 
                     $reservationdata = filter_input_array(INPUT_POST);
-                    echo "<pre>";
-                    echo var_dump($reservationdata);
-                    echo "</pre>";
 
                     echo $reservationdata['reservationType'];
 

@@ -77,8 +77,8 @@ function tableCheckboxReserved($tableCode, $tableSize) {
 //========================================================================
 // Part of the final Query that finds bookings between 3 hours ahead or before (to be used in eliminating booked tables) - Constantinoe 
 //========================================================================
-$threeHoursBefore = date('h:i:s A', strtotime($userdata['bookingtime']) - 10800); //preparing hour range for the query  minus 3 hours
-$threeHoursLater = date('h:i:s A', strtotime($userdata['bookingtime']) + 10800); //preparing hour range for the query  plus 3 hours
+$threeHoursBefore = date('G:i:s', strtotime($userdata['bookingtime']) - 10800); //preparing hour range for the query  minus 3 hours
+$threeHoursLater = date('G:i:s', strtotime($userdata['bookingtime']) + 10800); //preparing hour range for the query  plus 3 hours
 
 If ($threeHoursBefore > $threeHoursLater) { //If I have handled the date and time values as one, I wouldn't need this kind of fix :( (Now I know) - Constantine
     $threeHoursLater = "23:59:59";
@@ -107,9 +107,11 @@ $eliminatedTablesArray = array(); // array that will collect eliminated tables f
 
 if ($eliminatedTables->num_rows > 0) {
     $i = 1;
+
     while ($row = $eliminatedTables->fetch_assoc()) {
         $eliminatedTablesArray[$i] = $row['TABLE_CODE'];
         $i++;
+
     }
 }
 
