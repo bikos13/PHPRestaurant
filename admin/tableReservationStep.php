@@ -80,9 +80,23 @@ function tableCheckboxReserved($tableCode, $tableSize) {
 $threeHoursBefore = date('G:i:s', strtotime($userdata['bookingtime']) - 10800); //preparing hour range for the query  minus 3 hours
 $threeHoursLater = date('G:i:s', strtotime($userdata['bookingtime']) + 10800); //preparing hour range for the query  plus 3 hours
 
-If ($threeHoursBefore > $threeHoursLater) { //If I have handled the date and time values as one, I wouldn't need this kind of fix :( (Now I know) - Constantine
+//
+//
+//*****************************************************************************************************
+//===================== Mistake #1 I must concatenate datetime value for DB Usage, because overnight bookings are considered earlier (due to the fact of date lacking) if I don't =====
+$absolutethreeHoursBefore = date('G',strtotime($threeHoursBefore)); // Making hours absolute so we can use them for comparison else the comparison below won't work
+$absolutethreeHoursLater = date('G',strtotime($threeHoursLater)); // Making hours absolute so we can use them for comparison
+
+
+If ($absolutethreeHoursBefore > $absolutethreeHoursLater) { //If I have handled the date and time values as one, I wouldn't need this kind of fix :( (Now I know) - Constantine
     $threeHoursLater = "23:59:59";
 }
+//===================== End of Mistake #1 =============================================================================================================================================
+//*****************************************************************************************************
+//
+//
+//
+
 $hoursrangeQueryScript = "BOOKING_TIME BETWEEN " . $threeHoursBefore . " AND " . $threeHoursLater . " "; //script that defines hour range for the query
 // End of Part of the final Query that finds bookings between 3 hours ahead or before  ==========
 //========================================================================
@@ -102,6 +116,10 @@ BOOKING_DATE = '" . $userdata['bookingdate'] . "' AND
 BOOKING_TIME BETWEEN '" . $threeHoursBefore . "' AND '" . $threeHoursLater . "'
 ORDER BY BOOKING_ID";
 $eliminatedTables = $mysqli->query($sqlGeneratedScript);
+
+echo $sqlGeneratedScript .'<br>';
+echo $threeHoursBefore .'<br>';
+echo $threeHoursLater .'<br>';
 
 $eliminatedTablesArray = array(); // array that will collect eliminated tables from Query - Constantine
 
