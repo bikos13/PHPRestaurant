@@ -1,7 +1,7 @@
 <?php
     //Including globally needed functions and arrays - Constantine
-    include($_SERVER['DOCUMENT_ROOT'] . '/functions/init.php');
-    include($_SERVER['DOCUMENT_ROOT'] . '/includes/arrays.php');
+    include('functions/init.php');
+    include('includes/arrays.php');
     //! Including globally needed functions and arrays - Constantine
 ?>
 
@@ -75,7 +75,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		
                 <!-- Menu items are being collected from nav.php - Constantine -->
-                <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/nav.php'); ?>
+                <?php include('includes/nav.php'); ?>
                 <!-- !Menu items are being collected from nav.php - Constantine -->
                 
             </div>

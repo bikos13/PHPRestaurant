@@ -35,7 +35,7 @@ PHP file as a required source) - Constantine-->
         date_default_timezone_set('Europe/Athens');
 
         // Include the store hours class
-        include ($_SERVER['DOCUMENT_ROOT'] . '/functions/StoreHours.class.php');
+        include ('functions/StoreHours.class.php');
 
         // REQUIRED
         // Define daily open hours
