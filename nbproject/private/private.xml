@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp64/www/Restaurant/includes/header.php</file>
-            <file>file:/C:/wamp64/www/Restaurant/admin/includes/headerAdmin.php</file>
-            <file>file:/C:/wamp64/www/Restaurant/membersArea/makeAReservation.php</file>
-            <file>file:/C:/wamp64/www/Restaurant/admin/membersCatalogue.php</file>
-            <file>file:/C:/wamp64/www/Restaurant/profile.php</file>
-            <file>file:/C:/wamp64/www/Restaurant/membersArea/membersHome.php</file>
+            <file>file:/C:/wamp64/www/Restaurant/admin/reservationConfirmation.php</file>
+            <file>file:/C:/wamp64/www/Restaurant/admin/tableReservationStep.php</file>
+            <file>file:/C:/wamp64/www/Restaurant/functions/adminActionsProccessing.php</file>
+            <file>file:/C:/wamp64/www/Restaurant/adminIndex.php</file>
+            <file>file:/C:/wamp64/www/Restaurant/admin/viewReservations.php</file>
         </group>
     </open-files>
 </project-private>

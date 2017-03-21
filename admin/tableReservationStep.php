@@ -117,10 +117,6 @@ BOOKING_TIME BETWEEN '" . $threeHoursBefore . "' AND '" . $threeHoursLater . "'
 ORDER BY BOOKING_ID";
 $eliminatedTables = $mysqli->query($sqlGeneratedScript);
 
-echo $sqlGeneratedScript .'<br>';
-echo $threeHoursBefore .'<br>';
-echo $threeHoursLater .'<br>';
-
 $eliminatedTablesArray = array(); // array that will collect eliminated tables from Query - Constantine
 
 if ($eliminatedTables->num_rows > 0) {
