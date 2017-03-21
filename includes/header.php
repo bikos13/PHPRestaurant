@@ -14,6 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="The most eccentric and highest taste and quality restaurant of the World!">
+    <link rel="shortcut icon" type="image/png" href="../img/favicon.png"/>
     <meta name="author" content="Constantine Stathis">
     
     <!--Echoing Title page from individual page's meta - Constantine -->
