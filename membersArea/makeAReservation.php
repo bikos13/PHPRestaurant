@@ -7,7 +7,7 @@
                 $result = $mysqli->query($upcomingReservationsSql);
                 if ($result->num_rows > 0) { 
                     
-                    include 'includes/withreservation.php'; //If there is an existing future reservation - Constantine
+                    include 'includes/withReservation.php'; //If there is an existing future reservation - Constantine
                 } else {
                     include 'includes/reservationForm.php'; //If not reservations are made bring up this screen - Constantine
                 }
