@@ -18,8 +18,8 @@ if ((filter_input(INPUT_GET, 'userid') == null) || ((filter_input(INPUT_GET, 'em
 //==============================================================
 // Providing options for hour select every half an hour ========
 //==============================================================
-    function provideHourOptionsEveryHalf() {
-        $start = "14:00";
+    function provideHourOptions() {
+        $start = "16:00";
         $end = "23:00";
         $array = array();
         $tStart = strtotime($start);
@@ -36,7 +36,7 @@ if ((filter_input(INPUT_GET, 'userid') == null) || ((filter_input(INPUT_GET, 'em
         return $array;
     }
 
-    $hoursArray = provideHourOptionsEveryHalf();
+    $hoursArray = provideHourOptions();
 // Providing options for hour select every half an hour ========
 //==============================================================
 ?>

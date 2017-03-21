@@ -1,10 +1,10 @@
 <?php
 
 //==============================================================
-// Providing options for hour select every half an hour ========
+// Providing options for hour select every hour - Constantine ==
 //==============================================================
-function provideHourOptionsEveryHalf() {
-    $start = "14:00";
+function provideHourOptions() {
+    $start = "16:00";
     $end = "23:00";
     $array = array();
     $tStart = strtotime($start);
@@ -21,8 +21,8 @@ function provideHourOptionsEveryHalf() {
     return $array;
 }
 
-$hoursArray = provideHourOptionsEveryHalf();
-// Providing options for hour select every half an hour ========
+$hoursArray = provideHourOptions();
+// End of Providing options for hour select every hour =========
 //==============================================================
 ?>
 
