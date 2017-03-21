@@ -3,10 +3,10 @@
 // Starting Session - Constantine
 session_start();
 //Including Database Connection function - Constantine
-include $_SERVER['DOCUMENT_ROOT'] . "./functions/dbcon.php";
+include "./dbcon.php";
 
 //Including validation.php functions - Constantine
-include $_SERVER['DOCUMENT_ROOT'] . "/functions/validations.php" ;
+include "./validations.php" ;
     
     if (isset($_POST['reservationform']) && $_POST['reservationform']) {
         //Validating inputs - Constantine
