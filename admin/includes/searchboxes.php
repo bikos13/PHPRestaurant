@@ -51,7 +51,6 @@
     $( "#datepicker" ).datepicker({
     currentText: "Now",
     dateFormat: "dd-mm-yy",
-    minDate: 0,
     defaultDate: 0
     }); 
 } );
