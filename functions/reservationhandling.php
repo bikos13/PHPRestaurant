@@ -27,7 +27,7 @@ if (isset($_POST['reservationform']) && $_POST['reservationform']) {
     $errorMessage = "You can't make a reservation on a past date/hour (eg. <strong>NOT</strong> before $todate $hournow)"; // Message for false reservations
 
 
-    if ($bdate < $todate) { // compare booking date to present date        
+    if (($bdate < $todate) || ($bdate === '0000-00-00')) { // compare booking date to present date        
         $_SESSION['warnings'] = $errorMessage; // bind error message to session
         header('Location: ../profile.php?panel=newReservation');
     } else {
