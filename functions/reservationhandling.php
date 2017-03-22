@@ -31,7 +31,7 @@ if (isset($_POST['reservationform']) && $_POST['reservationform']) {
         $_SESSION['warnings'] = $errorMessage; // bind error message to session
         header('Location: ../profile.php?panel=newReservation');
         exit;
-    } elseif ($btime < $hournow) { // compare booking time to present time   
+    } elseif (($newDate = $todate) && ($btime < $hournow)) { // compare booking time to present time   
             $_SESSION['warnings'] = $errorMessage; // bind error message to session
             header('Location: ../profile.php?panel=newReservation');
             exit;
