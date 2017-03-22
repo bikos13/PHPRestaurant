@@ -3,12 +3,13 @@ include 'functions/dbcon.php';
 
 If (filter_input(INPUT_SERVER, 'REQUEST_METHOD') == "POST") {
 
+    $dateDatabaseFormatted = filter_input(INPUT_POST, 'bookingdate');// Convert to database format,
     $userdata = array(
         'reservationType' => 'new',
         'lname' => filter_input(INPUT_POST, 'lname'),
         'fname' => filter_input(INPUT_POST, 'fname'),
         'userid' => filter_input(INPUT_POST, 'userid'),
-        'bookingdate' => filter_input(INPUT_POST, 'bookingdate'),
+        'bookingdate' =>  date("Y-m-d", strtotime($dateDatabaseFormatted)), 
         'bookingtime' => filter_input(INPUT_POST, 'bookingtime'),
         'smokingBoolean' => filter_input(INPUT_POST, 'smokingbool'),
         'reservationSize' => filter_input(INPUT_POST, 'persons'),

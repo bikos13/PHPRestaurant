@@ -26,8 +26,24 @@
 
     <!-- Custom CSS -->
     <link href="../css/business-casual.css" rel="stylesheet">
-    <!-- JQuery -->
-    <script src="../js/jquery.js"></script>
+
+        <!-- jQuery -->
+<!--    <script src="js/jquery.js"></script>-->
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+    <!-- jQuery Ui -->
+  <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+  
+     <!-- jQuery Ui CSS -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  
+  <!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

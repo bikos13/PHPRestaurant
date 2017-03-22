@@ -70,7 +70,7 @@ if ((filter_input(INPUT_GET, 'userid') == null) || ((filter_input(INPUT_GET, 'em
 
     <div class="form-group col-md-6">
         <label>Date<em style="color:red;"> *</em></label>
-        <input type="date" id="date" min="<?php echo date("Y-m-d"); ?>" value="<?php echo date("Y-m-d"); ?>" name="bookingdate" class="form-control" required>
+        <input type="text" id="datepicker" name="bookingdate" class="form-control" required>
     </div>
 
     <!-- Time input field - Constantine -->
@@ -119,5 +119,18 @@ if ((filter_input(INPUT_GET, 'userid') == null) || ((filter_input(INPUT_GET, 'em
     </div>
 
 </form>
+
+<script>
+  $( function() {
+    $( "#datepicker" ).datepicker({
+    currentText: "Now",
+    dateFormat: "dd-mm-yy",
+    defaultDate: 0,
+    minDate: 0
+    }); 
+} );
+  </script>
         <?php } ?>
+
+
 

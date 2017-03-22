@@ -25,28 +25,29 @@ if (isset($_POST['reservationform']) && $_POST['reservationform']) {
     $hournow = date('G:i:s'); // bind hour now
     $todate = date('Y-m-d'); // bind date today
     $errorMessage = "You can't make a reservation on a past date/hour (eg. <strong>NOT</strong> before $todate $hournow)"; // Message for false reservations
+    $newDate = date("Y-m-d", strtotime($bdate)); // Convert to database format
 
-
-    if (($bdate < $todate) || ($bdate === '0000-00-00')) { // compare booking date to present date        
+    if ($newDate < $todate) { // compare booking date to present date        
         $_SESSION['warnings'] = $errorMessage; // bind error message to session
         header('Location: ../profile.php?panel=newReservation');
-    } else {
-        if ($btime < $hournow) { // compare booking time to present time   
+        exit;
+    } elseif ($btime < $hournow) { // compare booking time to present time   
             $_SESSION['warnings'] = $errorMessage; // bind error message to session
             header('Location: ../profile.php?panel=newReservation');
+            exit;
         }
     }
     // End of Validate input date and hour to avoid past date/time reservations ======
     //================================================================================
 
-    if ($stmt = $mysqli->prepare('INSERT INTO booking(BOOKING_DATE, BOOKING_TIME, BOOKING_SIZE, USERS_USER_ID, SMOKING_BOOL) VALUES (?, ?, ?, ?, ?)')) {
+        if ($stmt = $mysqli->prepare('INSERT INTO booking(BOOKING_DATE, BOOKING_TIME, BOOKING_SIZE, USERS_USER_ID, SMOKING_BOOL) VALUES (?, ?, ?, ?, ?)')) {
         //Value Binding - Constantine
-        $stmt->bind_param('sssss', $bdate, $btime, $bpersons, $buserid, $bsmoking);
+        $stmt->bind_param('sssss', $newDate, $btime, $bpersons, $buserid, $bsmoking);
         $stmt->execute();
         $stmt->close();
         $_SESSION['successmessage'] = "Reservation Successful Mate! " . $fname . " ";
         header("Location: ../profile.php?panel=home");
     }
     $mysqli->close();
-}
+
 ?>
