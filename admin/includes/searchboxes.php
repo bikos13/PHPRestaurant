@@ -7,7 +7,7 @@
                 <input type="hidden" name="panel" value="viewReservations">
                 <input type="hidden" name="page" value="1">
                 <div class="col-md-12">Name or Surname: <input class="form-control form-inline" type="text" name="firstNameOrLastNameSearched" placeholder="At least three letters"></div>
-                <div class="col-md-12">Date: <input class="form-control form-inline" type="date" name="dateSearched"></div>
+                <div class="col-md-12">Date: <input id="datepicker" class="form-control form-inline" type="text" name="dateSearched"></div>
                 <div class="col-md-12">Reservation Status<select name="statusSearched" class="form-control form-inline">
                         <option value="default" selected>All</option>
                         <?php
@@ -45,3 +45,14 @@
 
             </form>
         </div> <!-- End of Reservations Search box -->
+        
+        <script>
+  $( function() {
+    $( "#datepicker" ).datepicker({
+    currentText: "Now",
+    dateFormat: "dd-mm-yy",
+    minDate: 0,
+    defaultDate: 0
+    }); 
+} );
+  </script>

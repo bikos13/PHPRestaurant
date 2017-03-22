@@ -1,13 +1,14 @@
 <?php
 include "./functions/dbcon.php";
 
+$dateDatabaseFormatted = date("Y-m-d", strtotime(filter_input(INPUT_GET, 'dateSearched')));// Convert to database format,
 
 if (INPUT_GET) { //collects query from Admin Panel - Constantine
     $gotSearch = filter_input(INPUT_GET, 'bookingSearched');
     if ($gotSearch == '1') {
         $sqlSupplementScript = ""; //this a part of searching query that it will be generated dynamically - Constantine
         $nameSearched = filter_input(INPUT_GET, 'firstNameOrLastNameSearched');
-        $dateSearched = filter_input(INPUT_GET, 'dateSearched');
+        $dateSearched = $dateDatabaseFormatted; // Binding formatted date - Constantine
         $statusSearched = filter_input(INPUT_GET, 'statusSearched');
         if (preg_match('/^[A-z]{3,}$/', $nameSearched)) {
             $sqlSupplementScript .= "AND (FIRSTNAME LIKE '$nameSearched%' OR LASTNAME LIKE '$nameSearched%') ";

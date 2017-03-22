@@ -118,6 +118,7 @@ footer p {
     border-color: #995e13;
     color: #fff;
 
+
 }
 
 .profilebtn:hover {
@@ -132,11 +133,13 @@ footer p {
     border-color: #c97e20;
     font-weight: 600;
 
+
 }
 .profilebtn:focus {
     background-color: #c97e20 !important;
     border-color: #c97e20 !important;
     font-weight: 600;
+
 
 }
 .profilebtn:visited{

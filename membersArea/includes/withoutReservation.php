@@ -34,10 +34,10 @@ This panel is used when the users doesn't have any future reservations
     ?>
 </div><br><br><br>
 <div class="row text-center">
-<div class="col-md-6">
+    <div class="col-md-6" style="padding-top: 20px;">
     <a href="profile.php?panel=newReservation"><button class="btn btn-lg profilebtn"><span class="glyphicon glyphicon-glass"></span><br>Make a reservation</button></a>
 </div>
-<div class="col-md-6">
+<div class="col-md-6" style="padding-top: 20px;">
     <a href="profile.php?panel=viewReservations&page=1"><button class="btn btn-lg profilebtn"><span class="glyphicon glyphicon-book"></span><br>View Reservations History</button></a>
 </div>
 </div>
