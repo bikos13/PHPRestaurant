@@ -39,7 +39,7 @@
             <form class="form-group" method="GET">
                 <input type="hidden" name="panel" value="members">
                 <input type="hidden" name="page" value="1">
-                <div class="col-md-12">Name, Surname, Username, E-mail: <input class="form-control form-inline" type="text" name="nameSearched" placeholder="At least three letters"></div>
+                <div class="col-md-12">by Name, Surname, Username: <input class="form-control form-inline" type="text" name="nameSearched" placeholder="At least three letters"></div>
                 <div class="col-md-4 col-md-offset-4" style="padding: 20px 0px;"><button type="submit" name="userSearched" value="1" class="btn btn-info">Search User</button></div>
 
 

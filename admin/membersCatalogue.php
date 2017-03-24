@@ -4,8 +4,9 @@ if (INPUT_GET) { //collects query from Admin Panel - Constantine
     $gotSearch = filter_input(INPUT_GET, 'userSearched');
     if ($gotSearch === '1') {
         $nameSearched = filter_input(INPUT_GET, 'nameSearched');
+        echo $nameSearched;
         if (preg_match('/^[A-z]{3,}$/', $nameSearched)) {
-            $sqlSupplementScript = " WHERE FIRSTNAME LIKE '$nameSearched%' OR LASTNAME LIKE '$nameSearched%' OR USERNAME LIKE '$nameSearched%' OR EMAIL LIKE '$nameSearched%'"; //this a part of searching query that it will be generated dynamically - Constantine
+            $sqlSupplementScript = " WHERE FIRSTNAME LIKE '$nameSearched%' OR LASTNAME LIKE '$nameSearched%' OR USERNAME LIKE '$nameSearched%'"; //this a part of searching query that it will be generated dynamically - Constantine
         }
     }
 }
