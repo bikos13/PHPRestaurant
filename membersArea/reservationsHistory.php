@@ -101,7 +101,9 @@ if ($count_results > $check_pages_size) {
     pagBut($pagelimit, "Oldest Reservations");
 }
 
+if ($pagelimit > '0') {
 echo "<br>Page $pageCleanInput from  $pagelimit<br>";
+}
 
 $mysqli->close(); //Closing Database connection
 

@@ -267,7 +267,9 @@ if ($count_results > $check_pages_size) {
 }
 
 
+if ($pagelimit > '0') {
 echo "<br>Page $pageCleanInput from  $pagelimit<br>";
+}
 
 //End of Paginations buttons creations through function and query  - Constantine =============================
 //============================================================================================================
