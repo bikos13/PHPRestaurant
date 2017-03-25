@@ -52,9 +52,9 @@ if ($result->num_rows > 0) {
     echo "<table class='table table-bordered' style='margin:0 !important;'><tr><thead><th>Table Name</th><th>Size</th><th>Smoking Area</th><th>Delete?</th></tr>";
     // output data of each row
     while ($row = $result->fetch_assoc()) {
-        $smokers = "no";
-        if ($row['SMOKING'] === 1) {
-            $smokers = "yes";
+        $smokers = "<span style='color: red;'>no</span>";
+        if ($row['SMOKING'] === '1') {
+            $smokers = "<span style='color: green;'>yes</span>";
         }
         echo "<tr><td>" . $row['TABLE_CODE'] . "</td><td>" . $row['TABLE_SIZE'] . "</td><td>" . $smokers . "</td><td>". deleteButton($row['TABLE_CODE']) ."</td></tr>";
     }
