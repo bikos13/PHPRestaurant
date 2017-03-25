@@ -1,13 +1,11 @@
-<!--Page Meta - Constantine -->
-<!--TITLE Constant is being used for the header <title> tag and also for the 'mobileTitle'  mobile version of class which echoes TITLE - Constantine -->
+<?php 
+include('functions/init.php');
+define('TITLE', 'Login'); //title being used for mobile view and browser title
+include('includes/header.php');
+?>
 
-<?php define('TITLE', 'Login Page'); ?>
-<!--Page Meta - Constantine -->
-<?php include('includes/header.php'); ?>
 
 <?php if(!(isset($_SESSION['loggedin']))) { /*If session variable loggedin is not set show content else redirect to profile - Constantine*/ ?>
-
-
 
 <!-- Successful registration message passed through session - Constantine -->
 <?php if (isset($_SESSION['message'])) { ?>
