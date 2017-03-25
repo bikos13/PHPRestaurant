@@ -1,9 +1,8 @@
-<!--Page Meta - Constantine -->
-<!--TITLE Constant is being used for the header <title> tag and also for the 'mobileTitle'  mobile version of class which echoes TITLE-->
-
-<?php define('TITLE', 'Welcome!'); ?>
-<!-- Page Meta - Constantine -->
-<?php include('includes/header.php'); ?>
+<?php 
+include('functions/init.php');
+define('TITLE', 'Welcome!'); //title being used for mobile view and browser title
+include('includes/header.php');
+?>
 
 
     <div class="box">

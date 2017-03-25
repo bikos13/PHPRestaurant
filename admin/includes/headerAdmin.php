@@ -1,10 +1,3 @@
-<?php
-//Including globally needed functions and arrays - Constantine
-include('functions/init.php');
-include('includes/arrays.php');
-//! Including globally needed functions and arrays - Constantine
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 

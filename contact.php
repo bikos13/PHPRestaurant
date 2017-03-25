@@ -1,12 +1,10 @@
-<!--Page Meta - Constantine -->
-
-<!--TITLE Constant is being used for the header <title> tag and also for the 'mobileTitle'  mobile version of class which echoes TITLE <!--Page Meta - Constantine -->
-<?php define('TITLE', 'Contact us!'); ?>
-
-<!--!Page Meta -->    
+<?php 
+include('functions/init.php');
+define('TITLE', 'Contact us'); //title being used for mobile view and browser title
+include('includes/header.php');
+?>
 
 <?php
-include('includes/header.php');
 //Contact page requires phpstorehours.php to view the store hours properly, having as a fact that footer also uses the same implementation this elements MUST be included ONCE - Constantine 
 include_once ('includes/phpstorehours.php');
 ?>

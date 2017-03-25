@@ -1,9 +1,9 @@
-<!--Page Meta - Constantine -->
-<!--TITLE Constant is being used for the header <title> tag and also for the 'mobileTitle'  mobile version of class which echoes TITLE <!--Page Meta - Constantine -->
-<?php define('TITLE', 'Our Menu'); ?>
-<!--!Page Meta -->
+<?php 
+include('functions/init.php');
+define('TITLE', 'Our menu'); //title being used for mobile view and browser title
+include('includes/header.php');
+?>
 
-<?php include('includes/header.php'); ?>
 
 <!-- Including getMenuFromCategory() Function - Constantine -->
 <?php include_once "./functions/foodCataloging.php"; ?>

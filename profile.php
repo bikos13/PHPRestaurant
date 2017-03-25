@@ -1,10 +1,12 @@
-<!--Page Meta - Constantine -->
+<?php 
+include('functions/init.php');
+if ((isset($_SESSION['loggedin'])) && ($_SESSION['loggedin'] = true)) {
+define('TITLE', 'Profile'); //Only for loggedin validation - Constantine 
+include('includes/header.php');
+?>
 <!--TITLE Constant is being used for the header <title> tag and also for the 'mobileTitle'  mobile version of class which echoes TITLE-->
-<?php define('TITLE', 'Profile'); ?>
-<!-- Page Meta - Constantine -->
-<?php include('includes/header.php'); ?>
 
-<?php if ((isset($_SESSION['loggedin'])) && ($_SESSION['loggedin'] = true)) { //Only for loggedin validation - Constantine ?>
+
     <div class="row">
 
         <?php

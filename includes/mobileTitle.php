@@ -8,6 +8,5 @@
                 <h3 style="margin: 0; padding: 0;"><?php echo TITLE; ?></h3> 
             </div>
         </div>
-        </row>
     </div>
 </div>
