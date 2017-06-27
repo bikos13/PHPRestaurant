@@ -1,5 +1,6 @@
 # PHPRestaurant
-A reservation for a Restaurant Web Application based on PHP
+A reservation for a Restaurant Web Application based on PHP.
+This was my first rookie project at the collegue using procedural programming method
 
 Readme File Under Development ...
 
@@ -8,14 +9,14 @@ Contents Table
 2) Web App Usage
   a) Database Configuration
   b) Food Catalogue
-4) Project Status
+3) Project Status
 
 
 
 1) General Information about the project:
 
 - The design is based on the template 'Business Casual' provided by https://startbootstrap.com/template-overviews/business-casual/
-- This project uses HTML5, CSS3, BOOTSTRAP, JAVASCRIPT, JQUERY, PHP7, MySQL (with mysqli methods)
+- This project implements HTML5, CSS3, BOOTSTRAP, JAVASCRIPT, JQUERY, PHP7, MySQL (with mysqli methods)
 - The Web App uses the plugin php-store-hours by coryetzkorn (Plugin on GitHub: https://github.com/coryetzkorn/php-store-hours) to provide realtime information about the open hours of the restaurant
 - The Web App also uses the plugin validate.js by Rick Harrison (Plugin on Github: https://github.com/rickharrison/validate.js) 
 
@@ -26,9 +27,9 @@ Contents Table
 a) Database Configuration
 
 in phpmyadmin execute the script included in restaurant_db.sql
-funtions/dbcon.php has 2 variables that should be changed according to usage
-$username = "root"; // default is root, change it on your servers username
-$password = ""; // default is empty, change it on your servers username
+funtions/dbcon.php has 2 variables that should be changed according to usage<br>
+$username = "root"; // default is root, change it on your servers username<br>
+$password = ""; // default is empty, change it on your servers password<br>
 
 b) Food Catalogue
 
@@ -42,12 +43,10 @@ Example (includes/arrays.php):
         "foodDescription" => "This massive, tender, juicy ribeye ...", // Make sure Description have around the same character length to avoid styling problems
         "foodPrice" => "50" // Price
         
-In Addition, use the currency symbol of your liking at functions/foodCataloging.php Line 35 (Instructions included in file)
+In Addition, use the currency symbol of your liking at functions/foodCataloging.php Line 35 (Instructions included in file).
 
+For any definition please hit me straight ahead.
+This was just my first Rookie project and I keep it as my entry trophy!
 
-
-3) Project Status
-
-Alpha version, it's not working after registration or login proccess, although registration in DB works!
-
-Readme File Under Development ...
+This file can be improved through your commenting too
+Thanks everybody in advance!
