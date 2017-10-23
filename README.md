@@ -1,8 +1,6 @@
 # PHPRestaurant
 A reservation for a Restaurant Web Application based on PHP.
-This was my first rookie project at the collegue using procedural programming method
-
-Readme File Under Development ...
+This was my first rookie project in collegue using procedural programming practices
 
 Contents Table
 1) General Information about the project
@@ -50,3 +48,5 @@ This was just my first Rookie project and I keep it as my entry trophy!
 
 This file can be improved through your commenting too
 Thanks everybody in advance!
+
+3) Completed with an Excellent Grade.. but I can do really better now
